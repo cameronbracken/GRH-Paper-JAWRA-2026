@@ -1,0 +1,398 @@
+\documentclass[MLA,Times1COL, hidelinks, doublespace]{WileyNJDv5} %STIX1COL,STIX2COL,STIXSMALL
+\usepackage{lineno}
+\usepackage{amsmath}
+
+\linenumbers
+
+\articletype{Research Article}%
+
+\received{Date Month Year}
+\revised{Date Month Year}
+\accepted{Date Month Year}
+\journal{Journal}
+\volume{00}
+\copyyear{2023}
+\startpage{1}
+
+\raggedbottom
+
+\begin{document}
+
+\title{A real time reservoir inflow forecast evaluation framework}
+
+\author[1]{Cameron Bracken}
+\author[1]{Youngjun Son}
+\author[1]{Vince Tidwell}
+\author[1]{Nathalie Voisin}
+
+\authormark{BRACKEN \textsc{et al.}}
+\titlemark{xxx}
+
+\address[1]{\orgname{Pacific Northwest National Laboratory}, \orgaddress{\state{Washington}, \country{USA}}}
+
+\corres{Corresponding author Cameron Bracken, \email{cameron.bracken@pnnl.gov}}
+
+%\presentaddress{This is sample for present address text this is sample for present address text.}
+
+%\fundingInfo{Text}
+%\JELinfo{ejlje}
+
+\abstract[Abstract]{
+Recent advances in data driven hydrologic forecasts have led to a multitude of new and rapidly improving streamflow forecast products and technologies. These often lead hydropower producers to question whether such advances translate into increases in revenue and whether implementing these new forecasts justify the additional associated costs. To address this, we present a general framework that can be used in real time (or near real time) for reservoir inflow forecast evaluation. The framework calls for an iterative approach which involves direct operator feedback in the evaluation process. The evaluation can include forecast verification and validation, but also includes other qualitative or specialized metrics of forecast quality. We also present a successful application of this evaluation framework to three reservoirs in the Great River Hydro system on the Connecticut River in the Northeast U.S. While there is no single evaluation approach that can apply to all hydrologic forecasts, we also present a range of options of both traditional and tailored metrics that will be suitable for a diverse set of situations and systems. The goal of this framework is to provide hydropower operators with information necessary for evaluating how much a particular forecast product will improve their operations and ultimately inform ongoing investment decisions, such as whether to purchase external forecast products or improve existing internal forecasting capabilities.
+}
+
+\keywords{hydropower, streamflow forecasting, real time evaluation, verification, validation}
+
+%\jnlcitation{\cname{%
+%\author{Walters G}, and
+%\author{Bracken C}}.
+%\ctitle{A comprehensive calibration approach for the Northwest River Forecast Center} \cjournal{\it JAWRA} \cvol{2021;00(00):1--18}.}
+
+
+\maketitle
+
+%\section{Highlights}
+%1) More inflow forecasts products are becoming available to hydropower operators
+%2) The forecast verification exercise transitions from “value of forecasts” to “added value of better forecasts”. 
+%3) The operators are critical to develop the periods and metrics to define the "added value".
+%4)	While hindcasts provide robust statistics, operators tend to favor a shorter evaluation period under real time operational conditions
+
+
+
+\section{Introduction}
+
+%i)	Role of forecasts in hydropower scheduling
+%ii)	Improvements and uncertainties in forecasts
+%iii)	Question of whether fidelity of forecasts can improve scheduling and thus need of tailored evaluation
+%iv)	Objective: Demonstrate forecast evaluation process 
+%v)	Brief description of approach 
+
+Changing environmental regulation, diversifying and increasing water demands, and growing operational uncertainties are requiring more precise operations of reservoir and hydropower systems (e.g., \cite{leeDevelopingResilientReservoir2025,guoReservoirControlOperations2024,badrDamSystemReservoir2023,aljodaUncertaintiesRisksReservoir2021}). This desire for increased precision has driven interest in improved streamflow forecasting tools \citep{yangSensitivityForecastValue2021,paganoChallengesOperationalRiver2014, liuAdvancingDataAssimilation2012}. While numerous commercial and in-house options are available, water managers are faced with the challenge of evaluating whether more sophisticated forecasting tools will actually improve their operations and justify the associated financial investment. 
+
+%<I would also add here that we see more forecast products coming in with new optimization and new data driven approaches - however old approaches for forecast verification  might be outdated - those need to be evaluated on context on needing the perturb an existing system. Many papers on LSTM and stuff currently say that they develop real time models. This study provides insight to this technology innovation on how to evaluate their value.>
+
+The quality of hydrologic forecasts and hydropower scheduling has rapidly improved in recent years due to the emergence of new data driven approaches \citep{kratzertLearningUniversalRegional2019} and scheduling optimization \citep{zhangOptimizationShorttermHydropower2024}. Despite these improvements verification remains a challenge and traditional verification approaches may not be applicable under new operational paradigms. This study seeks to provide insight into the evaluation of contemporary forecast models and guidance on how to assess their value. 
+
+Pairing a forecasting tool with the needs of a particular hydropower operator is complicated by a number of factors. The quantity and quality of data concerning meteorological (precipitation, snow pack) and hydrological (reservoir storage, soil moisture) conditions within the watershed vary locationally as do the efficacy of meteorological forecasting (Hay et al. 2023; Chen et al. 2021; Wood et al. 2016). Watershed characteristics vary as does the infrastructure used to manage basin resources \citep{phamEvaluationRandomForests2021}. Operators are often subject to very different management regimes (e.g., run-of-river, rule curves) \citep{zajacImpactLakeReservoir2017}. Management objectives also vary according to forecast lead time as well as normal versus extreme event conditions. Additionally, there are decisions concerning choice of model (conceptual, physical, empirical, AI enhanced) as well as its calibration and parameterization.  
+
+To help provide some clarity concerning the performance of various forecasting tools under differing informational, physical, and operational conditions, a range of head-to-head evaluation exercises have been performed. HEPEX (which stands for Hydrologic Ensemble Prediction EXperiment), which “seeks to advance the science and practice of hydrological ensemble prediction and its use in impact- and risk-based decision making,” has organized evaluations in the context of community experiments and testbeds (\footnote{\url{www.hepex.org}}). The U.S. Bureau of Reclamation has also performed a series of forecast rodeos in a prize competition environment\footnote{\url{https://www.usbr.gov/research/challenges/forecastrodeo.html}}. Real time forecast evaluations such as this (as opposed to retrospective evaluations) tend to be favored by the industry due their ability to fit in with existing operations \citep{krajewskiRealtimeStreamflowForecasting2021}. While such exercises provide valuable insight into the complexities and potential solutions for streamflow forecasting it doesn’t answer the question on operators’ minds—will a new forecast tool improve my operations enough to justify the investment in infrastructure, staff training and staff time during transition? 
+
+Here we present an approach for assisting local water managers and hydropower utility operators in performing a context-specific evaluation of streamflow forecasting and hydropower scheduling tools. The approach calls for broad integration of the operator including experimental design, metric selection, tailored metric design, and comparative analysis of the results. We then demonstrate this approach in the context of three hydropower plants operated by Great River Hydro, the largest conventional hydropower provider in the Northeastern U.S. By using multiple traditional and tailored metrics as well as making the data easily accessible and comparable, this approach provides operators with the information they need to make informed decisions on forecast products with confidence. Importantly, this approach is designed to be easily replicated on other river systems.
+
+
+\section{Methods}
+
+%(1)	real time vs. historical
+While probabilistic and ensemble forecasts and evaluation metrics are gaining in popularity, deterministic forecasts such as those issued by the National Weather Service River Forecast Centers (RFC) are still widely used operationally and are adopted as a valued benchmark of this framework. In addition, we focus on metrics which are feasible to compute in a real time setting as opposed to a hindcast based evaluation. While a hindcast evaluation may be preferable statistically, hindcast evaluations require that forecasters predict (manually or with an operations model) their own behavior during hypothetical past conditions where other factors such as market prices and data curation issues may not be known. In the remainder of this section we describe the components of a real time forecast evaluation framework for reservoir inflow forecasts including visualizations to convey the evaluation results and an iterative feedback process from the operators. 
+%are onerous to conduct in humapn-in-the-loop forecaster settings. 
+%are often not possible in operational settings due to forecaster time constratrain
+%Note for self to work on: the intro needs more context on how it informs the community. Real time is definitely good. papers such as : https://www.sciencedirect.com/science/article/pii/S2589915521000389 could help make the case 
+
+\subsection{real time inflow forecast evaluation}
+A general real time forecast evaluation process can be described in the following steps:
+\begin{enumerate}
+    \item \textbf{Collect real time data} - This may include streamflow forecasts (natural or regulated), calculated inflows, scheduled and actual outflows, and other data relevant for computing evaluation-relevant metrics such as forecast issue times and past forecasts. 
+    \item \textbf{Compute evaluation metrics} - At the start of an evaluation, it may only be possible to compute a limited number of generic evaluation metrics but as the available data grows it may become possible to compute more reliable metrics as well as metrics tailored to the specific system. 
+    \item \textbf{Visualization} - Developing easy to interpret visuals is critical to the success of an evaluation. Visuals should be concise, clear, and require a limited amount of explanation, or come with built-in documentation. 
+    \item \textbf{Solicit feedback} - Collecting feedback on an ongoing basis from operators is critical to the success of a real time forecast evaluation. This process can be used to develop tailored metrics that are specific to the system or reservoir being evaluated. 
+    \item \textbf{Iterate} - The above steps should be repeated at a regular interval (monthly or weekly) throughout the entire forecast evaluation period, ideally at least one year in duration. 
+\end{enumerate}
+
+The iterative nature of this evaluation process with direct operator feedback is important to its success. As more data becomes available so does an understanding of the forecast performance which may help to develop additional tailored metrics. The following sections detail some additional considerations.
+
+%iii)	Benchmark
+\subsection{Benchmark forecasts}
+It is critical to include benchmark forecasts in the evaluation to provide forecast evaluators with context for how well a specific forecast performs over the benchmarks. Two commonly used benchmarks are the ``perfect'' forecasts, which use observed or calculated inflows in place of a forecast to get a sense of the best possible forecast, and ``persistence'' forecasts which use the last observed value carried out for all future timesteps to get a sense of the arguably worst possible forecast. Persistence is a competitive benchmark for short term operations, from hours to 2-day horizons.  We note that other simple climatologically driven forecasts could be used in place of the persistence forecast when looking at longer horizons like monthly and seasons. Other benchmarks could include publicly available forecast products or any other forecast that is currently being used at the reservoir. 
+
+
+
+%(2)	Measured inflow (smoothing)  (Figure)
+\subsection{Smoothing calculated inflows}
+Most available reservoir inflow data is not directly measured, instead it is computed based on measured changes in forebay elevation and a known elevation-volume relationship. These calculations are often noisy due to short term fluctuations in forebay elevations from wind, turbine and spillway release changes, and other such as reservoir seiches or waves propagating from upstream. Inflow computed in this way can often contain negative values and other non-physical fluctuations. In this situation we recommend the inflow data be smoothed prior to comparing with any forecasted inflow. We recommend a triangular smoother that applies moving-averages using a triangular weight function. This is a simple option which produces reasonable results but many more options are available \citep{elshorbagyNoiseReductionChaotic2002}. Figure \ref{fig:smoothing} shows an example of hourly computed inflow data which has been smoothed using a triangular smoother. 
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{1a-wilder_0h.png}
+    \includegraphics[width=\linewidth]{1b-wilder_24h.png}
+    \caption{The top figure shows the unsmoothed inflow and bottom figure shows the smoothed inflow used in the evaluation. The black lines show the calculated inflow based on forebay observations and dam outflow and the gray lines show the forecasts for reference.}
+    \label{fig:smoothing}
+\end{figure}
+
+
+%iv)	Traditional evaluation metrics
+\subsection{Traditional inflow evaluation metrics}
+
+Traditional deterministic forecast evaluation metrics that are particularly relevant to inflow forecasting include measures of average behavior, correlation, and bias. Additional metrics include higher order moments of the forecast distributions, categorical forecast performance, and conditional statistics \citep{st-aubinPrecisionReliabilityForecasts2022, hewamalageForecastEvaluationData2023}. This section is not intended to be a comprehensive review of deterministic forecast evaluation metrics. Therefore, we recommend some simple metrics which can be augmented as needed for particular applications. These metrics should be computed for a variety of lead times as well as seasonally to fully assess forecast performance across a range of conditions. 
+
+Average hydrologic forecast behavior is typically measured with an error metric such as root mean squared error (RMSE), Nash-Sutcliffe Efficiency (NSE), or King-Gupta Efficiency (KGE) (refs). We recommend KGE because it is not skewed by large values where NSE and RMSE are due to the use of a squared error term. The KGE is given by
+
+\begin{equation}
+    \text{KGE}=1-\sqrt{(r-1)^2+\left(\frac{\sigma_f}{\sigma_o}-1\right)^2+\left(\frac{\mu_f}{\mu_o}-1\right)^2}
+\end{equation}
+where $r$ is the linear correlation coefficient, $\sigma_f$ is the standard deviation of the forecast, $\sigma_o$ is the standard deviation of the observations, $\mu_f$ is the mean of the forecast, and $\mu_o$ is the mean of the observations. Values of KGE that are greater than -0.41 are better than the mean of the observations, but larger values are preferred up to the maximum value of 1 for a perfect forecast. We note that NSE and KGE have different properties and so should not be used interchangeably \citep{knobenTechnicalNoteInherent2019a}.
+
+The bias of a single forecast point is the difference between observed and forecasted values but this may be expressed as a percentage for a set of forecasts by averaging across all bias values 
+
+\begin{equation}
+    \text{PBIAS} = 100\ [\%]\times\frac{\sum(f_i-o_i)}{\sum(o_i)}
+\end{equation}
+
+where $\text{PBIAS}$ measures the tendency of a forecast ($f$) to be greater than (positive values) or less than (negative values) than observations ($o$). 
+
+Correlation measures the strength of a linear relationship between observations and forecasts is computed using the Pearson correlation coefficient
+
+\begin{equation}
+    r = \frac{\sum(o_i-\mu_o)(f_i-\mu_f)}{\sqrt{\sum(o_i-\mu_o)^2(f_i-\mu_f)^2}}
+\end{equation}
+
+where $r$ can range from -1 to 1 but for forecast evaluation, negative values would indicate poor forecast performance. 
+
+
+\section{Case Study: Great River Hydro}
+
+Great River Hydro is New England’s largest conventional hydropower generator. As a private, independent power producer, GRH owns and operates 589 megawatts of nominal hydropower capacity in ISO New England. In this evaluation we focused on the inflow to three main hydropower producing dams in the system, Wilder, Bellows Falls, and Vernon (Figure \ref{fig:map}) as well as three main tributaries, the Ottauquechee, Sugar and White Rivers. 
+
+Setting up a real time evaluation required the development of an automated data platform that enabled sharing of real time system data as well as the forecasts. This was necessary to share certain data with external parties for the purposes of forecast evaluation. While such a system may not be necessary for evaluations conducted internally by a single organization, some form of data access (API, database, etc.) is required for a real time forecast evaluation. Such systems incur an up-front cost that should be considered when deciding on an evaluation approach. In addition, real time evaluations come with all of the challenges of any operational system, such as system uptime, latency and maintenance. 
+
+%<I believe that a lot of the effort was for GRH to set up the real time feed from the participants/candidate products? should there be some info here? It is somewhat important because the standard business model has been for operators to perform their own forecasts. And nnow the business model is changing. And the incumbent product is well set up with knowledgebsle staff. So the new product needs to be not only better to change decisions AND be accessible logistically - the pooint being that new products need to work on:
+%- accuracy skill
+%- cost of deployment
+%- ease of procurement
+%- consistency when data/platforms goes down - what are the plans B
+%> All of those are necessary and the motivation for a real time benchmark. Also - does that mean that you have stats beyond the accuracy skills? how many time systems were off etc. While those may not be shared, this is important academically for staff to realize what real time is. >
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\linewidth]{2-map2.png}
+    \caption{The Great River Hydro system in the Northeast U.S. with the locations of the three major dams in this evaluation.}
+    \label{fig:map}
+\end{figure}
+
+We ran the real time evaluation for almost 2 years from July 2023 to May 2025 with regular feedback from the operators. We evaluated two commercial forecast products which are anonymized and labeled as A and B. In addition we evaluated the GRH in-house forecast which is a combination of RFC forecasts, routing, and operator judgment. During the initial few months of the evaluation we focused on generic metrics of forecast performance. As the quantity of data increased we transitioned to seasonally computed metrics and tailored metrics developed in collaboration with the system operators. 
+
+While most weather driven inflow forecasts are available hourly for the next 7-10 days, the volumetric forecast for the next day is the most important for GRH. This largely sets what they can bid into the day ahead market. Table \ref{tab:metrics}) show the overall forecast evaluation metrics for the two commercial forecasts (A, B), the GRH in-house forecast (GRH), and the benchmarks perfect and persistence forecasts for the one-day-ahead forecasts.  Overall we found that for this time period, GRH's in-house forecast was roughly similar to forecast B but better than forecast A overall. This overall tabular view is a good way to get quick comparisons between forecasts but can obfuscate certain forecast behaviors, especially seasonal.
+
+% latex table generated in R 4.5.1 by xtable 1.8-4 package
+% Thu Jul 31 14:54:43 2025
+\begin{table}[ht]
+\centering
+\caption{Overall forecast evaluation metrics for the real time evaluation conducted from July 2023 to May 2025 for the two commercial forecasts (A, B), the GRH in-house forecast (GRH), and the benchmarks perfect and persistence forecasts.}\label{tab:metrics}
+\begin{tabular}{llrrrr}
+  \hline
+Forecast & Location & NSE & KGE & PBIAS & r \\ 
+  \hline
+A            & Wilder     & 0.72  & 0.83  & -8.00    & 0.88 \\
+B            & Wilder     & 0.83  & 0.88  & 0.10     & 0.93 \\
+GRH          & Wilder     & 0.88  & 0.89  & -9.90    & 0.95 \\
+perfect      & Wilder     & 1.00  & 1.00  & 0.00     & 1.00 \\
+persistence  & Wilder     & -0.81 & 0.02  & -75.90   & 0.75 \\
+A            & Bellows    & 0.55  & 0.77  & 0.40     & 0.77 \\
+B            & Bellows    & 0.91  & 0.95  & 0.60     & 0.95 \\
+GRH          & Bellows    & 0.85  & 0.88  & -10.40   & 0.93 \\
+perfect      & Bellows    & 1.00  & 1.00  & 0.00     & 1.00 \\
+persistence  & Bellows    & 0.39  & 0.35  & -39.20   & 0.87 \\
+A            & Vernon     & 0.81  & 0.83  & -11.30   & 0.91 \\
+B            & Vernon     & 0.89  & 0.94  & 1.70     & 0.94 \\
+GRH          & Vernon     & 0.89  & 0.88  & -11.00   & 0.95 \\
+perfect      & Vernon     & 1.00  & 1.00  & 0.00     & 1.00 \\
+persistence  & Vernon     & 0.80  & 0.69  & -18.10   & 0.93 \\
+   \hline
+\end{tabular}
+\end{table}
+
+Figure \ref{fig:fc-lead-time} shows the performance of all the available forecasts and benchmarks out to a 10 day lead time. The GRH in-house forecast is only used to develop bids for the day ahead market so it does not extend the full 10 day period. At Wilder and Vernon all three forecasts perform roughly similar with 1-3 days of lead time with the A and B forecasts diverging after that period. At Bellows Falls the three forecasts are distinct in terms of quality with the B showing the best performance at most lead times followed by the GRH in-house forecast and then forecast A. Notably, after three days of lead time, all forecasts exhibited some amount of bias at the downstream forecast locations which may be due to errors propagating from upstream. 
+
+\begin{figure}
+    \centering
+    \includegraphics[width=.9\linewidth]{3a-daily-kge.png}
+    \includegraphics[width=.9\linewidth]{3b-daily-nse.png}
+    \includegraphics[width=.9\linewidth]{3c-daily-pbias.png}
+    \includegraphics[width=.9\linewidth]{3d-daily-r.png}
+    \caption{Forecast performance metrics by lead time. A and B are commercial forecasts, GRH is an in-house forecast. The dashed line indicates the threshold where a forecast has no skill over the mean.}
+    \label{fig:fc-lead-time}
+\end{figure}
+
+
+Figure \ref{fig:metrics-by-season} shows metrics by month for the entire evaluation period which reveals some trends in forecast quality in certain seasons. Namely forecasts tend to perform worse in the winter which is the wet season and worse in the summer which is the dry season. Forecasts tended to perform well during the snow melt season (April-July). The natural hydrology of the system is driven by different mechanisms in different seasons, for example, snow vs rain and baseflow vs direct runoff, which may explain the varying model performance by season.  Although forecast B tends to perform better overall, there are cases in which the A forecast is better, highlighting the difficulty of selecting a single deterministic forecast. 
+
+\begin{figure}
+    \centering
+    \includegraphics[width=.9\linewidth]{4a-da-month-kge.png}
+    \includegraphics[width=.9\linewidth]{4b-da-month-nse.png}
+    \includegraphics[width=.9\linewidth]{4c-da-month-pbias.png}
+    \includegraphics[width=.9\linewidth]{4d-da-month-r.png}
+    \caption{Forecast performance metrics by month. A and B are commercial forecasts, GRH is an in-house forecast. The dashed line indicates the threshold where a forecast has no skill over the mean.}
+    \label{fig:metrics-by-season}
+\end{figure}
+
+
+
+
+
+\subsection{Tailored metrics}
+
+In addition to the generic forecast evaluation metric described above, we developed several tailored metrics specifically relevant to the GRH system and its operations.  The first focused on day ahead forecast performance as shown in the previous section. This was motivated by the day ahead market that GRH bids into, as such they focus their attention heavily on the 1-2 day ahead period where the forecasts matter the most. Operationally, they adjust their flows after this point, so no forecast is used after the 2 day mark. 
+
+During the Federal Energy Regulatory Commission (FERC) relicensing for the three main dams on the lower Connecticut river a strict limit on forebay fluctuations was imposed. GRH was given a +/- 0.5 foot operating range after which penalties are incurred. Given GRH’s reliance on the inflow forecast, a metric was developed that captures the chance of the forebay limit being exceeded if the inflow forecast is used directly. Figure \ref{fig:cum-error} shows where the forebay would be after a certain amount of time if the forecast was used directly to set a pass inflow condition (i.e., inflow=outflow). The error bars extend to the 2.5th and 97.5th percentile of all forecasts. We can see that rarely would a forecast cause the forebay to exceed the 0.5 foot limit during the first day of operations, after which the operators can adjust. 
+
+\begin{figure}
+    \centering
+    \includegraphics[width=1\linewidth]{5-cum-error-5pct.png}
+    \caption{The cumulative probability of exceeding a 0.5 foot operating range if the operations were set to pass inflow (inflow=outflow) where inflow was determined by the various inflow forecasts.}
+    \label{fig:cum-error}
+\end{figure}
+
+Figure \ref{fig:prob-exeed-threshold} (top) shows the corresponding probability of exceeding the 0.5 foot limit given a neutral forebay starting position on day 0. Results suggest that chances of exceedance are less than 10\% for all forecasts for all lead times in the 1-3 day range. GRH was also interested in seeing a more realistic situation involving a non-optimal forebay starting position on the second day, what was the probability of exceeding the 0.5 foot range, which is shown in Figure \ref{fig:prob-exeed-threshold} (bottom). We can see that the probabilities are much higher, up to 25\% in some cases for the A forecast. This information provides a detailed view of the forecast performance that GRH can use to assess forecast quality.  
+
+\begin{figure}
+    \centering
+     \includegraphics[width=1\linewidth]{6a-threshold-1day.png}
+    \includegraphics[width=1\linewidth]{6b-threshold-2day.png}
+    \caption{Probability of exceeding a 0.5 foot operating range given a neutral forebay starting position on day 0 (top) and probability of exceeding a 0.5 foot operating range on the second day, given the forebay starting position from the first day (bottom). }
+    \label{fig:prob-exeed-threshold}
+\end{figure}
+%    \begin{figure}
+%        \centering
+%        \includegraphics[width=0.5\linewidth]{map3.png}
+%        \caption{Enter Caption}
+%        \label{fig:enter-label}
+%    \end{figure}
+%i)	Setting (Figure: map)
+%v)	Development of tailored metrics
+%vi)	Data visualizer (Figure)
+%i)	Traditional metrics (graphs and table from visualizer)
+%ii)	Tailored metrics 
+%(1)	Tailored metrics
+
+%\section{Results  (Cameron, Youngjun)}
+
+%(2)	Tailored metric results
+
+\section{Discussion}
+%i)	Recommendation
+%ii)	Value of the process
+%iii)	Limitations
+
+In this paper we present a general framework that can be used in real time (or near real time) for reservoir inflow forecast evaluation. The  evaluation can include forecast verification and validation but also include other qualitative or specialized metrics of forecast quality. The framework calls for an iterative approach which involves direct operator feedback in the process. We also presented a successful application of this evaluation framework to three reservoirs in the Great River Hydro system on the Connecticut River in the Northeast U.S. While there is no single evaluation approach that can apply to all forecasts, we present a range of options of both traditional and tailored metrics that will be suitable for many situations. The goal of such a framework is to provide operators with information necessary for evaluating how much a particular forecast product will improve their operations and ultimately inform ongoing investment decisions (i.e. purchase external forecast products or improve existing internal forecast). 
+
+In our real time evaluation of the GRH inflow forecasts there was one commercial forecast that stood out as having better performance overall. However, it was not always the best in every month and every lead time. This underscores the difficulty of selecting a single best deterministic forecast. Moving to a probabilistic forecast may alleviate this somewhat but operators still need to bid in a fixed amount into energy markets so overall improvements in deterministic forecast skill are valuable. In this study we did not address how much improvements in inflow forecasts will translate into improvements in hydropower operations and increased revenue. An important next step in this evaluation framework is to couple this evaluation with hydropower scheduling models to quantify increases in revenue from improved inflow forecasts. While this seems a straight forward next steps, many hydropower scheduling models work with ranges of operations that match the utility's bidding strategy and local market opportunities. This complexity implies that evaluating the opportunities for harnessing higher forecast accuracy may also requires updating scheduling models and exploring more monetized operations. 
+
+Real time forecast evaluations are inherently limited by the amount of time they are conducted. Ideally a forecast model's performance would be assessed over the full range of hydrologic conditions spanning multiple decades. A hindcast evaluation may account for the full range of hydrologic variability but this requires an operations model or considerable effort on the part of the system operators to re-operate the system for every hindcast. The decision to pursue a real time or hindcast evaluation must be made by the system operators depending on their specific system needs and resource availability. 
+
+The iterative nature of this framework is perhaps its most valuable component. Having direct operator involvement and feedback helps to provide value to the operators. The development of tailored metrics make the results relevant to a particular system and helps with operator buy-in. Furthermore, both generic and tailored metrics can ultimately be extended to assess the impacts of inflow forecasts on hydropower scheduling. Particularly under dynamic electricity market conditions, evaluations of inflow forecasts can serve as key indicators for understanding how forecasting errors propagate through the system, influencing compliance with operational requirements, variations in actual power generation, and potential revenue for system operators. The analysis of inflow forecast performance, conducted in coordination with system operators, represents an important foundational step toward achieving these broader applications. In presenting this framework we hope to provide a template for further applications and unbiased evaluation of the myriad of inflow forecasts available to hydropower system operators.
+
+
+\bmsection*{Data and Code}
+
+Code for the evaluation is freely available
+\footnote{https://github.com/HydroWIRES-PNNL/inflow-forecast-evaluation}. Sample data can be accessed from the data repository on Zenodo\footnote{https://doi.org/10.5281/zenodo.16921728}. 
+
+Note that a pre-print non-peer reviewed draft of the manuscript has been uploaded to \url{https://eartharxiv.org/repository/view/10530/}. 
+
+%\backmatter
+\bmsection*{Author contributions}
+
+Cameron Bracken - Conceptualization, Data Curation, Formal Analysis, Investigation, Methodology, Software, Validation, Visualization, Writing - Original Draft Preparation. Youngjun Son - Conceptualization, Data Curation, Formal Analysis, Investigation, Software, Validation, Visualization, Writing - Original Draft Preparation. Vince Tidwell - Conceptualization, Formal Analysis, Investigation, Methodology, Project Administration, Supervision, Writing - Original Draft Preparation. Nathalie Voisin -  Conceptualization, Methodology, Project Administration, Supervision, Funding Acquision, Writing – Original Draft.
+
+%Conceptualization, Writing – Review & Editing, Formal Analysis, Investigation, Methodology
+%Ideas; formulation or evolution of overarching research goals and aims.
+
+%Data Curation
+%Management activities to annotate (produce metadata), scrub data and maintain research data (including software code, where it is necessary for interpreting the data itself) for initial use and later reuse.
+
+%Formal Analysis
+%Application of statistical, mathematical, computational, or other formal techniques to analyze or synthesize study data.
+
+%Funding Acquisition
+%Acquisition of the financial support for the project leading to this publication.
+
+%Investigation
+%Conducting a research and investigation process, specifically performing the experiments, or data/evidence collection.
+
+%Methodology
+%Development or design of methodology; creation of models.
+
+%Project Administration
+%Management and coordination responsibility for the research activity planning and execution.
+
+%Resources
+%Provision of study materials, reagents, materials, patients, laboratory samples, animals, instrumentation, computing resources, or other analysis tools.
+
+%Software
+%Programming, software development; designing computer programs; implementation of the computer code and supporting algorithms; testing of existing code components.
+
+%Supervision
+%Oversight and leadership responsibility for the research activity planning and execution, including mentorship external to the core team.
+
+%Validation
+%Verification, whether as a part of the activity or separate, of the overall replication/reproducibility of results/experiments and other research outputs.
+
+%Visualization
+%Preparation, creation and/or presentation of the published work, specifically visualization/data presentation.
+
+%Writing – Original Draft Preparation
+%Creation and/or presentation of the published work, specifically writing the initial draft (including substantive translation).
+
+%Writing – Review & Editing
+
+%\bmsection*{Acknowledgments}
+
+
+%\bmsection*{Financial disclosure}
+
+%None reported.
+
+\bmsection*{Conflict of interest}
+
+The authors declare no potential conflict of interests.
+
+\bibliography{GRH}
+
+
+%\bmsection*{Supporting information}
+
+%Additional supporting information may be found in the online version of the article at the publisher’s website.
+
+
+
+
+%\appendix
+
+%\bmsection{Program codes appear in Appendix\label{app1}}
+%\vspace*{12pt}
+%Using the package {\tt listings} you can add non-formatted text as you would do with \verb|\begin{verbatim}| but its main aim is to include the source code of any programming language within your document.\newline Use \verb|\begin{lstlisting}...\end{lstlisting}| for program codes without mathematics.
+
+%The {\tt listings} package supports all the most common languages and it is highly customizable. If you just want to write code within your document, the package provides the {\tt lstlisting} environment; the output will be in Computer Modern typewriter font. Refer to the below example:
+
+
+%\begin{lstlisting}[caption={Descriptive caption text},label=DescriptiveLabel, basicstyle=\fontsize{8}{10}\selectfont\ttfamily]
+%for i:=maxint to 0 do
+%begin
+%{ do nothing }
+%end;
+%Write('Case insensitive ');
+%WritE('Pascal keywords.');
+%\end{lstlisting}
+
+
+
+%\bmsubsection{Subsection title of first appendix\label{app1.1a}}
+
+%\bmsubsubsection{Subsection title of first appendix\label{app1.1.1a}}
+
+%\noindent\textbf{Unnumbered figure*}
+
+%\nocite{*}% Show all bib entries - both cited and uncited; comment this line to view only cited bib entries;
+
+
+%\bmsection*{Author Biography}
+
+%\begin{biography}{\includegraphics[width=76pt,height=76pt,draft]{empty}}{
+%{\textbf{Author Name.} Please check with the journal's author guidelines whether
+%author biographies are required. They are usually only included for
+%review-type articles, and typically require photos and brief
+%biographies for each author.}}
+%\end{biography}
+
+
+\end{document}

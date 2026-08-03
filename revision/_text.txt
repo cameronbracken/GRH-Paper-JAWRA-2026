@@ -1,0 +1,152 @@
+Decision Letter | Wiley Authors Close this dialog This website utilizes technologies such as cookies to enable essential site functionality, as well as for analytics, personalization, and targeted advertising. To learn more, view the following link: Cookie Policy 
+
+ Close Cookie Preferences 
+
+Skip to Main ContentHomeMy dashboardResources
+
+Find a journal
+
+JOURNAL HOMEAUTHOR GUIDELINESEDITORIAL CONTACT
+
+Decision letter (Initial Submission)
+A real time reservoir inflow forecast evaluation framework
+Subject
+Major revision requested: 8299185
+
+Date sent
+12 May 2026 at 15:10 GMT-7
+
+From
+jawra@awra.org
+
+To
+cameron.bracken@pnnl.gov
+
+CC
+
+Hide 3 addresses
+vincent.tidwell@pnnl.gov, nathalie.voisin@pnnl.gov, youngjun.son@pnnl.gov
+
+Dear Dr. Cameron Bracken,
+Thank you for submitting your manuscript 8299185, titled "A real time reservoir inflow forecast evaluation framework", to Journal of the American Water Resources Association.
+After careful assessment, our editorial team has decided your manuscript requires major revisions in order to proceed with the peer review process and be considered for publication. Reviewer comments are included at the bottom of this email to assist you in revising your manuscript.
+
+We ask that you return your revised manuscript by August 10, 2026. If you need more time, please let us know. We are happy to discuss an extended deadline.
+
+When submitting your revised manuscript, you will be asked to upload an author response letter that details the revisions you have made in response to editor and reviewer comments. You may also be required to show revisions made within the manuscript files. Please follow any journal-specific guidelines for formatting and submitting revisions outlined in the author guidelines page.
+
+When you have finished revising your manuscript, follow the link below to submit your revision: 
+
+ Submit your revised files
+
+Thank you for submitting your work to Journal of the American Water Resources Association. We look forward to receiving your revised manuscript.
+
+Kind regards, 
+Dr. William Farmer
+Journal of the American Water Resources Association
+
+ Handling editor comment:
+
+ “
+ 
+ The manuscript titled “A real-time reservoir inflow forecast evaluation framework” is well-prepared, and I see little barrier to imminent publication. Because of the variability of initial responses, I’ve had four qualified reviewers consider this manuscript, and their comments are included below. All provided useful comments (and praise). 
+ 
+ The greatest barrier, from my reading of the manuscript and review of the comments, is the question of novelty and reproducibility. Reviewers 1, 3, and 4 note that there is no distinct statement of novelty, with reviewer 3 particularly noting that the manuscript seems to suggest that the framework is the novelty without fully describing the novelty.
+ 
+ To me, this suggests a critical point for decision-making is missing. The reviewers all recognize some value here, but struggle to determine if it rises to the level of publication. I see value and am thus deferring to the assumption that the authors will be particularly attentive in their responses to the reviewers. 
+ 
+ Any revisions will be re-reviewed before a final decision about publication is made.
+ 
+ - William H. Farmer, handling associate editor
+
+The following reviewer comments were taken into consideration during the peer review process.
+
+“
+Reviewer 1 Comments to the Author
+
+ This study presented a real time reservoir inflow forecast evaluation framework, which included forecast verification and validation, as well as other qualitative or specialized metrics of forecast quality. This evaluation framework was applied to three reservoirs in the Great River Hydro system on the Connecticut River in the Northeast U.S. The goal of this framework is to provide hydropower operators with information necessary for evaluating how much a particular forecast product will improve their operations and ultimately inform ongoing investment decisions.
+ The topic and the contents are relevant, and it is very interest for hydropower operators and decision-makers. However, the novelty and main contributions of this study are unclear. The commercial forecasts (A, B), the GRH in-house forecast, watershed information etc. should be described in detail. The paper is poor organized and needs further improvement by responding the following comments. Further work is deserved for more analysis and discussion. Therefore, I recommend to reject in current version.
+
+Main Comments:
+
+1. The novelty and main contributions of this study are unclear. Please explain and discuss in detail.
+2. Lines 70-72: “persistence” forecasts which use the last observed value carried out for all future timesteps to get a sense of the arguably worst possible forecast. Persistence 
+ is a competitive benchmark for short term operations, from hours to 2-day horizons”. However, Fig.3 and Fig.4 show that 10-day and months “persistence forecasts” as benchmark which is unrealistic in practice.
+3. What are the main operation problems of these hydropower stations? Which forecasting scheme is used in practice?
+4. Two commercial forecasts (A, B) and the GRH in-house forecast (GRH) should be described in detail, such as what type of hydrologic model used? How about the calibration and validation results, what type input data requirement etc. 
+5. Three main hydropower producing dams in the system, Wilder, Bellows Falls, and Vernon (Figure 2) as well as three main tributaries, the Ottauquechee, Sugar and White Rivers. The watershed information, such as area, river length etc. should be described in detail.
+6. In Table 1, the NSE values of forecast scheme A at Wilder, Bellows and Vermon watersheds are 0.72, 0.55, 0.81, respectively. Please check the evaluation results. The forecasting accuracy at the Bellows might high than that at the Wilder.
+7. The format of Tables in the manuscript are poorly designed and needed be changed.
+8. The figures also need be redrawn. 
+
+Reviewer 2 Comments to the Author
+
+ Report attached 
+Download the report file.
+ 
+Reviewer 3 Comments to the Author
+
+ Overall, this manuscript proposes a framework for realtime reservoir inflow forecast evaluation.
+The proposed framework was applied to three reservoirs on the Connecticut River, then several usefull suggestions are found.
+However, proposed framework itself is not well described, such as what is new, different from existing ones, and comparison of past studies are insufficient.
+
+l47 "market prices"
+Could you please clarify what it means?
+l50 2.1 real time inflow forecast evaluation
+Step 1 through 3 are so general. I assume that steps 4 and 5 are unique points in this manuscript. Please provide a more detailed explanation of how feedback is reflected in step 4.
+l62 5. Iterate
+This implies that at least one year learning period is required. Is this understanding correct?
+l105 result of case study
+Were all the results derived through the proposed framework? If so, please compare those result with those obtained via "traditional" methods. This conmparison may enable to enhance the effectiveness of the proposed framework.
+l139 3.1 Tailored metrics
+Please explain the advantage of introducing tailored metrics. For example, it would be helpful to show a case where using tailored metrics led to a different forecast onclusion compared to general metrics. 
+
+Reviewer 4 Comments to the Author
+
+ The manuscript titled “A real time reservoir inflow forecast evaluation framework” presents a general framework for evaluating reservoir inflow forecasts in real time, with application to three hydropower dams in the Great River Hydro system. The overall idea is relevant and practically useful for hydropower operators seeking to assess competing forecast products. The paper is generally well-written, and the iterative, operator-inclusive evaluation approach adds value. However, several methodological details require clarification. I recommend a minor revision.
+Some of my major comments are:
+Lines 80-81 recommend a triangular smoother for calculated inflows but do not specify the smoothing window size (number of days or timesteps). This is a critical parameter because the choice of window directly affects computed evaluation metrics. The window size must be stated explicitly, and a sensitivity analysis or justification for the chosen value would strengthen the paper.
+Line 116 states the evaluation ran from July 2023 to May 2025. The authors should discuss whether this period captured any notable extreme hydrologic events (major floods, drought conditions) and how climatologically representative it is relative to the long-term record for the Connecticut River basin. This context is important for understanding the generalizability of the approach.
+Line 117 The authors anonymize the two commercial forecasts as A and B. While commercial confidentiality is understandable, the paper should provide at least a general characterization of each forecast’s methodology (e.g., physics-based, machine-learning-based, hybrid, statistical). Without this, readers cannot interpret the results in a broader methodological context or assess the generalizability of the findings.
+The paper focuses only on deterministic forecast evaluation (lines 42-49). While this is acknowledged, the framework could be briefly extended to probabilistic or ensemble forecasts using metrics such as CRPS, reliability diagrams, or rank histograms. This would make the description more complete and forward-looking, especially given the authors’ own statement that probabilistic forecasts are gaining in popularity.
+Minor comments:
+Introduction
+Throughout the manuscript: “real time” should be hyphenated when used as a compound adjective (e.g., “real-time evaluation”). Usage is inconsistent.
+Methods
+Line 92: Remove the placeholder “(refs)” and insert the actual KGE citation (Gupta et al. 2009).
+Results and Case Study
+Table 1: Consider adding RMSE or MAE values alongside the existing metrics to provide a sense of forecast error magnitude in physical units.
+Figure 5 caption: The caption does not specify that the error bars represent the 2.5th and 97.5th percentiles (as stated in the main text at lines 148-149). Figure caption needs to be self-contained.
+Discussion
+Lines 173-174: The authors note that coupling this evaluation with hydropower scheduling models is an important next step. This point could be strengthened by briefly discussing what such a coupling would entail and what data would be needed. 
+
+This email was sent to
+ cameron.bracken@pnnl.gov by John Wiley & Sons, Inc.
+
+ 111 River Street, Hoboken, NJ 07030 USA. 877-762-2974.
+
+ For more information, please see our
+ privacy policy.
+
+HelpWILEY AUTHORS
+Resources
+My dashboard
+Find a journal
+
+HELP
+Browse help resources
+Contact author support
+
+LEGAL
+Privacy policy
+Terms and conditions
+Manage cookies
+
+STAY CONNECTED
+Wiley in Research
+@wileyinresearch
+
+Copyright © 1999-2026 John Wiley & Sons, Inc or related companies. All rights reserved,
+ including rights for text and data mining and training of artificial intelligence technologies
+ or similar technologies.
+
