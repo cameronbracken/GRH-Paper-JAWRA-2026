@@ -2,6 +2,7 @@
 \usepackage{lineno}
 \usepackage{amsmath}
 
+\graphicspath{{figures/}}
 
 \linenumbers
 
