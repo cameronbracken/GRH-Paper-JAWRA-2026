@@ -1,0 +1,20 @@
+# LaTeX build artifacts. The parent repo's .gitignore does not apply here,
+# since this submodule has its own git directory.
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.lof
+*.lot
+*.out
+*.synctex.gz
+*.toc
+*.pag
+texput.log
+
+# Local build shims (see SYNC.md: the Wiley class needs a \reserveinserts shim
+# to compile outside Overleaf).
+_local.*
+_ld*.tex
+_ld*.pdf
