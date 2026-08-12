@@ -216,39 +216,6 @@ We ran the real-time evaluation for almost two years, from June 2023 to April 20
 
 The three products differ in the coverage they provided over this period, which constrains how they can be compared. Forecast B was available for the full period, giving 657 day-ahead forecasts at each dam. Forecast A was discontinued in November 2024 and the in-house forecast archive also ends in November 2024, giving 539 and 528 day-ahead forecasts respectively. The three products overlap on 510 days at each dam, from 3 June 2023 to 20 November 2024. Metrics computed over each product's full available record, which is what we report, are therefore not computed over identical samples. We repeated the calculation restricted to the 510 common days and the ranking of the three products is unchanged at all three dams, with individual metrics shifting by no more than 0.03 NSE, so we report the full-record values so as not to discard any data. This kind of partial coverage reflects the operational realities of any real-time evaluation.
 
-\subsection{Smoothing GRH calculated inflows}\label{sec:smoothGRH}
-
-Figure \ref{fig:smoothing} shows an example of GRH hourly computed inflow data which has been smoothed using a triangular smoother. We used a 24-hour triangular window, implemented as two successive 24-hour moving averages of the hourly calculated inflow, which produces the triangular weighting. The window was matched to the operational timescale, in our application the day-ahead volumetric forecast is the quantity of interest, so smoothing at 24 hours removes sub-daily forebay noise without attenuating the daily signal being evaluated. Because the window directly affects the computed metrics, we repeated the day-ahead evaluation at window widths of 0 (no smoothing), 6, 12, and 24 hours (Table \ref{tab:smoothing}). Metrics improve modestly with increasing window width, as expected since smoothing removes observation noise that no forecast can reproduce, with the largest change being 0.05 NSE. The ranking of the three products is unchanged at every window width at every location, and the gap between the two commercial products is stable: forecast B leads forecast A by 0.39 NSE at Bellows Falls with no smoothing and by 0.37 with 24-hour smoothing. The conclusions of the evaluation therefore do not depend on this choice. Evaluators should nonetheless state the window explicitly and check that their conclusions are insensitive to it, since a window wide enough to attenuate the signal of interest would flatter forecasts that under-predict variability. We recommend matching the window to the decision timescale rather than choosing the window that maximizes metric values.
-
-\begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{1a-wilder_0h.png}
-    \includegraphics[width=\linewidth]{1b-wilder_24h.png}
-    \caption{Unsmoothed (top) and smoothed (bottom) calculated inflow at Wilder Dam, the latter being what was used in the evaluation. Black lines show the calculated inflow derived from forebay observations and dam outflow; gray lines show the forecasts for reference. Smoothing uses a 24-hour triangular window. Flows are in cubic feet per second (1,000 cfs $\approx$ 28.3 m$^3$/s).}
-    \label{fig:smoothing}
-\end{figure}
-
-\begin{table}[ht]
-\centering
-\caption{Sensitivity of day-ahead NSE to the width of the triangular smoothing window applied to calculated inflow. The 24-hour column corresponds to the values reported in Table \ref{tab:metrics}. The ranking of the three forecasts is unchanged at every window width.}\label{tab:smoothing}
-\begin{tabular}{llrrrr}
-  \hline
-Location & Forecast & 0 h & 6 h & 12 h & 24 h \\
-  \hline
-Wilder        & A   & 0.70 & 0.72 & 0.72 & 0.72 \\
-              & B   & 0.82 & 0.83 & 0.83 & 0.83 \\
-              & GRH & 0.87 & 0.87 & 0.88 & 0.88 \\
-Bellows Falls & A   & 0.50 & 0.51 & 0.52 & 0.55 \\
-              & B   & 0.90 & 0.90 & 0.90 & 0.91 \\
-              & GRH & 0.84 & 0.83 & 0.84 & 0.85 \\
-Vernon        & A   & 0.79 & 0.79 & 0.79 & 0.81 \\
-              & B   & 0.88 & 0.88 & 0.88 & 0.89 \\
-              & GRH & 0.88 & 0.88 & 0.88 & 0.89 \\
-   \hline
-\end{tabular}
-\end{table}
-
-
 \subsection{Forecast products}\label{sec:products}
 
 Anonymization of the commercial products limits reproducibility, so we describe each to the extent our agreements allow. Forecast A is produced by a consulting firm using a conceptual rainfall-runoff model with hydraulic routing through the Connecticut River main stem, driven by a commercial numerical weather prediction forecast, and issued once daily at an hourly timestep out to roughly 8 days. Forecast B is produced by a technology firm using a machine learning model trained on gauge and remotely sensed catchment observations, issued twice daily at hourly timestep out to 10 days. The GRH in-house forecast combines RFC forecasts with routing and operator judgment and extends only through the day-ahead period, roughly 32 hours, because that is the horizon it is used for. Neither vendor released model internals or calibration and validation diagnostics, and we did not have access to them. A utility evaluating commercial forecast products generally cannot inspect them and must judge them on operational performance, which is part of the motivation for this framework. A full procurement evaluation should also weigh the operational cost, data dependencies, and ease of integration of each product alongside its skill, since these differ substantially between the two commercial products evaluated here.
@@ -299,6 +266,37 @@ Figure \ref{fig:fc-lead-time} shows the performance of all the available forecas
     \label{fig:fc-lead-time}
 \end{figure}
 
+\subsection{Smoothing GRH calculated inflows}\label{sec:smoothGRH}
+
+Figure \ref{fig:smoothing} shows an example of GRH hourly computed inflow data which has been smoothed using a triangular smoother. We used a 24-hour triangular window, implemented as two successive 24-hour moving averages of the hourly calculated inflow, which produces the triangular weighting. The window was matched to the operational timescale, in our application the day-ahead volumetric forecast is the quantity of interest, so smoothing at 24 hours removes sub-daily forebay noise without attenuating the daily signal being evaluated. Because the window directly affects the computed metrics, we repeated the day-ahead evaluation at window widths of 0 (no smoothing), 6, 12, and 24 hours (Table \ref{tab:smoothing}). Metrics improve slightly with increasing window width, as expected since smoothing removes observation noise, with the largest change being 0.05 NSE. Importantly, the ranking of the three products is unchanged at every window width at every location, and the gap between the two commercial products is stable: forecast B leads forecast A by 0.39 NSE at Bellows Falls with no smoothing and by 0.37 with 24-hour smoothing. The conclusions of the evaluation therefore do not depend on this choice. Evaluators should nonetheless state the window explicitly and check that their conclusions are insensitive to it, since a window wide enough to attenuate the signal of interest would flatter forecasts that under-predict variability. We recommend matching the window to the decision timescale rather than choosing the window that maximizes metric values.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{1a-wilder_0h.png}
+    \includegraphics[width=\linewidth]{1b-wilder_24h.png}
+    \caption{Unsmoothed (top) and smoothed (bottom) calculated inflow at Wilder Dam, the latter being what was used in the evaluation. Black lines show the calculated inflow derived from forebay observations and dam outflow; gray lines show the forecasts for reference. Smoothing uses a 24-hour triangular window. Flows are in cubic feet per second (1,000 cfs $\approx$ 28.3 m$^3$/s).}
+    \label{fig:smoothing}
+\end{figure}
+
+\begin{table}[ht]
+\centering
+\caption{Sensitivity of day-ahead NSE to the width of the triangular smoothing window applied to calculated inflow. The 24-hour column corresponds to the values reported in Table \ref{tab:metrics}. The ranking of the three forecasts is unchanged at every window width.}\label{tab:smoothing}
+\begin{tabular}{llrrrr}
+  \hline
+Location & Forecast & 0 h & 6 h & 12 h & 24 h \\
+  \hline
+Wilder        & A   & 0.70 & 0.72 & 0.72 & 0.72 \\
+              & B   & 0.82 & 0.83 & 0.83 & 0.83 \\
+              & GRH & 0.87 & 0.87 & 0.88 & 0.88 \\
+Bellows Falls & A   & 0.50 & 0.51 & 0.52 & 0.55 \\
+              & B   & 0.90 & 0.90 & 0.90 & 0.91 \\
+              & GRH & 0.84 & 0.83 & 0.84 & 0.85 \\
+Vernon        & A   & 0.79 & 0.79 & 0.79 & 0.81 \\
+              & B   & 0.88 & 0.88 & 0.88 & 0.89 \\
+              & GRH & 0.88 & 0.88 & 0.88 & 0.89 \\
+   \hline
+\end{tabular}
+\end{table}
 
 \subsection{Seasonal performance}\label{sec:seasonal}
 

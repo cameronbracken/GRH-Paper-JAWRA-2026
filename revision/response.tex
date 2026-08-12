@@ -61,22 +61,21 @@ stating what was new about it. We agree. The original draft presented the five-s
 process as though the process itself were the contribution. We have added an explicit
 statement of contribution to the introduction, restructured the process description so
 that the generic steps are labeled as such, added a discussion subsection comparing the
-framework against retrospective verification, and added a result in which a tailored
-metric separates two forecast products that the generic metrics do not.
+framework against retrospective verification.
 
 We have also expanded the description of the study system and the forecast products,
 added a smoothing sensitivity analysis, characterized the hydrology of the evaluation
 period, cited the forecast value literature, and corrected several errors in the methods
 section that the reviewers identified.
 
-Two statements in the original manuscript were wrong and we correct them here:
+Two statements in the original manuscript have been corrected:
 
 \begin{itemize}[itemsep=0.15em]
     \item The evaluation period was given as July 2023 to May 2025. The record analyzed
     runs from June 2023 to April 2025.
     \item The three forecast products do not cover the period uniformly. Forecast B spans
     the full period; forecast A and the in-house forecast both end in November 2024. The
-    metrics in Table 1 are therefore computed over overlapping but not identical samples.
+    metrics in Table 1 are therefore computed over overlapping but not identical sample sizes.
     We now report the sample size for each product and have verified that restricting the
     comparison to the 510 days on which all three are present does not change the ranking
     at any location.
@@ -111,29 +110,23 @@ collected. Second, the evaluation runs on the same operational data the operator
 which reflects the real day-to-day operational decisions.''
 \end{newtext}
 
-We have also rewritten the preceding paragraph so that the gap is stated directly rather
-than implied. Traditional verification requires hindcasts over a climatologically
-representative period, which is expensive and often infeasible. The fallback of evaluating
+We have also rewritten the preceding paragraph to be more clear. 
+
+\begin{newtext}
+``Traditional verification requires hindcasts over a climatologically
+representative period, which expensive and may be infeasible. The fallback of evaluating
 archived operational forecasts fits poorly with products that are updated continuously,
 trained on evolving data streams, hand adjusted by operators, or developed by third
-parties.
+parties.''
+\end{newtext}
 
-The claim that operator participation changes the outcome is now supported by a result
-rather than asserted. The forebay exceedance metric exists only because the operators
-asked for it, and it separates the two commercial products where the generic metrics do
-not. From a neutral forebay start all exceedance probabilities are below 10\% and the
-products are difficult to distinguish. From the non-neutral start operators are routinely
-in, forecast A reaches 23.7\% at Bellows Falls against 1.8\% for forecast B. This is now
-presented as a result in the tailored metrics section rather than left implicit.
-
-On reproducibility, the evaluation code is public
+On reproducibility, we have anonymized the proprietary data and made the forecast evaluation as 
+reproducible as we could given the limitations of the data. The evaluation code is public
 (\url{https://github.com/HydroWIRES-PNNL/inflow-forecast-evaluation}) and sample data are
 on Zenodo (\url{https://doi.org/10.5281/zenodo.16921728}). We have added the parameter
 values that were previously left implicit, most importantly the smoothing window
-(comment 4.1), together with a sensitivity analysis over it; the drainage areas and USGS
-reference gages for all six evaluation points (comment 1.5); the issue frequency and
-horizon of each product; and the per-product sample sizes. The proprietary forecast time
-series cannot be released, which we now state as a limitation.
+(comment 4.1), together with a sensitivity analysis; The proprietary data is stated 
+as a limitation.
 
 \vspace{1em}
 \hrule
@@ -142,7 +135,7 @@ series cannot be released, which we now state as a limitation.
 \section*{Reviewer 1}
 
 \begin{rc}
-The topic and the contents are relevant, and it is very interest for hydropower
+The topic and the contents are relevant, and it is very interesting for hydropower
 operators and decision-makers. However, the novelty and main contributions of this
 study are unclear.
 \end{rc}
@@ -152,7 +145,7 @@ table and figure quality were all warranted. Your comment 1.6, asking us to chec
 apparent anomaly in the NSE values, identified something informative rather than an error,
 and it has become a result in the revised manuscript.
 
-\subsection*{1.1 Novelty and main contributions}
+\subsection*{1.1 Novelty}
 
 \begin{rc}
 The novelty and main contributions of this study are unclear. Please explain and
@@ -161,10 +154,10 @@ discuss in detail.
 
 Please see our response to the editor for the new statement of contribution. In brief, the
 contribution is a procedure for the case where a utility must choose among competing
-forecast products under live operating conditions and a hindcast is not available. What
-distinguishes it from standard verification is that metric selection is driven by operator
-input rather than fixed in advance, and that the evaluation runs on the operational data
-feed rather than an archived dataset.
+forecast products under live operating conditions and a hindcast is not possible. What
+distinguishes it from standard forecast verification is the direct operator
+input in the process, and that the evaluation runs on operational data
+rather than an archived dataset.
 
 We have also added to the discussion why this matters now. Forecast products using AI and
 machine learning methods are being marketed to utilities at an increasing rate, and the
@@ -182,8 +175,8 @@ horizons''. However, Fig.\ 3 and Fig.\ 4 show that 10-day and months ``persisten
 forecasts'' as benchmark which is unrealistic in practice.
 \end{rc}
 
-You are correct, and this was an internal inconsistency: we stated that persistence is
-competitive only to about two days and then plotted it out to ten. Reviewer 2 raised a
+You are correct, persistence is often hard to beat at short lead times. We have stated
+that persistence is competitive to about two days and then plotted it out to ten. Reviewer 2 raised a
 related point in comment 2.7. We have revised the benchmark section:
 
 \begin{newtext}
@@ -191,7 +184,7 @@ related point in comment 2.7. We have revised the benchmark section:
 roughly two days, and is the appropriate reference for day-ahead operations, which is the
 horizon of interest for the system evaluated here. It degrades quickly beyond that horizon,
 where a climatological forecast is the more appropriate lower bound. Evaluators should
-match the benchmark to the horizon of interest: persistence for hourly to 2-day operations,
+match the benchmark forecast to the horizon of interest: persistence for hourly to 2-day operations,
 climatology for weekly to seasonal horizons. Where persistence is plotted at longer lead
 times in the figures below, it is retained only to show the scale of degradation and should
 not be read as a meaningful reference at those horizons.''
@@ -200,11 +193,8 @@ not be read as a meaningful reference at those horizons.''
 The figure captions now carry the same qualification.
 
 We have not added a climatological benchmark to the figures. A defensible daily climatology
-for these locations requires a long record of calculated inflow at the dams, and that
-record begins with the evaluation. A climatology derived from the nearby USGS gages would
-differ in drainage area and regulation, so it would not be commensurable with the quantity
-being verified. We have stated the recommendation, which is general, and been explicit that
-the day-ahead horizon is where persistence is the correct reference for this system.
+for these locations requires a long record of calculated inflow at the dams. While there are 
+nearby USGS gages, these reflect older operations and so would not reflect a reasonable climotology. 
 
 \subsection*{1.3 Operating problems and the forecasting scheme in practice}
 
@@ -213,8 +203,7 @@ What are the main operation problems of these hydropower stations? Which forecas
 scheme is used in practice?
 \end{rc}
 
-This context was missing and is needed to make the tailored metrics comprehensible. We have
-added a subsection, ``Operating context.'' The three dams have limited storage relative to
+We have added a subsection, ``Operating context.'' The three dams have limited storage relative to
 their inflow and are operated as run-of-river facilities, with a daily cycle of an upward
 ramp, flexible generation, a downward ramp, and refill. Generation is bid into the ISO New
 England day-ahead market, so the day-ahead inflow volume is the quantity that matters most.
@@ -256,15 +245,11 @@ forecast products generally cannot inspect them and must judge them on operation
 performance, which is part of the motivation for this framework.''
 \end{newtext}
 
-The issue frequencies and horizons are taken from the forecast archive rather than vendor
-documentation, so they describe what was actually delivered.
-
-We cannot provide calibration and validation results. Our agreements prevent us from naming
-the vendors or describing model internals, and the vendors did not release diagnostics to
-us. We have chosen to state this plainly and treat it as a finding about the procurement
-situation operators face. We have also added that a full procurement evaluation should weigh
-operational cost, data dependencies, and ease of integration alongside skill, since these
-differ substantially between the two commercial products.
+We cannot provide calibration and validation results. The data used in this study was provided on
+the basis that be be anonymized. The lack of detailed information about the models reflects the 
+reality that Utilities face when procuring commercial forecasts. We have also added that a full procurement evaluation should weigh ongoing operational costs, data dependencies, 
+and ease of integration alongside skill, since these
+may differ substantially commercial products.
 
 \subsection*{1.5 Watershed information}
 
@@ -276,8 +261,7 @@ described in detail.
 \end{rc}
 
 Agreed. We have added a table of physical characteristics for all six evaluation points,
-with drainage areas from the USGS National Water Information System for the reference gage
-at each location:
+with drainage areas from the USGS for the reference gage at each location:
 
 \begin{center}
 \begin{tabular}{lllrr}
@@ -294,19 +278,13 @@ Ottauquechee River & Tributary    & 01151500 North Hartland, VT &   221 &    572
 \end{tabular}
 \end{center}
 
-We have also added text describing the basin. The mainstem drainage areas are nested, so
-the area above Vernon includes those above Bellows Falls and Wilder. This nesting explains
-the downstream propagation of bias noted in the original manuscript, which we now quantify:
-for forecast A, day-ahead PBIAS at Bellows Falls is 0.4\% and grows to $-19.1$\% by day 7,
-with larger growth downstream. Because releases from each dam become inflow to the next, an
-error in an upstream forecast propagates to the downstream forecast and compounds with lead
+We have also added text describing the cascading system. Because releases from each dam become inflow to the next, an error in an upstream forecast propagates to the downstream forecast and compounds with lead
 time.
 
 Basin hydrology is snowmelt influenced, with a spring freshet typically spanning March
 through May, convective rainfall in summer, and rain and rain-on-snow driven events in
 winter. Several tributaries have upstream flood control regulation by the U.S.\ Army Corps
-of Engineers. We have not added river lengths, since the drainage areas and the nesting
-relationship are what the results depend on.
+of Engineers.
 
 \subsection*{1.6 NSE values in Table 1}
 
