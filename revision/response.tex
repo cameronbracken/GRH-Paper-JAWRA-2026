@@ -59,19 +59,17 @@ Resources Association}.
 
 \vspace{0.4em}
 
-We thank the editor and the four reviewers for their comments. The reviewers and the
-handling editor converged on one point: the manuscript described a framework without
-stating what was new about it. We understand the concern and have addressed it thoroughly in the revised manuscript. The original draft presented the five-step
-process as though the process itself were the contribution. We have added an explicit
-statement of contribution to the introduction, restructured the process description so
-that the generic steps are labeled as such, added a discussion subsection for comparing the
-framework against retrospective verification.
+We thank the editor and reviewers for their comments. The main concern was that the
+manuscript described a framework without identifying its contribution. We now define the
+contribution as an operating procedure for comparing forecasts under current conditions
+when hindcasts are unavailable. The revised text separates generic verification steps from
+operator feedback, metric revision, and use of operational data.
 
-We have also expanded the description of the study system and the forecast products,
-added a smoothing sensitivity analysis, characterized the hydrology of the evaluation
-period, cited the forecast value literature, and corrected several errors in the methods.
+We also expanded the descriptions of the system and forecast products, added a smoothing
+sensitivity analysis, characterized the evaluation period, and connected forecast quality
+to the forecast value literature.
 
-Four statements in the original manuscript have been corrected:
+The audit also identified six errors or qualifications that required correction:
 
 \begin{itemize}[itemsep=0.15em]
     \item The evaluation period was given as July 2023 to May 2025. The record analyzed
@@ -87,6 +85,15 @@ Four statements in the original manuscript have been corrected:
     1.6), and rewriting it is the largest change to the results.
     \item The monthly KGE values cited for forecast A in January and February were 0.39 and
     $-0.40$. Recomputing gives 0.45 and $-0.67$.
+    \item The cumulative forebay calculation grouped by valid time, leaving one observation
+    per group. The cumulative sum was therefore the hourly error. We corrected the grouping,
+    regenerated Figures 5 and 6, and replaced the results. The corrected analysis shows a
+    day-ahead advantage for forecast B, followed by high exceedance probabilities for both
+    commercial products at longer lead times.
+    \item An NSE skill score added during the first revision compared products over different
+    samples. The evaluated and reference forecasts must use the same observations for that
+    comparison. We removed the score and now interpret NSE together with RMSE, sample
+    coverage, and the benchmark rows.
 \end{itemize}
 
 Reviewer comments are set in indented italics, trimmed to the operative text where they are
@@ -106,27 +113,11 @@ particularly noting that the manuscript seems to suggest that the framework is t
 novelty without fully describing the novelty.
 \end{rc}
 
-Agreed. We have added a statement of contribution to the end of the introduction:
-
-\begin{newtext}
-``The contribution of this work is a specific operating procedure for the case where a
-utility must choose between competing forecast products under live operating conditions
-and cannot run a hindcast. That procedure has two components that distinguish it from
-retrospective verification practice. First, the operators participate in metric selection
-and design and can modify, remove, or append metrics to the evaluation as more data is
-collected. Second, the evaluation runs on the same operational data the operators use
-which reflects the real day-to-day operational decisions.''
-\end{newtext}
-
-We have also rewritten the preceding paragraph to be more clear.
-
-\begin{newtext}
-``Traditional verification requires hindcasts over a climatologically
-representative period, which is expensive and may be infeasible. The fallback of evaluating
-archived operational forecasts fits poorly with products that are updated continuously,
-trained on evolving data streams, hand adjusted by operators, or developed by third
-parties.''
-\end{newtext}
+We revised the introduction to state the contribution directly. The procedure addresses a
+specific case: a utility must compare competing products under current operating conditions
+and cannot run a hindcast. Operators select and revise metrics, and the evaluation uses the
+data available in daily operations. We also distinguish this procedure from retrospective
+verification and state that the two approaches are complementary.
 
 On reproducibility, we have anonymized the proprietary data and made the forecast evaluation as
 reproducible as we could given the limitations of the data. The evaluation code is public
@@ -149,10 +140,7 @@ operators and decision-makers. However, the novelty and main contributions of th
 study are unclear.
 \end{rc}
 
-Thank you for the positive feedback. The comments on framing, the missing system description, and the
-table and figure quality were all warranted. Your comment 1.6, asking us to check an
-apparent anomaly in the NSE values, identified something we had not considered,
-and it has become a result in the revised manuscript.
+We address the comments on framing, system description, tables, and figures below.
 
 
 \subsection*{1.1 Novelty}
@@ -182,20 +170,10 @@ report, often cannot inspect the model at all.
 benchmark which is unrealistic in practice.
 \end{rc}
 
-You are correct, persistence is often hard to beat at short lead times. We had stated
-that persistence is competitive to about two days and then plotted it out to ten. Reviewer 2
-raised a related point in comment 2.7. We have revised the benchmark section:
-
-\begin{newtext}
-``Persistence is a simple but competitive forecast at short lead times, from hours to
-roughly two days, and is the appropriate reference for day-ahead operations, which is the
-horizon of interest for the system evaluated here. It degrades quickly beyond that horizon,
-where a climatological forecast is the more appropriate lower bound. Evaluators should
-match the benchmark forecast to the horizon of interest: persistence for hourly to 2-day operations,
-climatology for weekly to seasonal horizons. Where persistence is plotted at longer lead
-times in the figures below, it is retained only to show the scale of degradation and should
-not be read as a meaningful reference at those horizons.''
-\end{newtext}
+Persistence can be competitive at short lead times. We now recommend matching the benchmark
+to the decision horizon: persistence for hourly to two-day operations and climatology for
+weekly to seasonal horizons. The captions state that persistence is retained beyond two days
+only to show its degradation and is not a meaningful long-horizon reference.
 
 The figure captions now carry the same qualification.
 
@@ -241,10 +219,10 @@ interpret the results. We have added a subsection describing what we are able to
 
 \begin{newtext}
 ``Forecast A is produced by a consulting firm using a conceptual rainfall-runoff model with
-hydraulic routing through the Connecticut River mainstem, driven by a commercial numerical
-weather prediction forecast, and issued once daily at an hourly timestep out to roughly 8
+hydraulic routing through the Connecticut River main stem, driven by a commercial numerical
+weather prediction forecast, and issued once daily at an hourly time step out to roughly 8
 days. Forecast B is produced by a technology firm using a machine learning model trained on
-gauge and remotely sensed catchment observations, issued twice daily at hourly timestep out
+gauge and remotely sensed catchment observations, issued twice daily at an hourly time step out
 to 10 days. The GRH in-house forecast combines RFC forecasts with routing and operator
 judgment and extends only through the day-ahead period, roughly 32 hours, because that is
 the horizon it is used for. Neither vendor released model internals or calibration and
@@ -274,6 +252,7 @@ Agreed. We have added a table of physical characteristics for all six evaluation
 with drainage areas from the USGS for the reference gage at each location:
 
 \begin{center}
+\small
 \begin{tabular}{lllrr}
 \toprule
 Location & Type & USGS reference gage & Area (mi$^2$) & Area (km$^2$) \\
@@ -307,68 +286,21 @@ watersheds are 0.72, 0.55, 0.81, respectively. Please check the evaluation resul
 The forecasting accuracy at the Bellows might high than that at the Wilder.
 \end{rc}
 
-Thank you for checking this; it was the most productive comment we received. The three NSE
-values are correct as published, but following up on why the pattern looks wrong uncovered
-both an error in the text and a result we had missed.
+We recomputed the values; 0.72, 0.55, and 0.81 are correct. The accompanying text was not:
+it called these values KGE and has been corrected.
 
-The error first: the paragraph discussing these values described them as KGE when they are
-NSE, and then drew a conclusion about KGE from them. That paragraph has been rewritten.
+Forecast A does not have smaller errors at Bellows Falls than at Wilder. Its RMSE is
+5,904~cfs at Bellows Falls and 2,278~cfs at Wilder. The apparent discrepancy arises because
+NSE is normalized by observed variance and should not be used by itself to rank accuracy
+across sites. The persistence rows make the site dependence visible: persistence NSE is
+$-0.81$ at Wilder, 0.39 at Bellows Falls, and 0.80 at Vernon.
 
-On the substance, you were right that the cross-site pattern should not be taken at face
-value, though for a different reason than the one you proposed. NSE is normalized by the
-variance of the observations at each location, so NSE values are not comparable across
-locations with different inflow variability (Knoben et al., 2019). Flows become
-progressively more regulated and therefore smoother downstream, and smoother flows yield
-higher NSE for the same quality of forecast. The persistence benchmark makes this visible:
-persistence alone achieves NSE of $-0.81$ at Wilder, 0.39 at Bellows Falls, and 0.80 at
-Vernon. At Vernon, carrying yesterday's inflow forward already explains most of the
-variance, so little room is left for a forecast to improve on it.
-
-The fix is to change what the metric is referenced to rather than to change the metric. NSE
-is already a skill score, measured against the mean of the observations, and that reference
-is easy to beat at Wilder and hard to beat at Vernon, which is the whole of the discrepancy
-you noticed. We have therefore added an NSE skill score against persistence as a column of
-Table 1, defined by a new equation:
-\[
-\text{NSE}_{SS} = \frac{\text{NSE}_{f}-\text{NSE}_{ref}}{1-\text{NSE}_{ref}}
-                = 1-\frac{\text{MSE}_{f}}{\text{MSE}_{ref}}
-\]
-The second equality is the useful one: the score is the fraction of the reference forecast's
-squared error that the forecast under evaluation removes. So that the column can be checked
-directly, it is recoverable from the RMSE column of Table 1 as
-$1-(\text{RMSE}_{f}/\text{RMSE}_{ref})^2$. For forecast A:
-
-\begin{center}
-\begin{tabular}{lrrr}
-\toprule
-Location & NSE & Persistence NSE & NSE$_{SS}$ vs persistence \\
-\midrule
-Wilder        & 0.72 & $-0.81$ & 0.85 \\
-Bellows Falls & 0.55 &    0.39 & 0.25 \\
-Vernon        & 0.81 &    0.80 & 0.03 \\
-\bottomrule
-\end{tabular}
-\end{center}
-
-The ordering inverts. Forecast A is strongest at Wilder, not weakest, and at Vernon it scores
-0.03, reducing the squared error of a persistence forecast by three percent. The site where its
-raw NSE is highest is the site where it adds almost nothing to what an operator would get by
-assuming today's inflow will repeat; restricting to the 510 days common to all three products
-puts it slightly below persistence there ($-0.01$). The other two products retain real skill
-everywhere: 0.91 and 0.94 at Wilder, 0.85 and 0.77 at Bellows Falls, and 0.44 and 0.47 at Vernon
-for forecast B and the in-house forecast.
-
-So the numbers are right, the cross-site pattern in raw NSE is a normalization artifact rather
-than a ranking of forecast quality, and the pattern that survives correction is not the one the
-raw values suggest. On your specific suggestion that accuracy at Bellows Falls may be higher than
-at Wilder, the skill score says the opposite, 0.85 against 0.25, and the new RMSE column agrees in
-absolute terms, 2,278~cfs against 5,904~cfs. It is Vernon rather than Bellows Falls that the raw
-values misrepresent.
-
-The methods now recommend reporting skill against a deliberately chosen benchmark alongside
-raw metrics in any multi-site evaluation, and the discussion carries the general lesson: a raw
-efficiency metric tells you a forecast explains most of the variance, while skill against a
-benchmark tells you whether it improves on the alternative the operator already has.
+We now compare products primarily within a location and interpret NSE together with RMSE,
+sample coverage, and the benchmark rows. We also repeated the calculation over the 510 days
+common to all products; the within-location product rankings do not change. An NSE skill
+score considered during revision was removed because the product and reference samples were
+not identical. A reference skill score is valid only when both forecasts use the same
+observations.
 
 \subsection*{1.7 Table format}
 
@@ -376,11 +308,11 @@ benchmark tells you whether it improves on the alternative the operator already 
 The format of Tables in the manuscript are poorly designed and needed be changed.
 \end{rc}
 
-Agreed. Table 1 has been rebuilt with rows grouped by location, the location named once per
+Table 1 has been rebuilt with rows grouped by location, the location named once per
 group, numeric columns aligned, consistent significant figures, and units in the column
 headers. It has gained three columns: the number of day-ahead forecasts evaluated for each
 product, which is necessary because the products cover different portions of the period;
-RMSE in cfs (comment 4.7); and the NSE skill score against persistence (comment 1.6).
+and RMSE in cfs (comment 4.7).
 Three tables have been added, giving basin characteristics (1.5), the smoothing sensitivity
 analysis (4.1), and the provenance of each tailored metric (3.2).
 
@@ -390,19 +322,11 @@ analysis (4.1), and the provenance of each tailored metric (3.2).
 The figures also need be redrawn.
 \end{rc}
 
-We have revised the captions substantially, and would rather describe precisely what we have and
-have not changed than claim a wholesale redraw. Every caption is now self-contained, stating the
-quantity plotted, the meaning of any reference line, and the units: Figures 3 and 4 give the
-no-skill threshold values, NSE of 0 and KGE of $-0.41$, and note that persistence is a meaningful
-reference only over the first two days (1.2); Figure 5 specifies the 2.5th to 97.5th percentile
-error bars, the pass-inflow assumption, and the compliance band (4.8); Figure 1 states the
-smoothing window and the SI conversion for cfs (2.17); Figure 6 explains why the lower panel is
-the operationally relevant case.
-
-On the figures themselves we would welcome more specific guidance. We are willing to change the
-palette, line styles, text sizes, and output format, and we agree the legibility of axis and legend
-text at print size could be improved. We have not regenerated them because we did not want to
-redraw on a guess at the objection and then again after learning what it was.
+We revised all captions to state the quantity, units, and reference lines. We also redrew
+Figures 5 and 6 after correcting the cumulative-error calculation. The revised figures use
+three location panels, a common product palette, larger labels, ribbons for the central 95\%
+interval in Figure 5, and percentages in Figure 6. Figure 6 now contains only the supported
+neutral-start stress test.
 
 \vspace{0.4em}
 \hrule
@@ -430,26 +354,18 @@ connects to their framework, and provide operators with at least a conceptual pa
 from the metrics presented to the investment decision the paper is motivated by.
 \end{rc}
 
-This is a fair criticism and identifies a genuine gap between what the introduction
-promises and what the paper delivers. We have added a discussion subsection, ``From
-forecast quality to forecast value,'' which draws the distinction (quality is a statistical
-property of a forecast paired with observations; value depends additionally on human
-decisions and the cost of errors, so a more accurate forecast can carry less value if the
-added accuracy falls where the operator would not act differently), cites Farkas et al.\
-(2025) for the economic value literature, and gives operators a two-stage pathway: the
-real-time quality evaluation establishes which products are plausibly worth adopting and
-produces the forecast archive needed to drive a subsequent value assessment.
+We now distinguish quality from value in the abstract, introduction, and discussion. Quality
+describes forecasts relative to observations. Value also depends on the decision, its
+consequences, and risk preferences. We cite Thompson and Brier (1955) for cost-loss utility,
+Laugesen et al.\ (2023) for relative utility value, and Farkas et al.\ (2025) for a broader
+review.
 
-The subsection notes that the tailored metrics are already a step toward value, since forebay
-exceedance has a direct financial consequence under the FERC license, while remaining a partial
-valuation because it is not expressed in generation revenue.
-
-We drafted a fuller treatment of specific value metrics, including the relative utility value
-approach, but judged that a paragraph comparing value metrics we do not apply would read as
-padding in a paper about quality evaluation; we are glad to restore it if you or the editor
-prefer. We have not attempted a value assessment, which would require the utility's damage
-function and a model of operator response, returning to the scheduling model coupling under
-comment 4.9.
+We also give a GRH-specific pathway. The quality evaluation first screens products and creates
+an archive of forecasts as issued. Candidate forecasts can then drive a scheduling and dispatch
+model containing reservoir constraints, unit performance curves, day-ahead and real-time
+prices, and the incumbent operating strategy. Benefits should be measured relative to the
+forecast and decisions currently used. The forebay metric is decision-relevant but remains a
+stress test because it omits schedules and operator response.
 
 \subsection*{2.2 Positioning of the contribution}
 
@@ -460,9 +376,8 @@ feedback loop are where the genuine contribution lies, especially in the real-ti
 context, and these deserve more prominence and deeper treatment.
 \end{rc}
 
-We agree, and this diagnosis matches Reviewer 3's and the handling editor's. Yours says not
-only what is missing but where the contribution actually is, and we have restructured
-accordingly. Please see our response to the editor for the new statement of contribution.
+We restructured the manuscript around this distinction. Please see our response to the editor
+for the revised statement of contribution.
 
 The specific changes: steps 1 through 3 are labeled as generic practice for which we claim no
 novelty. Soliciting feedback and acting on it are separated into ``Gather feedback'' and ``Update
@@ -482,10 +397,8 @@ evaluation measures.
 an adjective (also applies throughout the manuscript).
 \end{rc}
 
-Corrected throughout, including the title, which is now ``A real-time reservoir inflow forecast
-evaluation framework.'' Reviewer 4 raised the same point in comment 4.5. The manuscript contained
-29 instances of ``real time'' and none hyphenated; we reviewed each and hyphenated in attributive
-position, leaving the adverbial phrase (``used in real time'') unhyphenated.
+Corrected throughout, including the title. We use ``real-time'' attributively and ``in real
+time'' adverbially. Reviewer 4 raised the same point in comment 4.5.
 
 \subsection*{2.4 Verification improving alongside forecasts}
 
@@ -557,10 +470,8 @@ record would be. We have added this to the limitations.
 
 Corrected using your suggested wording; see comment 1.2 for the revised passage.
 
-Your point turns out to matter more than a wording fix. Persistence achieves day-ahead NSE of 0.80
-at Vernon, competitive with the commercial products, and that is precisely what reveals that
-forecast A adds almost nothing there once measured against it (comment 1.6). Treating persistence as
-a floor rather than a real competitor is what had hidden the result.
+Persistence has a day-ahead NSE of 0.80 at Vernon, confirming that it is a competitive
+short-horizon reference at that site. We no longer describe it as a lower bound.
 
 \subsection*{2.8 Smoothing window width}
 
@@ -570,10 +481,10 @@ discussed. [\ldots] Please note the window used and perhaps the sensitivity to t
 choice on your findings.
 \end{rc}
 
-Reviewer 4 raised this as their first major comment and we have addressed it with both the
-value and a sensitivity analysis. The window is 24 hours, implemented as two successive
-24-hour moving averages of the hourly calculated inflow, which produces the triangular
-weighting, and was chosen to match the day-ahead operational timescale. Metrics improve
+Reviewer 4 raised the same point in comment 4.1. We apply two successive 24-hour moving
+averages. Their convolution produces a triangular kernel spanning 47 hourly observations;
+``24-hour'' denotes each component window. The component width was chosen to match the
+day-ahead operational timescale. Metrics improve
 modestly with window width, the largest change being 0.05 NSE, and the ranking of the three
 products is unchanged at every width at every location. Please see comment 4.1 for the table.
 
@@ -609,10 +520,8 @@ into a single number, which makes them more strongly influenced by the largest e
 less diagnostic about their source.''
 \end{newtext}
 
-We have also added a sentence making clear that KGE and the NSE-based skill score answer
-different questions and that we recommend reporting both: KGE to diagnose where a forecast is
-deficient, and a skill score against an explicit benchmark to compare products and locations
-(comment 1.6).
+We also state that KGE, NSE, RMSE, bias, and correlation answer different questions and should
+be interpreted together with sample coverage and benchmark forecasts.
 
 \subsection*{2.11 Placement of the Knoben et al.\ citation}
 
@@ -763,18 +672,12 @@ discuss how operators actually deviate from this assumption and what the real-wo
 exceedance rates might be.
 \end{rc}
 
-A fair point. Operators do not hold pass-inflow conditions: they schedule generation to a market
-bid, which means departing from inflow during the day and recovering the forebay overnight, and
-they intervene when the forebay approaches the band. The text now states that the pass-inflow
-assumption is not how the system is operated, that the metric is idealized and intended as an upper
-limit on the compliance risk a forecast carries rather than a prediction of observed exceedance
-rates, and that capturing actual risk requires a scheduling model with direct operator oversight.
-
-We consider this the right quantity for comparing products because it isolates forecast quality from
-the operators' skill at correcting for it. Realized exceedance is less frequent than these
-probabilities imply, but realized rates reflect both the forecast and the effort spent compensating
-for it, and that effort is itself a cost of a poorer forecast. We have not estimated real-world
-rates, which would require representing intervention behavior and so returns to comment 4.9.
+Operators do not hold pass-inflow conditions. They schedule generation to a market bid, depart
+from inflow during the day, recover the forebay later, and intervene near the operating band. We
+now call the calculation an idealized stress test. It is neither a prediction nor a bound on
+realized compliance rates because operator actions can increase or decrease the modeled risk.
+Estimating realized rates requires schedules, constraints, and a model of operator response, as
+described under comment 4.9.
 
 \subsection*{2.20 Extremes and the record length}
 
@@ -805,10 +708,8 @@ However, proposed framework itself is not well described, such as what is new, d
 from existing ones, and comparison of past studies are insufficient.
 \end{rc}
 
-Thank you for this review. Your observation that we implied the framework was novel without
-describing the novelty was among the most useful comments we received, and the handling editor
-highlighted it as well. Our response to the editor describes the new statement of contribution.
-Comments 3.4 and 3.5 have produced what we now consider the central result of the paper.
+Our response to the editor describes the revised statement of contribution. Comments 3.4 and
+3.5 are addressed below.
 
 \subsection*{3.1 ``market prices''}
 
@@ -816,14 +717,11 @@ Comments 3.4 and 3.5 have produced what we now consider the central result of th
 (l47) ``market prices'' --- Could you please clarify what it means?
 \end{rc}
 
-The sentence was too compressed. The point concerns why a hindcast evaluation is difficult for a
-hydropower operator: reconstructing what a forecaster would have done in a past period requires
-knowing the conditions they faced, and those include the wholesale electricity prices they were
-bidding against, which drive the generation schedule and hence release decisions. Those price
-signals, and the operator's response to them, are not generally recoverable after the fact. The
-revised passage is described under comment 2.6, which prompted a further correction to the same
-sentences: the claim that a hindcast requires re-operating the system was overstated for a
-quality assessment, and the requirement properly applies to a value assessment.
+We mean day-ahead and real-time wholesale electricity prices, which affect generation bids and
+release schedules. Historical prices can often be retrieved. The harder quantities to
+reconstruct are outages, operating constraints, operator judgment, and how price signals changed
+decisions. We corrected this overstatement and now apply the reconstruction problem to a value
+assessment, not to direct verification of inflow quality.
 
 \subsection*{3.2 How feedback is reflected in the process}
 
@@ -855,8 +753,9 @@ that prompted it and the approximate month it was added, so the process is audit
 asserted: day-ahead volumetric skill, because market bids are set from next-day volume rather than
 hourly shape (months 1--2); the seasonal breakdown, because products were suspected to behave
 differently in snowmelt and rain driven regimes (3--4); cumulative forebay error, because average
-error does not indicate whether the band would be breached (4--6); and exceedance from a
-non-neutral start, because operators rarely begin a day at mid-band (5--6).
+error does not indicate whether the band would be breached (4--6); and forebay exceedance
+probability, because operators needed to know how quickly cumulative error could exhaust the
+operating band (5--6).
 
 We should be candid that the months are approximate: the evaluation predates this paper and we
 kept no formal log of metric provenance, so these are reconstructed from meeting materials and
@@ -871,13 +770,10 @@ since the record of why each metric exists is part of what makes the results def
 understanding correct?
 \end{rc}
 
-Your understanding is correct for a full evaluation, and your question identified that the
-original wording conflated two durations. The manuscript now separates them: metric development
-was complete within roughly the first six months, after which iteration served to accumulate data
-rather than to identify new metrics, while a minimum defensible skill assessment requires at least
-one full annual cycle because performance varies substantially by season and products may rank
-differently in each. Operators should therefore expect the metric set to stabilize well before the
-evaluation period ends.
+The appropriate duration depends on the system. In this case metric development was complete
+within roughly six months, after which the evaluation accumulated data. Because the products
+show strong seasonal variation, we recommend at least one annual cycle for this application.
+That recommendation is not a universal minimum.
 
 Our own results bear on the second point. Pooled day-ahead KGE for forecast A ranges from
 $-0.67$ in February to 0.88 in May, so an evaluation conducted in spring alone would have reached
@@ -896,26 +792,20 @@ please compare those result with those obtained via ``traditional'' methods.
 All results were produced through the framework, and we agree the comparison you describe is what
 demonstrates its effectiveness. We have added it in two forms.
 
-First, a discussion subsection, ``Comparison with retrospective forecast evaluation.'' A
-retrospective evaluation provides larger samples, a wider range of hydrologic conditions, and
-better coverage of extremes, since hindcasts can span decades where ours spans less than two
-years. Against that, translating thousands of historical forecasts into operational decisions may
-be prohibitively expensive, and even where historical operations could be reconstructed it is
-difficult or impossible to reconstruct the exact market conditions at the time of a decision. A
-real-time evaluation reflects actual operational conditions including outages and market
-feedbacks, and requires no additional data or operator effort. We are explicit that it is not a
-replacement for retrospective verification where a hindcast is feasible, but a practical
-alternative where one is not.
+First, the new ``Comparison with retrospective forecast evaluation'' subsection states that a
+hindcast provides larger samples, more extremes, and broader hydrologic coverage. Historical
+wholesale prices may be available, but outages, operating constraints, operator judgment, and
+the response to market signals may not be recoverable. A real-time evaluation records these
+conditions as they occur. It complements rather than replaces a hindcast.
 
 Second, the comparison of conclusions. A conventional verification of these forecasts, computing
 NSE, KGE, PBIAS, and correlation over the full record, concludes that forecast B outperforms
 forecast A and is comparable to the in-house forecast. That conclusion is correct and this
-framework reproduces it. What the conventional presentation omits shows up in two places: the
-compliance risk finding that carried the most weight with the operators (3.5), and the fact that
-raw efficiency metrics misidentify where forecast A is weakest, which only the benchmark-relative
-score reveals (1.6). We do not overstate this: the approaches agree on the overall ranking, and
-what the framework adds is dimensions of comparison the conventional summary leaves invisible
-rather than a contradiction of it.
+framework reproduces it. What the conventional presentation omits is the horizon at which
+cumulative forecast error can exhaust the forebay band (3.5). It also requires care when
+comparing efficiency metrics across locations because their values depend on observed variance
+(1.6). The approaches agree on the overall product ranking; the tailored metric expresses that
+ranking in units tied to a GRH constraint.
 
 \subsection*{3.5 Advantage of tailored metrics}
 
@@ -925,24 +815,14 @@ example, it would be helpful to show a case where using tailored metrics led to 
 forecast onclusion compared to general metrics.
 \end{rc}
 
-This was the right thing to ask for and we have added that case as a result rather than leaving it for
-the reader to infer. To be precise about the claim: the generic and tailored metrics do not reach
-opposite conclusions about which product is better, since forecast B outperforms forecast A on both.
-What the tailored metric does is separate the products in a dimension the generic metrics leave
-invisible, in units the operators are accountable for.
-
-The forebay exceedance metric is that case. From a neutral forebay starting position, the probability
-of breaching the compliance band is below 10\% for every product at every lead time in the 1--3 day
-range, and on that basis the products are difficult to distinguish. From the non-neutral position
-operators are routinely in, they separate sharply: at Bellows Falls forecast A reaches 23.7\% on day 1
-and 11.9\% on day 2, against 1.8\% and 2.4\% for forecast B; at Vernon it reaches 10.1\% by day 3
-against 5.2\%. A roughly tenfold difference in compliance risk is invisible in the NSE, KGE, PBIAS,
-and correlation values, none of which know that a penalty attaches to a particular forebay threshold.
-
-That non-neutral case exists only because the operators asked for it; the neutral-start case, which is
-what an analyst would naturally compute and what our original draft emphasized, shows nothing. This is
-the mechanism by which operator participation in metric design changes the result rather than merely
-improving its reception.
+The generic and tailored metrics do not select different products: forecast B outperforms A on
+both. The tailored metric adds the decision horizon. Under the idealized neutral-start stress
+test, day-ahead exceedance probabilities for B are lower than A at all three dams: 30.8\% versus
+50.0\% at Wilder, 47.5\% versus 73.0\% at Bellows Falls, and 53.7\% versus 76.3\% at Vernon. By
+48 hours, the commercial products converge to 58.1--76.2\% across the sites, and by 72 hours
+both exceed 73\% everywhere. Product B therefore has a day-ahead advantage, while passive use
+of either forecast is untenable at longer horizons. NSE, KGE, PBIAS, and correlation do not
+express this result in forebay units.
 
 On comparison to past studies, the introduction already discussed the head-to-head evaluation
 exercises (the HEPEX community experiments and the Bureau of Reclamation forecast rodeos), and we have
@@ -973,14 +853,11 @@ smoothing window size [\ldots] The window size must be stated explicitly, and a 
 analysis or justification for the chosen value would strengthen the paper.
 \end{rc}
 
-You are right that this parameter was left unstated and that it affects the metrics. We have added
-both the value and a sensitivity analysis. Reviewer 2 raised the same point in comment 2.8.
-
-The smoothing is a 24-hour triangular window on hourly calculated inflow, implemented as two
-successive 24-hour moving averages. The window was matched to the operational timescale: the
-day-ahead volumetric forecast is the quantity of interest, so smoothing at 24 hours removes
-sub-daily forebay noise without attenuating the daily signal being evaluated. Day-ahead NSE at each
-dam over four window widths:
+The revised methods state the filter and report a sensitivity analysis. We apply two successive
+24-hour moving averages to hourly calculated inflow. Their convolution produces a triangular
+kernel spanning 47 observations. The 0, 6, 12, and 24-hour labels below refer to the width of
+each component moving average. We selected 24 hours to match the day-ahead volumetric decision.
+Day-ahead NSE over the four component widths is:
 
 \begin{center}
 \begin{tabular}{llrrrr}
@@ -1009,15 +886,8 @@ between the commercial products is stable: forecast B leads A by 0.39 NSE at Bel
 smoothing and by 0.37 with 24-hour smoothing. The 24-hour column reproduces Table 1 exactly, so the
 sensitivity analysis and the main results come from the same pipeline.
 
-We have added the table and the following caution, which is the more generally useful part of the
-answer:
-
-\begin{newtext}
-``Evaluators should nonetheless state the window explicitly and check that their conclusions are
-insensitive to it, since a window wide enough to attenuate the signal of interest would flatter
-forecasts that under-predict variability. We recommend matching the window to the decision
-timescale rather than choosing the window that maximizes metric values.''
-\end{newtext}
+The revised text recommends reporting the filter, testing sensitivity to its width, and matching
+the component window to the decision timescale.
 
 \subsection*{4.2 Hydrologic representativeness of the evaluation period}
 
@@ -1027,7 +897,7 @@ this period captured any notable extreme hydrologic events [\ldots] and how clim
 representative it is relative to the long-term record.
 \end{rc}
 
-This was a valuable comment and answering it properly changed two things in the manuscript.
+This check led to two changes.
 
 First, the stated period was wrong. The record analyzed runs from June 2023 to April 2025, and the
 three products do not cover it uniformly: forecast B spans the full period (657 day-ahead forecasts
@@ -1117,10 +987,9 @@ Corrected. The placeholder is replaced with Gupta et al.\ (2009), and we have ad
 Sutcliffe (1970) for NSE in the same sentence. We also corrected the misspelling Reviewer 2 caught in
 comment 2.9: ``King-Gupta Efficiency'' now reads ``Kling-Gupta Efficiency.''
 
-While checking this we found and fixed a broken citation key elsewhere: the introduction cited
-\texttt{kratzertLearningUniversalRegional2019} where the bibliography entry is
-\texttt{kratzertLearningUniversalRegional2019a}, so that citation was not resolving. All citation keys
-now resolve against the bibliography.
+While checking this we found and fixed a broken citation key elsewhere. The key used in the
+introduction omitted the trailing ``a'' in the bibliography key, so that citation was not resolving.
+All citation keys now resolve against the bibliography.
 
 \subsection*{4.7 RMSE or MAE in Table 1}
 
@@ -1129,15 +998,11 @@ now resolve against the bibliography.
 forecast error magnitude in physical units.
 \end{rc}
 
-Agreed, and this was a real omission since every metric in the original table was dimensionless. We
-have added RMSE in cfs to Table 1. The values are informative in themselves: forecast A's day-ahead
+We added RMSE in cfs to Table 1. Forecast A's day-ahead
 RMSE at Bellows Falls is 5,904 cfs against 2,615 for forecast B, which conveys the practical size of
 the difference more directly than the NSE values of 0.55 and 0.91.
 
-The RMSE column turned out to serve a second purpose. Because the NSE skill score added under comment
-1.6 is a ratio of mean squared errors, a reader can recover that column from the RMSE column as
-$1-(\text{RMSE}_{f}/\text{RMSE}_{ref})^2$, which makes the new column checkable from the table itself.
-Table 1 also gains the per-product sample size described under comment 4.2.
+Table 1 also reports the per-product sample size described under comment 4.2.
 
 \subsection*{4.8 Figure 5 caption}
 
@@ -1146,10 +1011,9 @@ Table 1 also gains the per-product sample size described under comment 4.2.
 percentiles. Figure caption needs to be self-contained.
 \end{rc}
 
-Corrected. The Figure 5 caption now states that points show the median across all forecasts and error
-bars span the 2.5th to 97.5th percentile, and specifies the pass-inflow assumption and the $\pm$0.5
-foot compliance band. We reviewed all captions for self-containment as part of the caption revision
-described under comment 1.8.
+Corrected. The Figure 5 caption now states that lines show the median and shaded bands span the
+2.5th to 97.5th percentiles. It also defines the pass-inflow stress test and the $\pm$0.5 foot
+forebay band. We reviewed all captions for self-containment.
 
 \subsection*{4.9 What coupling to scheduling models would entail}
 
@@ -1159,15 +1023,9 @@ important next step. This point could be strengthened by briefly discussing what
 would entail and what data would be needed.
 \end{rc}
 
-Agreed, the original text asserted the next step without describing it. We have expanded the passage:
-
-\begin{newtext}
-``One difficulty in this approach is that scheduling models may be configured to reproduce a
-utility's current bidding strategy, which was itself developed around the accuracy of its existing
-forecast. A more accurate forecast may show little revenue benefit simply because the model is not set
-up to exploit it. Quantifying the value of improved forecasts may therefore require revising the
-scheduling model and the operating strategy alongside any new forecast.''
-\end{newtext}
+The original text named the next step without describing it. We now explain that the archived
+forecasts would drive a scheduling model and that the operating strategy may need revision to
+make use of a more accurate product.
 
 On the data required, such a coupling would route each candidate forecast through a scheduling model to
 produce the generation schedule it implies, then value that schedule against realized inflows and
@@ -1189,12 +1047,15 @@ realized forebay exceedance rates (2.19) would both require.
 (editor, 1.1, 2.4). Process restructured from five steps to six, separating ``Gather feedback'' from
 ``Update metrics,'' with steps 1--3 labeled generic and novelty claimed only for 4--6 (2.2, 3.2). New
 discussion subsections comparing the framework with retrospective evaluation (3.4) and connecting quality
-to value, citing Farkas et al.\ (2025) (2.1). Abstract revised.
+to value, citing Thompson and Brier (1955), Laugesen et al.\ (2023), and Farkas et al.\ (2025)
+(2.1). Abstract revised.
 
-\textbf{New analysis.} NSE skill score against persistence added to Table 1 with a defining equation; it
-inverts the apparent cross-site ordering of forecast A, strongest at Wilder (0.85) and adding almost
-nothing at Vernon (0.03) where its raw NSE is highest (1.6). Forebay exceedance reported as a result that
-separates the two commercial products where generic metrics do not (3.5). Smoothing sensitivity table over
+\textbf{New analysis.} The cumulative forebay calculation was corrected and Figures 5 and 6 were
+regenerated. The corrected result identifies a day-ahead advantage for product B and high exceedance
+probabilities for both commercial products at longer horizons (3.5). The unsupported non-neutral-start
+analysis was removed. An NSE skill score considered during revision was also removed because the
+product and reference samples were not identical (1.6). The manuscript instead interprets NSE with
+RMSE, sample coverage, and benchmark forecasts. Smoothing sensitivity was tested over
 0, 6, 12, and 24-hour windows (4.1, 2.8). RMSE in cfs, per-product sample sizes, and a common-period check
 added (4.7, 4.2). Downstream bias propagation quantified (1.5). New subsection on the hydrology of the
 evaluation period (4.2, 2.20).
@@ -1217,7 +1078,7 @@ self-contained (1.8, 4.8). Tables rebuilt (1.7).
 
 \subsection*{Requests we were not able to fully satisfy}
 
-We would rather name these than let them pass as addressed.
+The following requests remain partly addressed.
 
 \begin{itemize}[leftmargin=1.4em,itemsep=0.1em]
 \item \textbf{Climatological benchmark in Figures 3 and 4} (1.2). Recommended in the text but not added:
@@ -1225,8 +1086,8 @@ a defensible daily climatology of calculated inflow at the dams needs a record t
 the evaluation, and a gage-derived substitute would not be commensurable.
 \item \textbf{Calibration and validation diagnostics for the commercial products} (1.4). Not released to
 us by either vendor.
-\item \textbf{Redrawing the figures} (1.8). Captions substantially revised, figures not regenerated; we
-would welcome specific guidance on which aspects are considered deficient.
+\item \textbf{Redrawing every figure} (1.8). Figures 5 and 6 were regenerated after the cumulative
+calculation was corrected. The other figures retain their underlying design, with revised captions.
 \item \textbf{A full forecast value assessment} (2.1). Literature cited and a two-stage pathway given,
 but no value metric computed.
 \item \textbf{Realized forebay exceedance rates} (2.19). Needs the scheduling model coupling of 4.9.
@@ -1236,13 +1097,9 @@ three products evaluated are deterministic.
 
 \vspace{0.4em}
 
-We thank the reviewers again for the care they took. In four places their questions caused us to find and
-correct errors that would otherwise have gone to print: the stated evaluation period, the seasonal
-characterization and its monthly values, the mislabeling of NSE as KGE in the cross-site comparison, and
-the Pearson correlation equation. Reviewer 1's request that we check the NSE values (comment 1.6) was the
-most productive comment we received. Following it up produced the skill score column, corrected the
-paragraph that discussed those values, and led to what we now regard as one of the paper's more useful
-practical findings: a commercial product can post its highest efficiency score at precisely the location
-where it adds least to what the operator already has.
+The revision corrects the stated evaluation period, monthly values, NSE/KGE label, Pearson
+correlation equation, and cumulative forebay calculation. It also removes an invalid skill-score
+comparison introduced during revision. The revised claims now follow directly from calculations
+that use the published data.
 
 \end{document}
