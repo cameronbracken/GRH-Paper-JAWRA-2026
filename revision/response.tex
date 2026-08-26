@@ -172,10 +172,10 @@ only to show its degradation and is not a meaningful long-horizon reference.
 
 The figure captions now carry the same qualification.
 
-We have not added a climatological benchmark to the figures. A defensible daily climatology
+Adding a climatological benchmark would be interesting but a defensible daily climatology
 for these locations requires a long record of calculated inflow at the dams. While there are
 nearby USGS gages, these reflect older operations and so would not give a representative
-climatology.
+climatology. For this reason we have not included it in the figures. 
 
 \subsection*{1.3 Operating problems and the forecasting scheme in practice}
 
@@ -229,7 +229,7 @@ performance, which is part of the motivation for this framework.''
 The issue frequencies and horizons are taken from the forecast archive rather than vendor
 documentation, so they describe what was actually delivered.
 
-We cannot provide calibration and validation results. The data used in this study was provided
+We cannot provide calibration and validation results for these models. The data used in this study was provided
 on the basis that it be anonymized. The lack of detailed information about the models reflects
 the reality that utilities face when procuring commercial forecasts. We have also added that a
 full procurement evaluation should weigh ongoing operational costs, data dependencies, and ease
@@ -337,7 +337,7 @@ comments are addressed I recommend this manuscript is accepted with minor revisi
 \end{rc}
 
 Thank you for a detailed and technically careful review. Several of the minor comments
-identify outright errors in the methods, including one in an equation. Both major comments
+identify errors in the methods, including one in an equation. Both major comments
 have changed the manuscript substantially.
 
 \subsection*{2.1 Engagement with the forecast value literature}
@@ -380,7 +380,7 @@ The specific changes: steps 1 through 3 are labeled as generic practice for whic
 novelty. Soliciting feedback and acting on it are separated into ``Gather feedback'' and ``Update
 metrics,'' since collecting operator comment and changing the metric set are different activities
 and the second is the one that matters, so the process is now six steps. The mechanics of both are
-documented rather than asserted, including a table tracing each tailored metric to the operator
+have been more carefully documented, including a table tracing each tailored metric to the operator
 concern that prompted it (3.2), and the two timescales conflated in the iteration step are
 separated (3.3). We have added the case where a tailored metric separates two products that the
 generic metrics do not (3.5), a discussion subsection comparing the framework against retrospective
@@ -405,14 +405,14 @@ improve alongside improvements in forecasts, but this isn't the case. [\ldots] S
 restructuring so the research gap is clearer.
 \end{rc}
 
-You are right on both counts and the implication was not intended. The passage has been
+You are right on both counts and the implication was unintentional. The passage has been
 rewritten so the gap is the subject: forecast quality and scheduling have improved while
 verification practice has not; traditional verification requires hindcasts over a
 climatologically representative period, often 30 years or more, and their cost and data
 requirements are why full verifications are not done in practice; the fallback of evaluating
 archived operational forecasts fits poorly with products that are updated continuously,
 trained on evolving data streams, hand adjusted by operators, or developed by third parties.
-The paragraph now closes on the gap itself, which is the absence of a procedure by which
+We now also explain the research gap itself, which is the absence of a procedure by which
 operators can evaluate forecasts on their own system under familiar operating conditions.
 
 The point about products delivered as services rather than inspectable models is now
@@ -427,7 +427,7 @@ the authors later suggest probabilistic forecasts may help (L170). Consider brie
 what ensemble metrics could be added if ensemble forecasts were available.
 \end{rc}
 
-Agreed, and the inconsistency is a fair catch: we set probabilistic evaluation aside early
+Agreed, and the inconsistency is a fair point. We set probabilistic evaluation aside early
 and then invoked probabilistic forecasts as a remedy later. Reviewer 4 asked for the same
 addition in comment 4.4, so we have added a methods subsection covering CRPS, rank
 histograms, and reliability diagrams; please see 4.4 for the text.
@@ -444,15 +444,15 @@ the system, especially if verifying forecasts of environmental variables such as
 inflows, which you are.
 \end{rc}
 
-You are correct and the claim as written was overstated. Verifying an inflow forecast against
-observed inflow does not require re-operating the system; the re-operation requirement applies to
+Agreed,  verifying an inflow forecast against
+observed inflow does not require re-operating the system. The re-operation requirement applies to
 the value assessment rather than the quality assessment, which is the distinction your first major
-comment prompted us to draw. The revised passage says so, and confines the complications to two:
+comment prompted us to draw. We have revised the text, and clarified the two complications:
 where a forecast is modified by human judgment, a hindcast requires forecasters to reconstruct
-decisions made under past conditions including electricity prices and weather; and extending the
+decisions made under past conditions including electricity prices and weather. Extending the
 evaluation from quality to value requires a reservoir operations model or manual operator input.
 
-A further dependency is worth stating, which we had not made explicit. The calculated inflows we
+Additionally, the calculated inflows we
 verify against are derived from forebay elevation changes and dam outflow, so the observation record
 is itself a function of how the system was operated. This does not require re-operation to
 interpret, but it does mean our reference data is not independent of operations in the way a gauge
@@ -507,7 +507,7 @@ bias ratio rather than using squared error. The statement as written is misleadi
 You are right, and your characterization is the correct one. The original sentence attributed
 the difference to the squared error term, but KGE also incorporates correlation, which is
 itself computed from squared deviations, so the stated reason does not hold. We have replaced
-it with your framing:
+it with:
 
 \begin{newtext}
 ``We recommend KGE because it decomposes forecast performance into correlation, a variability
@@ -592,7 +592,7 @@ makes clear that the system total covers many more facilities than the three eva
 why you chose these sites over all the other sites (green dots in the figure).
 \end{rc}
 
-Agreed, and this omission made the results harder to interpret than necessary. Your inference
+Agreed. Your inference
 is correct: the three dams lie in series on the Connecticut River mainstem, Wilder upstream,
 then Bellows Falls, then Vernon, and are operated jointly, with releases from each becoming
 inflow to the next. This is why the drainage areas are nested and why bias propagates
@@ -641,9 +641,8 @@ in the summer which is the dry season.'' This says forecasts perform worse in bo
 dry seasons. Please clarify when forecasts actually perform well and why.
 \end{rc}
 
-You are right that the sentence contradicts itself and the logic was garbled. Re-examining the
-monthly results showed the original characterization of the seasons was also wrong: winter is not
-the wet season in this basin. Mean inflow at Vernon is highest in March and April and lowest from
+You are correct, this was mixing up streamflow vs precipitation. 
+Mean inflow at Vernon is highest in March and April and lowest from
 September through November, so the high-flow season is spring, driven by snowmelt, and that is
 where skill is highest for all three products.
 
@@ -670,9 +669,10 @@ exceedance rates might be.
 \end{rc}
 
 Operators do not hold pass-inflow conditions. They schedule generation to a market bid, depart
-from inflow during the day, recover the forebay later, and intervene near the operating band. We
-now call the calculation an idealized stress test. It is neither a prediction nor a bound on
-realized compliance rates because operator actions can increase or decrease the modeled risk.
+from inflow during the day, recover the forebay in off-peak hours, and intervene to keep the forebay 
+in the operating band. We now call the calculation an idealized stress test and readily acknowledge that
+the system would never be operated in this way. It is neither a prediction nor a bound on
+realized compliance rates because operator actions can increase or decrease the modeled risk. 
 Estimating realized rates requires schedules, constraints, and a model of operator response, as
 described under comment 4.9.
 
@@ -728,7 +728,7 @@ this manuscript. Please provide a more detailed explanation of how feedback is r
 step 4.
 \end{rc}
 
-You have identified the structure of the contribution correctly, and we now say so directly
+You have identified the structure of the contribution correctly, and we now say so in the text
 rather than presenting all steps as equally novel. Steps 1 through 3 are labeled as generic.
 
 Your comment also exposed an ambiguity: what was a single step for soliciting feedback conflated
@@ -895,9 +895,9 @@ this period captured any notable extreme hydrologic events [\ldots] and how clim
 representative it is relative to the long-term record.
 \end{rc}
 
-This check led to two changes.
+Thanks for pointing this out, this check led to two changes.
 
-First, the stated period was wrong. The record analyzed runs from June 2023 to April 2025, and the
+First, the stated evaluation period was wrong. The record analyzed runs from June 2023 to April 2025, and the
 three products do not cover it uniformly: forecast B spans the full period (657 day-ahead forecasts
 per dam) while forecast A and the in-house forecast both end in November 2024 (539 and 528
 respectively). We have corrected the period, added the per-product sample sizes to Table 1, and
@@ -913,7 +913,7 @@ the largest inflow at Wilder (27,600 cfs), along with spring freshets in 2024 an
 summers in 2023 and 2024. Checked against the long-term annual peak series at the USGS reference
 gages, the July 2023 event ranks among the ten largest flows on record on the main stem, though below
 the 1936, 1938, and 1927 floods and the 2011 Tropical Storm Irene peak. The period was therefore not
-hydrologically quiet, but neither did it sample the upper tail, and the manuscript now states that
+hydrologically quiet, but neither did it sample the extreme upper tail, and the manuscript now states that
 the conclusions are conditional on the observed period. Reviewer 2 asked in comment 2.20 for the
 limitation to be stated explicitly, which we have added to the limitations discussion.
 
@@ -1086,9 +1086,6 @@ a defensible daily climatology of calculated inflow at the dams needs a record t
 the evaluation, and a gage-derived substitute would not be commensurable.
 \item \textbf{Calibration and validation diagnostics for the commercial products} (1.4). Not released to
 us by either vendor.
-\item \textbf{Redrawing every figure} (1.8). Figures 5 and 6 were regenerated after the cumulative
-calculation was corrected and re-indexed by hours into each product's delivered horizon. The other
-figures retain their underlying design, with revised captions.
 \item \textbf{A full forecast value assessment} (2.1). Literature cited and a two-stage pathway given,
 but no value metric computed.
 \item \textbf{Realized forebay exceedance rates} (2.19). Needs the scheduling model coupling of 4.9.
