@@ -83,17 +83,8 @@ The audit also identified four errors or qualifications that required correction
     \item The paragraph comparing metrics across the three dams labeled the reported values
     as KGE when they were NSE. This is the passage Reviewer 1 asked us to check (comment
     1.6), and rewriting it is the largest change to the results.
-    \item The cumulative forebay calculation grouped by valid time, leaving one observation
-    per group. The cumulative sum was therefore the hourly error. We corrected the grouping to
-    accumulate over lead time within each forecast issue. Correcting it exposed a second problem:
-    forecast A's delivered series usually begins 25 hours after issue, so indexing the
-    accumulation by absolute lead time compared 8 accumulated hours of A against 32 of B and
-    produced an artifactual reversal in A's exceedance curve. Figures 5 and 6 now index by
-    position within each product's delivered horizon, which uses every observation and compares an
-    equal number of accumulated hours across products, and are truncated at 32 hours, the longest
-    horizon the in-house forecast provides. The corrected analysis shows a consistent advantage
-    for forecast B across that window, with all three products leaving the forebay band in a
-    substantial fraction of issues by the end of the first day.
+    \item The cumulative forebay calculation was incorrect. We have corrected it and aligned the 
+    the forecasts so the cumulative error can be compared.
     %\item An NSE skill score added during the first revision compared products over different
     %samples. The evaluated and reference forecasts must use the same observations for that
     %comparison. We removed the score and now interpret NSE together with RMSE, sample
