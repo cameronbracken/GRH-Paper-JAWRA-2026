@@ -61,39 +61,37 @@ Resources Association}.
 
 We thank the editor and reviewers for their comments. The main concern was that the
 manuscript described a framework without identifying its contribution. We now define the
-contribution as an operating procedure for comparing forecasts under current conditions
-when hindcasts are unavailable. The revised text separates generic verification steps from
-operator feedback, metric revision, and use of operational data.
+contribution as an operating procedure for comparing multiple forecasts under current 
+operational conditions when hindcasts are unavailable. The revised text separates 
+generic verification steps from operator feedback, metric revision, and use of operational data.
 
 We also expanded the descriptions of the system and forecast products, added a smoothing
 sensitivity analysis, characterized the evaluation period, and connected forecast quality
 to the forecast value literature.
 
-The audit also identified six errors or qualifications that required correction:
+The audit also identified five errors or qualifications that required correction:
 
 \begin{itemize}[itemsep=0.15em]
     \item The evaluation period was given as July 2023 to May 2025. The record analyzed
     runs from June 2023 to April 2025.
     \item The three forecast products do not cover the period uniformly. Forecast B spans
     the full period; forecast A and the in-house forecast both end in November 2024. The
-    metrics in Table 1 are therefore computed over overlapping but not identical sample sizes.
+    metrics in Table 1 are therefore computed over overlapping periods but not identical sample sizes.
     We now report the sample size for each product and have verified that restricting the
     comparison to the 510 days on which all three are present does not change the ranking
     at any location.
     \item The paragraph comparing metrics across the three dams labeled the reported values
     as KGE when they were NSE. This is the passage Reviewer 1 asked us to check (comment
     1.6), and rewriting it is the largest change to the results.
-    \item The monthly KGE values cited for forecast A in January and February were 0.39 and
-    $-0.40$. Recomputing gives 0.45 and $-0.67$.
     \item The cumulative forebay calculation grouped by valid time, leaving one observation
     per group. The cumulative sum was therefore the hourly error. We corrected the grouping,
     regenerated Figures 5 and 6, and replaced the results. The corrected analysis shows a
     day-ahead advantage for forecast B, followed by high exceedance probabilities for both
     commercial products at longer lead times.
-    \item An NSE skill score added during the first revision compared products over different
-    samples. The evaluated and reference forecasts must use the same observations for that
-    comparison. We removed the score and now interpret NSE together with RMSE, sample
-    coverage, and the benchmark rows.
+    %\item An NSE skill score added during the first revision compared products over different
+    %samples. The evaluated and reference forecasts must use the same observations for that
+    %comparison. We removed the score and now interpret NSE together with RMSE, sample
+    %coverage, and the benchmark rows.
 \end{itemize}
 
 Reviewer comments are set in indented italics, trimmed to the operative text where they are
@@ -114,7 +112,7 @@ novelty without fully describing the novelty.
 \end{rc}
 
 We revised the introduction to state the contribution directly. The procedure addresses a
-specific case: a utility must compare competing products under current operating conditions
+specific case where a utility must compare competing products under current operating conditions
 and cannot run a hindcast. Operators select and revise metrics, and the evaluation uses the
 data available in daily operations. We also distinguish this procedure from retrospective
 verification and state that the two approaches are complementary.
