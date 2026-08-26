@@ -86,10 +86,16 @@ The audit also identified six errors or qualifications that required correction:
     \item The monthly KGE values cited for forecast A in January and February were 0.39 and
     $-0.40$. Recomputing gives 0.45 and $-0.67$.
     \item The cumulative forebay calculation grouped by valid time, leaving one observation
-    per group. The cumulative sum was therefore the hourly error. We corrected the grouping,
-    regenerated Figures 5 and 6, and replaced the results. The corrected analysis shows a
-    day-ahead advantage for forecast B, followed by high exceedance probabilities for both
-    commercial products at longer lead times.
+    per group. The cumulative sum was therefore the hourly error. We corrected the grouping to
+    accumulate over lead time within each forecast issue. Correcting it exposed a second problem:
+    forecast A's delivered series usually begins 25 hours after issue, so indexing the
+    accumulation by absolute lead time compared 8 accumulated hours of A against 32 of B and
+    produced an artifactual reversal in A's exceedance curve. Figures 5 and 6 now index by
+    position within each product's delivered horizon, which uses every observation and compares an
+    equal number of accumulated hours across products, and are truncated at 32 hours, the longest
+    horizon the in-house forecast provides. The corrected analysis shows a consistent advantage
+    for forecast B across that window, with all three products leaving the forebay band in a
+    substantial fraction of issues by the end of the first day.
     \item An NSE skill score added during the first revision compared products over different
     samples. The evaluated and reference forecasts must use the same observations for that
     comparison. We removed the score and now interpret NSE together with RMSE, sample
@@ -325,7 +331,9 @@ The figures also need be redrawn.
 We revised all captions to state the quantity, units, and reference lines. We also redrew
 Figures 5 and 6 after correcting the cumulative-error calculation. The revised figures use
 three location panels, a common product palette, larger labels, ribbons for the central 95\%
-interval in Figure 5, and percentages in Figure 6. Figure 6 now contains only the supported
+interval in Figure 5, and percentages in Figure 6. Both now plot hours into each product's
+delivered horizon rather than absolute lead time, and end at 32 hours; the captions state the
+absolute lead times each product's window spans. Figure 6 now contains only the supported
 neutral-start stress test.
 
 \vspace{0.4em}
@@ -817,12 +825,13 @@ forecast onclusion compared to general metrics.
 
 The generic and tailored metrics do not select different products: forecast B outperforms A on
 both. The tailored metric adds the decision horizon. Under the idealized neutral-start stress
-test, day-ahead exceedance probabilities for B are lower than A at all three dams: 30.8\% versus
-50.0\% at Wilder, 47.5\% versus 73.0\% at Bellows Falls, and 53.7\% versus 76.3\% at Vernon. By
-48 hours, the commercial products converge to 58.1--76.2\% across the sites, and by 72 hours
-both exceed 73\% everywhere. Product B therefore has a day-ahead advantage, while passive use
-of either forecast is untenable at longer horizons. NSE, KGE, PBIAS, and correlation do not
-express this result in forebay units.
+test, exceedance probabilities over the first 24 hours of each product's horizon are lower for B
+than for A at all three dams: 31.0\% versus 56.6\% at Wilder, 47.7\% versus 67.9\% at Bellows
+Falls, and 53.8\% versus 71.1\% at Vernon. By 32 hours, the longest horizon the three products
+share, B reaches 42.8--65.5\% while A reaches 61.2--82.0\%. Product B therefore holds a
+consistent advantage, but passive use of any of the products is untenable: by the end of the
+first day each leaves the band in roughly a third to three-quarters of issues. NSE, KGE, PBIAS,
+and correlation do not express this result in forebay units.
 
 On comparison to past studies, the introduction already discussed the head-to-head evaluation
 exercises (the HEPEX community experiments and the Bureau of Reclamation forecast rodeos), and we have
@@ -1051,8 +1060,10 @@ to value, citing Thompson and Brier (1955), Laugesen et al.\ (2023), and Farkas 
 (2.1). Abstract revised.
 
 \textbf{New analysis.} The cumulative forebay calculation was corrected and Figures 5 and 6 were
-regenerated. The corrected result identifies a day-ahead advantage for product B and high exceedance
-probabilities for both commercial products at longer horizons (3.5). The unsupported non-neutral-start
+regenerated, now indexed by hours into each product's delivered horizon and truncated at 32 hours.
+The corrected result identifies a consistent advantage for product B across that window, with all
+three products leaving the forebay band in a substantial fraction of issues by the end of the first
+day (3.5). The unsupported non-neutral-start
 analysis was removed. An NSE skill score considered during revision was also removed because the
 product and reference samples were not identical (1.6). The manuscript instead interprets NSE with
 RMSE, sample coverage, and benchmark forecasts. Smoothing sensitivity was tested over
@@ -1087,7 +1098,8 @@ the evaluation, and a gage-derived substitute would not be commensurable.
 \item \textbf{Calibration and validation diagnostics for the commercial products} (1.4). Not released to
 us by either vendor.
 \item \textbf{Redrawing every figure} (1.8). Figures 5 and 6 were regenerated after the cumulative
-calculation was corrected. The other figures retain their underlying design, with revised captions.
+calculation was corrected and re-indexed by hours into each product's delivered horizon. The other
+figures retain their underlying design, with revised captions.
 \item \textbf{A full forecast value assessment} (2.1). Literature cited and a two-stage pathway given,
 but no value metric computed.
 \item \textbf{Realized forebay exceedance rates} (2.19). Needs the scheduling model coupling of 4.9.
