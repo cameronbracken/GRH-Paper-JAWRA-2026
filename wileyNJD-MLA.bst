@@ -139,6 +139,7 @@ ENTRY
     booktitle
     chapter
     comment
+    doi
     edition
     editor
     howpublished
@@ -801,6 +802,12 @@ FUNCTION {format.in.ed.booktitle}
     }
   if$
 }
+FUNCTION {format.doi}
+{ doi empty$
+    { "" }
+    { "https://doi.org/" doi * }
+  if$
+}
 FUNCTION {empty.misc.check}
 { author empty$ title empty$ howpublished empty$
   month empty$ year empty$ note empty$
@@ -1340,6 +1347,8 @@ FUNCTION {misc}
   format.pages output
   new.block
   note output
+  new.block
+  format.doi output
   new.block
   comment output
   fin.entry
