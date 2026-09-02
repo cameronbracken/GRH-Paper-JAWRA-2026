@@ -61,9 +61,12 @@ Resources Association}.
 
 We thank the editor and reviewers for their comments. The main concern was that the
 manuscript described a framework without identifying its contribution. We now define the
-contribution as an operating procedure for comparing multiple forecasts under current 
-operational conditions when hindcasts are unavailable. The revised text separates 
-generic verification steps from operator feedback, metric revision, and use of operational data.
+contribution as the design of a multi-product operating trial. The procedure aligns competing
+forecasts over a common period, defines decisions and constraints before metrics are selected,
+uses regular operator review to revise the evaluation, and specifies how long the trial should
+continue. This setting includes cases where product-specific hindcasts are unavailable, but also
+cases where they cover different periods, model versions, or system configurations and therefore
+do not provide a comparable view of current performance.
 
 We also expanded the descriptions of the system and forecast products, added a smoothing
 sensitivity analysis, characterized the evaluation period, and connected forecast quality
@@ -108,11 +111,20 @@ particularly noting that the manuscript seems to suggest that the framework is t
 novelty without fully describing the novelty.
 \end{rc}
 
-We revised the introduction to state the contribution directly. The procedure addresses a
-specific case where a utility must compare competing products under current operating conditions
-and cannot run a hindcast. Operators select and revise metrics, and the evaluation uses the
-data available in daily operations. We also distinguish this procedure from retrospective
-verification and state that the two approaches are complementary.
+We revised the introduction to state the contribution directly. The procedure addresses how a
+utility should compare multiple products over the same current operating period when separate
+hindcasts are unavailable or not comparable. It now begins by defining the decisions, horizons,
+constraints, incumbent forecast, and operating regimes that establish what performance means.
+All products are evaluated against the same observations. Operators then review results at regular
+meetings, identify errors that changed or could have changed a decision, and revise the metrics
+while preserving why each change was made. For a seasonal system, the trial continues for at
+least one annual cycle.
+
+We also clarify how this trial complements a hindcast. The real-time evaluation identifies
+operationally viable products and records current constraints, data interruptions, operator
+adjustments, and decision rules. A subsequent common hindcast can then evaluate the selected
+products across a longer hydrologic record and estimate revenue, water supply, spill, and other
+outcomes using the same current system representation.
 
 On reproducibility, we have anonymized the proprietary data and made the forecast evaluation as
 reproducible as we could given the limitations of the data. The evaluation code is public
@@ -145,12 +157,15 @@ The novelty and main contributions of this study are unclear. Please explain and
 discuss in detail.
 \end{rc}
 
-Please see our response to the editor for the new statement of contribution. In brief, the
-contribution is a procedure for the case where a utility must choose among competing
-forecast products under live operating conditions and a hindcast is not possible. What
-distinguishes it from standard forecast verification is the direct operator
-input in the process, and that the evaluation runs on operational data
-rather than an archived dataset.
+Please see our response to the editor for the full statement of contribution. The contribution
+is not a new verification statistic or the use of operational data alone. It is a documented
+procedure for designing a comparable trial of multiple forecast products. The procedure defines
+the decisions and constraints before selecting metrics, holds the observation period and operating
+context common across products, specifies regular operator review and metric revision, records
+the reason for each change, and sets the evaluation duration from the operating regimes that must
+be sampled. This is needed even when product-specific hindcasts exist because separate hindcasts
+may describe different model versions, meteorological inputs, periods, infrastructure, or operating
+rules.
 
 We have added to the discussion why this matters now. Forecast products using AI and
 machine learning methods are being marketed to utilities at an increasing rate, and the
@@ -376,16 +391,15 @@ context, and these deserve more prominence and deeper treatment.
 We restructured the manuscript around this distinction. Please see our response to the editor
 for the revised statement of contribution.
 
-The specific changes: steps 1 through 3 are labeled as generic practice for which we claim no
-novelty. Soliciting feedback and acting on it are separated into ``Gather feedback'' and ``Update
-metrics,'' since collecting operator comment and changing the metric set are different activities
-and the second is the one that matters, so the process is now six steps. The mechanics of both
-have been more carefully documented, including a table tracing each tailored metric to the operator
-concern that prompted it (3.2), and the two timescales conflated in the iteration step are
-separated (3.3). We have added the case where a tailored metric separates two products that the
-generic metrics do not (3.5), a discussion subsection comparing the framework against retrospective
-evaluation (3.4), and the point that operational reliability is itself part of what a real-time
-evaluation measures.
+The revised process now has seven steps. The new first step requires operators to define the
+decisions, horizons, constraints, incumbent forecast, and operating regimes before metrics are
+selected. Products are then evaluated on common observations over an overlapping period.
+Soliciting feedback and acting on it remain separate as ``Gather feedback'' and ``Update metrics,''
+because collecting operator comment and changing the metric set are different activities. The
+mechanics are documented through the meeting frequency, the questions asked of operators, the
+minimum duration for a seasonal system, and a table tracing each tailored metric to the operator
+concern that prompted it (3.2). We also explain how the real-time trial and a common hindcast form
+two stages of one evaluation rather than competing alternatives (3.4).
 
 \subsection*{2.3 Hyphenation of ``real time''}
 
@@ -444,13 +458,17 @@ the system, especially if verifying forecasts of environmental variables such as
 inflows, which you are.
 \end{rc}
 
-Agreed,  verifying an inflow forecast against
-observed inflow does not require re-operating the system. The re-operation requirement applies to
-the value assessment rather than the quality assessment, which is the distinction your first major
-comment prompted us to draw. We have revised the text, and clarified the two complications:
-where a forecast is modified by human judgment, a hindcast requires forecasters to reconstruct
-decisions made under past conditions including electricity prices and weather. Extending the
-evaluation from quality to value requires a reservoir operations model or manual operator input.
+Agreed. Verifying a hindcast of inflow against observed inflow does not require re-operating the
+system. We have removed any suggestion that the real-time framework replaces a hindcast. The
+revised manuscript instead explains the comparability problem. Separate product hindcasts may use
+different periods, model versions, meteorological inputs, infrastructure, or operating rules. A
+common hindcast is valuable when these elements can be held constant, especially when the forecasts
+are coupled to an operations model to estimate revenue, water supply, spill, and other outcomes.
+
+The real-time trial contributes a common snapshot of current performance and records delivery
+failures, operator adjustments, current constraints, and the decisions affected by forecast errors.
+It identifies the products and system representation that should enter a subsequent common
+hindcast. The approaches are therefore complementary rather than alternatives.
 
 Additionally, the calculated inflows we
 verify against are derived from forebay elevation changes and dam outflow, so the observation record
@@ -728,13 +746,13 @@ this manuscript. Please provide a more detailed explanation of how feedback is r
 step 4.
 \end{rc}
 
-You have identified the structure of the contribution correctly, and we now say so in the text
-rather than presenting all steps as equally novel. Steps 1 through 3 are labeled as generic.
+You have identified the structure of the contribution correctly. We have now made the full trial
+design explicit rather than locating the contribution only in the later feedback steps.
 
-Your comment also exposed an ambiguity: what was a single step for soliciting feedback conflated
-gathering operator comment with actually changing the metric set. We have split them into
-``Gather feedback'' and ``Update metrics,'' so the process is now six steps, with 4 through 6
-being where it departs from retrospective verification.
+The process now begins with ``Define decisions and trial scope,'' followed by collection of aligned
+real-time data, initial metrics, and visualization. ``Gather feedback'' and ``Update metrics'' remain
+separate, and the seventh step repeats the review while accumulating a sample that covers the
+operating regimes of interest.
 
 Both steps are expanded with the mechanics. Feedback was collected in recurring meetings, monthly
 for most of the evaluation, each reviewing the current metrics against recent operating experience,
@@ -789,11 +807,18 @@ please compare those result with those obtained via ``traditional'' methods.
 All results were produced through the framework, and we agree the comparison you describe is what
 demonstrates its effectiveness. We have added it in two forms.
 
-First, the new ``Comparison with retrospective forecast evaluation'' subsection states that a
-hindcast provides larger samples, more extremes, and broader hydrologic coverage. Historical
-wholesale prices may be available, but outages, operating constraints, operator judgment, and
-the response to market signals may not be recoverable. A real-time evaluation records these
-conditions as they occur. It complements rather than replaces a hindcast.
+First, the revised ``Comparison with retrospective forecast evaluation'' subsection now states
+what each approach contributes. A common hindcast provides larger samples, more extremes, and a
+basis for estimating revenue, water supply, spill, and other outcomes through an operations model.
+A real-time trial evaluates all products against the same current observations and records delivery
+failures, operator adjustments, current constraints, and the decisions that forecast errors affect.
+Separate vendor hindcasts may not be comparable if they use different periods, model versions,
+meteorological inputs, infrastructure, or operating rules.
+
+The takeaway is a sequence. The real-time trial identifies operationally viable products and the
+constraints and decision rules that a value study must represent. The selected products can then
+be evaluated through a common hindcast and scheduling model over a longer record. If comparable
+hindcasts already exist, the two evaluations can proceed in parallel.
 
 Second, the comparison of conclusions. A conventional verification of these forecasts, computing
 NSE, KGE, PBIAS, and correlation over the full record, concludes that forecast B outperforms
@@ -1021,9 +1046,10 @@ important next step. This point could be strengthened by briefly discussing what
 would entail and what data would be needed.
 \end{rc}
 
-The original text named the next step without describing it. We now explain that the archived
-forecasts would drive a scheduling model and that the operating strategy may need revision to
-make use of a more accurate product.
+The original text named the next step without describing it. We now explain that the real-time
+trial first identifies operationally viable products and the constraints and decision rules that a
+value study must represent. The selected forecasts would then drive a common scheduling model, and
+the operating strategy may need revision to make use of a more accurate product.
 
 On the data required, such a coupling would route each candidate forecast through a scheduling model to
 produce the generation schedule it implies, then value that schedule against realized inflows and
@@ -1032,7 +1058,10 @@ utility's scheduling model with its operating constraints and unit efficiency cu
 day-ahead and real-time market prices at the relevant node, the realized inflow record, and the archive
 of forecasts as issued so that schedules use only information available at bid time. That last
 requirement is a further reason a real-time evaluation is a useful precursor, since it produces exactly
-this archive as a byproduct. The same coupling is what a full value assessment (2.1) and an estimate of
+this archive as a byproduct. The forebay stress test also shows why the compliance constraint cannot
+be omitted: cumulative forecast error frequently exhausts the operating band under passive use. A
+value study should admit only compliance-feasible schedules and represent operator response as the
+band is approached. The same coupling is what a full value assessment (2.1) and an estimate of
 realized forebay exceedance rates (2.19) would both require.
 
 \vspace{0.4em}
@@ -1041,12 +1070,12 @@ realized forebay exceedance rates (2.19) would both require.
 
 \section*{Summary of changes}
 
-\textbf{Framing.} Statement of contribution added to the introduction and the gap statement rewritten
-(editor, 1.1, 2.4). Process restructured from five steps to six, separating ``Gather feedback'' from
-``Update metrics,'' with steps 1--3 labeled generic and novelty claimed only for 4--6 (2.2, 3.2). New
-discussion subsections comparing the framework with retrospective evaluation (3.4) and connecting quality
-to value, citing Thompson and Brier (1955), Laugesen et al.\ (2023), and Farkas et al.\ (2025)
-(2.1). Abstract revised.
+\textbf{Framing.} The contribution is now stated as the design of a comparable multi-product operating
+trial rather than the absence of a hindcast alone (editor, 1.1, 2.2, 3.2). The process now has seven
+steps, beginning with definition of decisions, constraints, horizons, the incumbent forecast, and the
+common trial period. The revised discussion explains how a real-time trial identifies operationally
+viable products and defines the constraints for a subsequent common hindcast and value study (3.4).
+The abstract was revised to state the same contribution and sequence.
 
 \textbf{New analysis.} The cumulative forebay calculation was corrected and Figures 5 and 6 were
 regenerated, now indexed by hours into each product's delivered horizon and truncated at 32 hours.
