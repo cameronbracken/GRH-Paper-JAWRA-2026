@@ -14,7 +14,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \NeedsTeXFormat{LaTeX2e}[2009/09/24]
-\ProvidesClass{WileyNJD-v5}
+\ProvidesClass{WileyNJDv5}
               [2022/04/05 v5.0 Standard LaTeX document class for Journal]
 
 \newif\if@cropmarkson\@cropmarksonfalse
@@ -5065,6 +5065,10 @@ Volume\ \@jvol, Article ID\ \@artid, \thepage~pages\par%
 \gdef\@presentaddress{}%
 \def\presentaddress#1{\gdef\@presentaddress{\hsize=\textwidth\corresfont\baselineskip11pt\textbf{Present address}\par #1}}%
 
+\gdef\@ris{}%
+\def\ris#1{\gdef\@ris{\hsize=\textwidth\corresfont\baselineskip11pt\textbf{Research Impact Statement}\par #1}}%
+
+
 %
 \def\received#1{\gdef\@received{Received #1;}}\gdef\@received{Added at production}%
 \def\revised#1{\gdef\@revised{Revised #1;}}\gdef\@revised{Added at production}%
@@ -5582,6 +5586,9 @@ Volume\ \@jvol, Article ID\ \@artid, \thepage~pages\par%
    \ifx\@presentaddress\empty
    \else
    {\@presentaddress\par}\fi%
+   \ifx\@ris\empty
+   \else
+   {\@ris\par}\fi%
 	\vskip8pt
     \ifx\@fundinginfo\empty
  	\else
