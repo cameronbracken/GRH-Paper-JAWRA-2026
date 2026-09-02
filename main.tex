@@ -81,7 +81,7 @@ Evolving environmental regulation, changing water demands, cascading reservoir o
 %<I would also add here that we see more forecast products coming in with new optimization and new data driven approaches - however old approaches for forecast verification  might be outdated - those need to be evaluated on context on needing the perturb an existing system. Many papers on LSTM and stuff currently say that they develop real time models. This study provides insight to this technology innovation on how to evaluate their value.>
 
 Hydrologic forecasting and hydropower scheduling have improved through data driven models \citep{kratzertLearningUniversalRegional2019a} and scheduling optimization \citep{zhangOptimizationShorttermHydropower2024}. Hindcasts remain important because they evaluate forecast behavior over long periods and can support counterfactual studies of revenue, water supply, spill, and other outcomes (Randrianasolo et al, 2024). 
-# COMMENT Randrianasolo, A., Thirel, G., Ramos, M. H., & Martin, E. (2014). Impact of streamflow data assimilation and length of the verification period on the quality of short-term ensemble hydrologic forecasts. Journal of Hydrology, 519, 2676–2691. DOI: 10.1016/j.jhydrol.2014.09.032
+% COMMENT Randrianasolo, A., Thirel, G., Ramos, M. H., & Martin, E. (2014). Impact of streamflow data assimilation and length of the verification period on the quality of short-term ensemble hydrologic forecasts. Journal of Hydrology, 519, 2676–2691. DOI: 10.1016/j.jhydrol.2014.09.032
 Comparing several forecast products, however, requires more than assembling their separate hindcasts. Product-specific hindcasts may cover different periods, use different model versions or meteorological inputs, or represent infrastructure and operating rules that have changed since the hindcasts were issued. These differences can be mistaken for differences in forecast performance. A common real-time trial instead evaluates every product against the same observations and current operating context. This study addresses how a reservoir operator should design such a trial when comparable hindcasts are unavailable or do not represent the current system.
 
 No set of forecast evaluation metrics fits every system. Meteorological and hydrologic data vary among basins, as do watershed properties and infrastructure \citep{phamEvaluationRandomForests2021}. Operating rules range from run-of-river constraints to seasonal rule curves \citep{zajacImpactLakeReservoir2017}, and the relevant decisions change with forecast lead time and flow regime. An evaluation must account for these differences and connect statistical performance to decisions at a particular site.
@@ -140,9 +140,9 @@ Reservoir inflow is often calculated from changes in forebay elevation and an el
 \subsection{Traditional inflow evaluation metrics}
 
 Deterministic inflow forecasts can be evaluated using measures of average error, correlation, and bias. Higher moments, categorical performance, and conditional statistics may also be useful \citep{st-aubinPrecisionReliabilityForecasts2022,hewamalageForecastEvaluationData2023}. We do not attempt a complete review of deterministic forecast metrics. Instead, we use a small set that describes several aspects of performance and can be expanded for a particular application. No single metric fully describes forecast quality. The metrics should also be calculated by lead time and season because values aggregated across the full record can hide changes that matter to operations.
-# COMMENT note that his process could also bring biases in the chosen metrics. Should you say ahead of time that blinding the forecast is important for this process?
+% COMMENT note that his process could also bring biases in the chosen metrics. Should you say ahead of time that blinding the forecast is important for this process?
 
-# COMMENT NSE and KGE were mentioned above already - should this section come earlier?
+% COMMENT NSE and KGE were mentioned above already - should this section come earlier?
 Average hydrologic forecast behavior is typically measured with an error metric such as root mean squared error (RMSE), Nash-Sutcliffe Efficiency (NSE) \citep{nashRiverFlowForecasting1970}, or Kling-Gupta Efficiency (KGE) \citep{guptaDecompositionMeanSquared2009}. We recommend including KGE because it decomposes forecast performance into correlation, a variability ratio, and a bias ratio. A low score can therefore be associated with a specific deficiency rather than registered only as a large aggregate error. NSE and RMSE aggregate squared error into a single number, which makes them more sensitive to the largest errors and less diagnostic about their source. The metrics answer different questions, so we report them together rather than use one as a complete measure of forecast quality. The KGE is given by
 
 \begin{equation}
@@ -170,9 +170,9 @@ Metrics should be computed on a common sample when products cover different peri
 
 \subsection{Extension to probabilistic and ensemble forecasts}\label{sec:probabilistic}
 
-# COMMENT cite Demargne et al. (2014) - https://doi.org/10.1175/BAMS-D-12-00081.1 ?
-# COMMENT cite Towler recent HEFS paper
-# COMMENT cite UMAL and other methods for producing probablistic forecasts 
+% COMMENT cite Demargne et al. (2014) - https://doi.org/10.1175/BAMS-D-12-00081.1 ?
+% COMMENT cite Towler recent HEFS paper
+% COMMENT cite UMAL and other methods for producing probablistic forecasts 
 
 The process described in this section applies to both deterministic and probabilistic forecasts; only the metrics and visualizations change. Probabilistic products can describe uncertainty around compliance or market decisions rather than provide only a single expected value. Where ensemble or probabilistic products are available, the continuous ranked probability score (CRPS) can summarize the accuracy of the full predictive distribution. CRPS reduces to mean absolute error for a deterministic forecast, which permits comparison on a common scale. Rank histograms can indicate whether an ensemble is biased or has too little or too much spread, while reliability diagrams compare forecast probabilities with observed frequencies. The choice among these metrics should follow the same process used for deterministic forecasts and reflect the decisions being evaluated.
 
@@ -185,7 +185,7 @@ The three dams lie in series on the main stem of the Connecticut River, with Wil
 
 Basin hydrology is snowmelt-influenced, with a spring freshet typically spanning March through May, convective rainfall in summer, and rain and rain-on-snow-driven events in winter. Several tributaries have upstream flood control regulation by the U.S. Army Corps of Engineers, which contributes to inflow variability that is not directly weather-driven.
 
-# COMMENT are they all within one day or river travel? e.g. is the release from one reservoir impacting the inflow forecasts on the same day or the day later?
+% COMMENT are they all within one day or river travel? e.g. is the release from one reservoir impacting the inflow forecasts on the same day or the day later?
 \begin{table}[ht]
 \centering
 \caption{Physical characteristics of the six evaluation points. Drainage areas are from the USGS National Water Information System for the reference gage listed. Mainstem areas are nested, so the area above Vernon includes those above Bellows Falls and Wilder.}\label{tab:basin}
@@ -387,7 +387,7 @@ Figure \ref{fig:prob-exeed-threshold} shows the corresponding probability of lea
 %ii)	Value of the process
 %iii)	Limitations
 
-# COMMENT the title was changed to real-time. SHould this "current operating conditions" across the paper be changed to real-time?  The evaluation was done as part of a bi-monthly and monthly meeting. perhaps clarify with one sentence that this is real time in the sense that metrics are computed daily on the day of the forecasts but evaluation is performed bi-monthly with a discussion of current conditions and decisions?
+% COMMENT the title was changed to real-time. SHould this "current operating conditions" across the paper be changed to real-time?  The evaluation was done as part of a bi-monthly and monthly meeting. perhaps clarify with one sentence that this is real time in the sense that metrics are computed daily on the day of the forecasts but evaluation is performed bi-monthly with a discussion of current conditions and decisions?
 
 We present a framework for comparing multiple reservoir inflow forecasts over the same period and under current operating conditions. Its contribution is the design of the operating trial: define the decisions and constraints before selecting metrics, align the product records, review results with operators at regular intervals, preserve why metrics change, and continue long enough to sample the relevant operating regimes. We applied this process to three reservoirs in the Great River Hydro system. Product B generally matched the in-house forecast and outperformed product A. The forebay stress test expressed this difference in operational units and showed how risk accumulated over the shared forecast horizon. These results screen forecast products and define requirements for a later value analysis, but they do not estimate revenue or observed compliance outcomes.
 
@@ -414,7 +414,7 @@ We did not estimate how improvements in inflow forecasts affect hydropower opera
 
 The length of the available record also limits the evaluation. The period included a regional flood and a rain-on-snow event (Section \ref{sec:period}), but it did not include a severe multi-year drought. We could not assess forecast performance under sustained water-limited conditions. A multi-decade hindcast would include a wider range of hydrologic conditions and provide a more complete evaluation of forecast quality.
 
-# COMMENT perhaps also note that this is easier for an operator-owner perspective who success metrics are revenues ( follow prices). For other structure such as load serving entities who may also have other generation technologies, the approach is much more complex.  
+% COMMENT perhaps also note that this is easier for an operator-owner perspective who success metrics are revenues ( follow prices). For other structure such as load serving entities who may also have other generation technologies, the approach is much more complex.  
 The choice between real-time and retrospective evaluation depends on the needs of the system and the available resources. We recommend conducting both when feasible. For a system with strong seasonal variation, a real-time evaluation should span at least one year. A shorter period samples only part of the annual cycle, and its conclusions remain conditional on the seasons and events observed.
 
 Two other limitations affect the interpretation of the results. First, the reference inflows are calculated from forebay elevation changes and dam outflow. The observations therefore depend on reservoir operations and are not independent in the same way as a stream gauge record. Second, the three products cover different portions of the evaluation period (Section \ref{sec:context}), so the metrics in Table \ref{tab:metrics} use overlapping but nonidentical samples. Restricting the analysis to common dates does not change the ranking. We report the full records to retain the available data.
