@@ -4,7 +4,7 @@
 %DIF 1c1-2
 %DIF LATEXDIFF DIFFERENCE FILE
 %DIF DEL submission/GRH Paper/main.tex   Thu Aug  6 22:57:58 2026
-%DIF ADD main.tex                        Tue Sep  1 17:39:28 2026
+%DIF ADD main.tex                        Mon Sep 14 22:19:26 2026
 %DIF < \documentclass[MLA,Times1COL, hidelinks, doublespace]{WileyNJDv5} %STIX1COL,STIX2COL,STIXSMALL
 %DIF -------
 %\documentclass[MLA,Times1COL, hidelinks, doublespace]{WileyNJDv5} %STIX1COL,STIX2COL,STIXSMALL %DIF > 
@@ -104,7 +104,10 @@
 
 \address[1]{\orgname{Pacific Northwest National Laboratory}, \orgaddress{\state{Washington}, \country{USA}}}
 
-\corres{Corresponding author Cameron Bracken, \email{cameron.bracken@pnnl.gov}}
+\DIFdelbegin %DIFDELCMD < \corres{Corresponding author Cameron Bracken, \email{cameron.bracken@pnnl.gov}}
+%DIFDELCMD < %%%
+\DIFdelend \DIFaddbegin \corres{Cameron Bracken, \email{cameron.bracken@pnnl.gov}}
+\DIFaddend 
 
 %\presentaddress{This is sample for present address text this is sample for present address text.}
 
@@ -116,7 +119,7 @@
 %DIFDELCMD < }
 %DIFDELCMD < %%%
 \DIFdelend \DIFaddbegin \abstract[Abstract]{
-Recent advances in hydrologic forecasting have produced a growing number of streamflow forecast products. Hydropower operators must determine whether these products improve operations enough to justify their cost. We present a framework for comparing multiple reservoir inflow forecasts over a common period under current operating conditions. This design is useful when product-specific hindcasts cover different periods, model versions, or system configurations. Operators define the decisions and constraints to be evaluated, participate in selecting and revising metrics, and interpret results using the same observations and operating context for every product. We apply the framework to three reservoirs in the Great River Hydro system on the Connecticut River in the Northeast U.S. The commercial product labeled B generally matched the in-house forecast and outperformed product A. Under an idealized cumulative-error stress test, product B also had a lower probability of exceeding the forebay compliance band during the first 24 hours at all three dams. Its advantage persisted through the 32-hour horizon shared by all products, although exceedance probabilities were high enough that none of the forecasts could be used without operator intervention. The real-time evaluation screens products and defines the constraints for a subsequent hindcast-based value assessment using a scheduling model, operating constraints, and market prices.
+Recent advances in hydrologic forecasting have produced a growing number of streamflow forecast products. Hydropower operators must determine whether these products improve operations enough to justify their cost. We present a framework for comparing multiple reservoir inflow forecasts over a common period under real-time operating conditions. This design is useful when product-specific hindcasts are infeasible to produce, or when existing hindcasts cover different periods, model versions, or system configurations. In this framework operators define the variables and constraints to be evaluated, participate in selecting and revising metrics, and interpret results using the same observations and operating context for every product. We apply the framework to three reservoirs in the Great River Hydro system on the Connecticut River in the Northeast U.S. with two anonymous commercial forecasts labeled A and B. The commercial product labeled B generally matched the in-house forecast and outperformed product A. Under an idealized operator-defined cumulative-error stress test, product B also had a lower probability of exceeding the forebay compliance band during the first 24 hours at all three dams. Its advantage persisted through the 32-hour horizon shared by all products, although exceedance probabilities were high enough that none of the forecasts could be used without operator intervention. The real-time evaluation screens forecast products and defines the need for a subsequent hindcast-based value assessment using a scheduling model, operating constraints, and market prices.
 }
 \DIFaddend 
 
@@ -161,7 +164,10 @@ Recent advances in hydrologic forecasting have produced a growing number of stre
 \citep{kratzertLearningUniversalRegional2019} }\hskip0pt%DIFAUXCMD
 }\DIFdelend \DIFaddbegin \DIFadd{have improved through data driven models \mbox{%DIFAUXCMD
 \citep{kratzertLearningUniversalRegional2019a} }\hskip0pt%DIFAUXCMD
-}\DIFaddend and scheduling optimization \citep{zhangOptimizationShorttermHydropower2024}. \DIFdelbegin \DIFdel{Despite these improvements verification remains a challenge and traditional verification approaches may not be applicable under new operational paradigms. This study seeks to provide insight into the evaluation of contemporary forecast models and guidance on how to assess their value. }\DIFdelend \DIFaddbegin \DIFadd{Hindcasts remain important because they evaluate forecast behavior over long records and can support counterfactual studies of revenue, water supply, spill, and other outcomes. Comparing several products, however, requires more than assembling their separate hindcasts. Product-specific hindcasts may cover different periods, use different model versions or meteorological inputs, or represent infrastructure and operating rules that have since changed. These differences can be mistaken for differences in forecast performance. A common real-time trial instead evaluates every product against the same observations and current operating context. This study addresses how a reservoir operator should design such a trial when comparable hindcasts are unavailable or do not represent the current system.
+}\DIFaddend and scheduling optimization \citep{zhangOptimizationShorttermHydropower2024}. \DIFdelbegin \DIFdel{Despite these improvements verification remains a challenge and traditional verification approaches may not be applicable under new operational paradigms. This study seeks to provide insight into the evaluation of contemporary forecast models and guidance on how to assess their value. }\DIFdelend \DIFaddbegin \DIFadd{Hindcasts remain important because they evaluate forecast behavior over long periods and can support counterfactual studies of revenue, water supply, spill, and other outcomes. Their length of the selected period can materially affect estimates of forecast quality \mbox{%DIFAUXCMD
+\citep{randrianasoloImpactStreamflowData2014}}\hskip0pt%DIFAUXCMD
+.
+Comparing several forecast products, however, requires more than assembling their separate hindcasts. Product-specific hindcasts may cover different periods, use different model versions or meteorological inputs, or represent infrastructure and operating rules that have changed since the hindcasts were issued. These differences can be mistaken for differences in forecast performance. A common real-time trial instead evaluates every product against the same observations and current operating context. This study addresses how a reservoir operator should design such a trial when comparable hindcasts are unavailable or do not represent the current system.
 }\DIFaddend 
 
 \DIFdelbegin \DIFdel{Pairing a forecasting tool with the needs of a particular hydropower operator is complicated by a number of factors. The quantity and quality of data concerning meteorological (precipitation, snow pack) and hydrological (reservoir storage, soil moisture) conditions within the watershed vary locationally as do the efficacy of meteorological forecasting (Hay et al. 2023; Chen et al. 2021; Wood et al. 2016). Watershed characteristics vary as does the infrastructure used to manage basin resources \mbox{%DIFAUXCMD
@@ -175,34 +181,36 @@ Recent advances in hydrologic forecasting have produced a growing number of stre
 , and the relevant decisions change with }\DIFaddend forecast lead time \DIFdelbegin \DIFdel{as well as normal versus extreme event conditions. Additionally, there are decisions concerning choice of model (conceptual, physical, empirical, AI enhanced) as well as its calibration and parameterization}\DIFdelend \DIFaddbegin \DIFadd{and flow regime. An evaluation must account for these differences and connect statistical performance to decisions at a particular site}\DIFaddend .
 
 \DIFdelbegin \DIFdel{To help provide some clarity concerning the performance of various forecasting tools under differing informational, physical, and operational conditions, a range of head-to-head evaluation exercises have been performed. HEPEX (which stands for Hydrologic }\DIFdelend \DIFaddbegin \DIFadd{Current and past programs have compared forecasts under common conditions. The Hydrological }\DIFaddend Ensemble Prediction EXperiment \DIFdelbegin \DIFdel{), which “seeks to advance the science and practice of hydrological ensemble prediction and its use in impact- and risk-based decision making,” has organized evaluations in the context of }\DIFdelend \DIFaddbegin \DIFadd{(HEPEX) has organized }\DIFaddend community experiments and testbeds\DIFdelbegin \DIFdel{(}\DIFdelend \footnote{\url{www.hepex.org}}\DIFdelbegin \DIFdel{). The }\DIFdelend \DIFaddbegin \DIFadd{, and the }\DIFaddend U.S. Bureau of Reclamation has \DIFdelbegin \DIFdel{also performed a series of forecast rodeosin a prize competition environment}\DIFdelend \DIFaddbegin \DIFadd{conducted forecast rodeos}\DIFaddend \footnote{\url{https://www.usbr.gov/research/challenges/forecastrodeo.html}} \DIFdelbegin \DIFdel{. Real time forecast evaluations such as this (as opposed to retrospective evaluations) tend to be favored by the industry due their ability to fit in with existing }\DIFdelend \DIFaddbegin \DIFadd{to accelerate evaluation of emerging forecasting methods under realistic operating conditions. The hydropower industry often favors evaluations that fit within current }\DIFaddend operations \citep{krajewskiRealtimeStreamflowForecasting2021}. \DIFdelbegin \DIFdel{While such exercises provide valuable insight into the complexities and potential solutions for streamflow forecasting it doesn’t answer the question on operators ’ minds—will a new forecast tool improve my operations enough to justify the investment in infrastructure, staff training and staff time during transition? 
-}\DIFdelend \DIFaddbegin \DIFadd{These comparisons demonstrate the value of a common test period, but they do not describe how a utility should design a multi-product operating trial. The unresolved questions include which decisions and constraints to define before selecting metrics, how often operators should review results, when metrics should change, and how long the trial should continue.
+}\DIFdelend \DIFaddbegin \DIFadd{The publicly available descriptions of these comparisons demonstrate the value of a common test period, but do not explain how a utility should design a multi-product operating trial. The unresolved questions include which decisions and constraints to define before selecting metrics, how often operators should review results, when metrics should change, and how long the trial should continue.
 }\DIFaddend 
 
 \DIFdelbegin \DIFdel{Here we present an approach for assisting local water managers and hydropower utility operators in performing a context-specific evaluation of streamflow forecasting and hydropower scheduling tools. The approach calls for broad integration of the operator including experimental design, metric selection, tailored metric design, and comparative analysis of the results.
 We then demonstrate this approach in the context of three hydropower plants operated by }\DIFdelend \DIFaddbegin \DIFadd{Our contribution is a documented procedure for answering these design questions. Before forecasts are compared, operators define the decisions, horizons, constraints, and incumbent forecast that establish what performance means. All products are then evaluated over an overlapping period using the same observations and operating context. Operators review the results at regular meetings, identify errors that changed or could have changed a decision, and revise the metric set while preserving the reason for each change. The trial continues long enough to sample the operating regimes that matter, which is at least one annual cycle for a seasonal system. This procedure, rather than the individual verification metrics, is what distinguishes the framework from a fixed retrospective evaluation.
 }
 
-\DIFadd{We demonstrate the framework at three }\DIFaddend Great River Hydro \DIFdelbegin \DIFdel{, the largest conventional hydropower provider in the Northeastern U. S. By using multiple traditional and tailored metrics as well as making the data easily accessible and comparable, this approach provides operators with the information they need to make informed decisions on forecast products with confidence. Importantly, this approach is designed to be easily replicated on other river systems}\DIFdelend \DIFaddbegin \DIFadd{plants on the Connecticut River in the northeastern US. The case study combines standard metrics with measures tied to day-ahead bidding and forebay compliance. Although the tailored metrics will differ among systems, the evaluation process can be adapted to other river basins and operating settings}\DIFaddend .
+\DIFadd{We demonstrate the framework at three }\DIFaddend Great River Hydro \DIFdelbegin \DIFdel{, the largest conventional hydropower provider in the Northeastern }\DIFdelend \DIFaddbegin \DIFadd{plants on the Connecticut River in the northeastern }\DIFaddend U.S. \DIFdelbegin \DIFdel{By using multiple traditional and tailored metrics as well as making the data easily accessible and comparable, this approach provides operators with the information they need to make informed decisions on forecast products with confidence. Importantly, this approach is designed to be easily replicated on other river systems}\DIFdelend \DIFaddbegin \DIFadd{The case study combines standard metrics with measures tied to day-ahead bidding and forebay compliance. Although the tailored metrics will differ among systems, the evaluation process can be adapted to other river basins and operating settings}\DIFaddend .
 
 
 \section{Methods}
 
 %(1)	real time vs. historical
-\DIFdelbegin \DIFdel{While }\DIFdelend \DIFaddbegin \DIFadd{Although }\DIFaddend probabilistic and ensemble forecasts \DIFdelbegin \DIFdel{and evaluation metrics are gaining in popularity}\DIFdelend \DIFaddbegin \DIFadd{are increasingly available}\DIFaddend , deterministic forecasts such as those issued by the National Weather Service River Forecast Centers (\DIFdelbegin \DIFdel{RFC) are still widely used operationally and are adopted as a valued benchmark of this framework. In addition, }\DIFdelend \DIFaddbegin \DIFadd{RFCs) remain widely used in operations in the US. All three products evaluated here are deterministic, so }\DIFaddend we focus on \DIFdelbegin \DIFdel{metrics which are feasible to compute in a real timesetting as opposed to a hindcast based evaluation. While a hindcast evaluation may be preferable statistically, hindcast evaluations require that forecasters predict (manually or with an operations model) their own behavior during hypothetical past conditionswhere other factors such as market prices and data curation issues may not be known.
-In the remainder of this section we describe the components of a real time forecast evaluation framework for reservoir inflow forecasts including visualizations to convey the evaluation results and an iterative feedback process from the operators}\DIFdelend \DIFaddbegin \DIFadd{deterministic metrics that can be computed in real time}\DIFaddend . \DIFaddbegin \DIFadd{Section \ref{sec:probabilistic} describes how the same process can be applied to ensemble products.
-}
+\DIFdelbegin \DIFdel{While }\DIFdelend \DIFaddbegin \DIFadd{Although }\DIFaddend probabilistic and ensemble forecasts \DIFdelbegin \DIFdel{and evaluation metrics are gaining in popularity}\DIFdelend \DIFaddbegin \DIFadd{are increasingly available}\DIFaddend , deterministic forecasts such as those issued by the National Weather Service River Forecast Centers (\DIFdelbegin \DIFdel{RFC) are still widely used operationally and are adopted as a valued benchmark of this framework.In addition, }\DIFdelend \DIFaddbegin \DIFadd{RFCs) remain widely used in operations in the U.S. All three products evaluated here are deterministic, so }\DIFaddend we focus on \DIFdelbegin \DIFdel{metrics which are feasible to compute in a real time setting as opposed to a hindcast based evaluation. While a hindcast evaluation may be preferable statistically, hindcast evaluations require that forecasters predict (manually or with an operations model) their own behavior during hypothetical past conditionswhere other factors such as market prices and data curation issues may not be known.
+In the remainder of this section we describe the components of a real time forecast evaluation framework for reservoir inflow forecasts including visualizations to convey the evaluation results and an iterative feedback process from the operators.
+%DIF < are onerous to conduct in humapn-in-the-loop forecaster settings. 
+%DIF < are often not possible in operational settings due to forecaster time constratrain
+%DIF < Note for self to work on: the intro needs more context on how it informs the community. Real time is definitely good. papers such as : https://www.sciencedirect.com/science/article/pii/S2589915521000389 could help make the case 
+}\DIFdelend \DIFaddbegin \DIFadd{deterministic metrics that can be computed in real-time. Section \ref{sec:probabilistic} describes how the same process can be applied to ensemble products.
+}\DIFaddend 
 
-\DIFadd{Hindcasts and real-time evaluations answer different questions. Directly comparing hindcast inflow with observed or calculated inflow does not require reconstructing operations at headwater projects or for unregulated local inflows. A common hindcast experiment provides large samples and a broad range of hydrologic conditions. When each forecast is supplied to the same reservoir model, it can also estimate changes in revenue, water supply, spill, and other outcomes \mbox{%DIFAUXCMD
+\DIFaddbegin \DIFadd{Hindcasts and real-time evaluations answer different questions. Directly comparing hindcast inflow with observed or calculated inflow does not require reconstructing operations at headwater projects or for unregulated local inflows. A common hindcast evaluation requires large samples and a broad range of hydrologic conditions. When each forecast is supplied to the same reservoir model, it can also estimate changes in revenue, water supply, spill, and other outcomes \mbox{%DIFAUXCMD
 \citep{farkasEconomicValueWeather2025}}\hskip0pt%DIFAUXCMD
-. The comparison is valid only when the products use consistent inputs and represent the same infrastructure, constraints, and operating rules. Product-specific hindcasts developed at different times may not meet that requirement.
+. The comparison is valid only when the products use consistent inputs and represent the same infrastructure, constraints, and operating rules. Hindcasts developed at different times may not meet that requirement. For operations that rely on forecaster judgment, a hindcast also requires staff to recreate historical operating decisions, which may be infeasible.
 }
 
-\DIFadd{A real-time trial provides a common snapshot of current performance. It captures the forecasts as delivered, current observations and infrastructure, outages and data interruptions, operator adjustments, and the constraints that shape actual decisions. Its short record cannot represent the full range of hydrologic conditions or establish long-term economic value. The two approaches are therefore complementary: the real-time trial identifies operationally viable products and the decisions and constraints a value study must represent, while a subsequent common hindcast estimates performance and value over a longer record.
-}\DIFaddend %are onerous to conduct in humapn-in-the-loop forecaster settings. 
-%are often not possible in operational settings due to forecaster time constratrain
-%Note for self to work on: the intro needs more context on how it informs the community. Real time is definitely good. papers such as : https://www.sciencedirect.com/science/article/pii/S2589915521000389 could help make the case 
+\DIFadd{A real-time trial provides a common snapshot of current performance. It captures the forecasts as delivered, current observations and infrastructure, outages and data interruptions, operator adjustments, and the constraints that shape actual decisions. However, its short record cannot represent the full range of hydrologic conditions or establish long-term economic value. The two approaches are therefore complementary: the real-time trial identifies operationally viable products and the decisions and constraints that a value study must represent, while a subsequent common hindcast estimates performance and value over a longer record.
+}
 
-\subsection{\DIFdelbegin \DIFdel{real time }\DIFdelend \DIFaddbegin \DIFadd{Real-time }\DIFaddend inflow forecast evaluation\DIFdelbegin %DIFDELCMD < \MBLOCKRIGHTBRACE
+\DIFaddend \subsection{\DIFdelbegin \DIFdel{real time }\DIFdelend \DIFaddbegin \DIFadd{Real-time }\DIFaddend inflow forecast evaluation\DIFdelbegin %DIFDELCMD < \MBLOCKRIGHTBRACE
 %DIFDELCMD < %%%
 \DIFdel{A general real time forecast evaluation process }\DIFdelend \DIFaddbegin }\label{sec:realtime}
 \DIFadd{A multi-product real-time forecast evaluation }\DIFaddend can be described in the following steps\DIFdelbegin \DIFdel{:
@@ -210,7 +218,7 @@ In the remainder of this section we describe the components of a real time forec
 }\DIFaddend \begin{enumerate}
     \item \textbf{\DIFdelbegin \DIFdel{Collect real time data}\DIFdelend \DIFaddbegin \DIFadd{Define decisions and trial scope}\DIFaddend } - \DIFdelbegin \DIFdel{This may include streamflow forecasts (natural or regulated), }\DIFdelend \DIFaddbegin \DIFadd{Operators identify the decisions, forecast horizons, constraints, incumbent forecast, and operating regimes that the evaluation must represent. Products are compared over an overlapping period so that they encounter the same conditions.
     }\item \textbf{\DIFadd{Collect aligned real-time data}} \DIFadd{- Archive each forecast as delivered, along with }\DIFaddend calculated inflows, scheduled and actual outflows, \DIFdelbegin \DIFdel{and other data relevant for computing evaluation-relevant metrics such as forecast issue timesand past forecasts}\DIFdelend \DIFaddbegin \DIFadd{issue times, observations, outages, and other data needed to interpret performance}\DIFaddend .
-    \item \textbf{Compute \DIFdelbegin \DIFdel{evaluation }\DIFdelend \DIFaddbegin \DIFadd{initial }\DIFaddend metrics} - \DIFdelbegin \DIFdel{At the start of an evaluation, it may only be possible to compute a limited number of generic evaluation metrics but as the available data grows it may become possible to compute more reliable metrics as well as metrics tailored to the specific system. }\DIFdelend \DIFaddbegin \DIFadd{Begin with standard metrics that can be calculated from the available sample. Compute each product on common observations whenever coverage allows.
+    \item \textbf{Compute \DIFdelbegin \DIFdel{evaluation }\DIFdelend \DIFaddbegin \DIFadd{initial }\DIFaddend metrics} - \DIFdelbegin \DIFdel{At the start of an evaluation, it may only be possible to compute a limited number of generic evaluation metrics but as the available data grows it may become possible to compute more reliable metrics as well as metrics tailored to the specific system. }\DIFdelend \DIFaddbegin \DIFadd{Begin with standard metrics specified before any forecast results are inspected to avoid selection bias. Compute each product on common observations whenever coverage allows.
     }\DIFaddend \item \textbf{\DIFdelbegin \DIFdel{Visualization}\DIFdelend \DIFaddbegin \DIFadd{Visualize results}\DIFaddend } - \DIFdelbegin \DIFdel{Developing easy to interpret visuals is critical to the success of an evaluation.
     Visuals should be concise, clear, and require a limited amount of explanation, or come with built-in documentation}\DIFdelend \DIFaddbegin \DIFadd{Develop clear figures that allow operators to compare products and identify differences that matter to operations.
     }\item \textbf{\DIFadd{Gather feedback}} \DIFadd{- At regular meetings, ask operators which recent forecast errors affected or could have affected a decision, and which errors did not matter operationally}\DIFaddend .
@@ -218,26 +226,18 @@ In the remainder of this section we describe the components of a real time forec
     }\DIFaddend \item \textbf{Iterate} - \DIFdelbegin \DIFdel{The above steps should be repeated at a regular interval (}\DIFdelend \DIFaddbegin \DIFadd{Repeat the review and update cycle, }\DIFaddend monthly or weekly\DIFdelbegin \DIFdel{) throughout the entire forecast evaluation period, ideally }\DIFdelend \DIFaddbegin \DIFadd{, while accumulating a sample that covers the operating regimes of interest. For a seasonal system, the trial should span }\DIFaddend at least one \DIFdelbegin \DIFdel{year in duration}\DIFdelend \DIFaddbegin \DIFadd{annual cycle}\DIFaddend .
 \end{enumerate}
 
-The \DIFdelbegin \DIFdel{iterative nature of this evaluation process with direct operator feedback is important to its success. As more data becomes available so does an understanding of the forecast performance which may help to develop additional tailored metrics . The following sections detail some additional considerations. }\DIFdelend \DIFaddbegin \DIFadd{mechanics of steps 5 and 6 determine what the evaluation produces, so an example of how feedback was collected and acted on in our case helps clarify this point. Feedback was collected in recurring meetings with the operators, held monthly for most of the evaluation. Each meeting reviewed the current calculated metrics against recent operating experience, and operators were asked to identify which recent forecast errors mattered operationally, and which did not. The answers frequently diverged from what the generic metrics indicated, especially during the high-flow season. Operators discounted large errors during high-flow spill conditions, when they had little discretion over releases and forecast quality was operationally irrelevant, while treating moderate errors with the potential to impact the forebay compliance band as serious. These ongoing discussions motivated the tailored metrics in Section \ref{sec:tailored}: the forebay exceedance metrics were designed in direct response to operators stating that compliance risk, rather than average error, determined whether they trusted a forecast.
-}
-
-\DIFadd{The iteration in step 7 occurs over two timescales. In this case, the set of metrics stabilized within about six months, while the evaluation continued to collect data under a wider range of conditions. For applications with strong seasonality, including this one, we recommend at least one annual cycle because product rankings can vary by season (Section \ref{sec:seasonal}). Operators should expect the metrics to stabilize before the evaluation period ends. Conclusions from a shorter evaluation remain conditional on the seasons and events observed.
-%DIF > We note a tension the operators raised: industry preference is for shorter evaluations, sometimes a single season, while a single season samples only one hydrologic outcome. The following sections detail some additional considerations.
+The \DIFdelbegin \DIFdel{iterative nature of this evaluation process with direct operator feedback is important to its success. As more data becomes available so does an understanding of the }\DIFdelend \DIFaddbegin \DIFadd{mechanics of steps 5 and 6 determine what the evaluation produces, so an example of how feedback was collected and acted on in our case helps clarify this point. Here, ``real-time'' means that forecasts were archived as issued and metrics were updated daily using observations available on the day of evaluation. Interpretation and metric revision occurred during recurring meetings with the operators, held twice monthly early in the trial and monthly for most of the evaluation. Each meeting reviewed the current calculated metrics against recent operating experience, and operators were asked to identify which recent forecast errors mattered operationally, and which did not. The answers frequently diverged from what the generic metrics indicated, especially during the high-flow season. Operators discounted large errors during high-flow spill conditions, when they had little discretion over releases and forecast quality was operationally irrelevant, while treating moderate errors with the potential to impact the forebay compliance band as serious. These ongoing discussions motivated the tailored metrics in Section \ref{sec:tailored}: the forebay exceedance metrics were designed in direct response to operators stating that compliance risk, rather than average error, determined whether they trusted a }\DIFaddend forecast\DIFdelbegin \DIFdel{performance which may help to develop additional tailored metrics. The following sections detail some additional considerations. }\DIFdelend \DIFaddbegin \DIFadd{.
 }\DIFaddend 
 
-%iii)	Benchmark
-\subsection{Benchmark forecasts}\DIFdelbegin \DIFdel{It is critical to include benchmark forecasts in the evaluation to provide forecast evaluators with context for how well a specific forecast performs over the benchmarks. Two commonly used benchmarks are the }\DIFdelend \DIFaddbegin \label{sec:benchmarks}
-\DIFadd{Benchmark forecasts put product performance in context by showing how much improvement a product provides over a known alternative. A }\DIFaddend ``perfect'' \DIFdelbegin \DIFdel{forecasts, which use }\DIFdelend \DIFaddbegin \DIFadd{forecast substitutes }\DIFaddend observed or calculated \DIFdelbegin \DIFdel{inflows in place of a forecast to get a sense of the best possible forecast, and ``persistence '' forecasts which use the last observed value carried out for all future timesteps to get a sense of the arguably worst possible forecast }\DIFdelend \DIFaddbegin \DIFadd{inflow for a forecast and represents the upper reference. A persistence forecast carries the most recent observation through the forecast horizon}\DIFaddend . Persistence is \DIFdelbegin \DIFdel{a competitive benchmark for short term operations, from hours to 2-day horizons. We note that other simple climatologically driven forecasts could be used in place of the persistence forecast when looking at longer horizons like monthly and seasons. Other benchmarks could include publicly available forecast products or any other forecast that is currently being used at the reservoir }\DIFdelend \DIFaddbegin \DIFadd{simple but can be competitive from hourly lead times through about two days, making it an appropriate reference for day-ahead operations}\DIFaddend . \DIFaddbegin \DIFadd{It degrades quickly beyond that horizon, where climatology is usually a more suitable lower reference. Evaluators should match the benchmark to the decision horizon rather than apply one reference at all lead times. Other useful benchmarks include public forecast products and the forecast currently used by the reservoir operator.
+%DIF < iii)	Benchmark
+\DIFdelbegin \subsection{\DIFdel{Benchmark forecasts}}
+%DIFAUXCMD
+\addtocounter{subsection}{-1}%DIFAUXCMD
+\DIFdel{It is critical to include benchmark forecasts in }\DIFdelend \DIFaddbegin \DIFadd{The iteration in step 7 occurs over two timescales. In this case, }\DIFaddend the \DIFdelbegin \DIFdel{evaluation to provide forecast evaluators with context for how well a specific forecastperforms over the benchmarks. Two commonly used benchmarks are the ``perfect'' forecasts, which use observed or calculated inflows in place of a forecast to get a sense of the best possible forecast, and ``persistence'' forecasts which use the last observed value carried out for all future timesteps to get a sense of the arguably worst possible forecast. Persistence is a competitive benchmark for short term operations, from hours to 2-day horizons.  We note that other simple climatologically driven forecasts could be used in place of the persistence forecast when looking at longer horizons like monthly and seasons. Other benchmarks could include publicly available forecast products or any other forecast that is currently being used at the reservoir. }\DIFdelend \DIFaddbegin \DIFadd{set of metrics stabilized within about six months, while the evaluation continued to collect data under a wider range of conditions. For applications with strong seasonality, such as in the GRH system, we recommend at least one annual cycle because product rankings can vary by season (Section \ref{sec:seasonal}). Operators should expect the metrics to stabilize before the evaluation period ends. Conclusions from a shorter evaluation remain conditional on the seasons and events observed.
 }\DIFaddend 
 
-\DIFaddbegin \DIFadd{Benchmarks are also useful when comparing results among locations. NSE and KGE depend on the distribution of observations at each location, so their raw values are not directly comparable when inflow variability differs \mbox{%DIFAUXCMD
-\citep{knobenTechnicalNoteInherent2019a}}\hskip0pt%DIFAUXCMD
-. NSE, for example, measures improvement over the observed mean. The same absolute forecast error can produce different NSE values at two sites because the observed variances differ. A forecast can therefore have a higher NSE at a more variable site even when its absolute errors are larger. We report RMSE and reference forecasts alongside NSE and KGE so that the results show both absolute error and performance relative to alternatives available to the operator.
-}
 
-
-
-\DIFaddend %(2)	Measured inflow (smoothing)  (Figure)
+%(2)	Measured inflow (smoothing)  (Figure)
 \subsection{Smoothing calculated inflows}
 \DIFdelbegin \DIFdel{Most available reservoir inflow data is not directly measured, instead it is computed based on measured }\DIFdelend \DIFaddbegin \DIFadd{Reservoir inflow is often calculated from }\DIFaddend changes in forebay elevation and \DIFdelbegin \DIFdel{a known }\DIFdelend \DIFaddbegin \DIFadd{an }\DIFaddend elevation-volume relationship \DIFdelbegin \DIFdel{. These calculations are often noisy due to short term fluctuations in forebay elevations from }\DIFdelend \DIFaddbegin \DIFadd{rather than measured directly. Short-term changes caused by }\DIFaddend wind, turbine and spillway \DIFdelbegin \DIFdel{release changes, and other such as reservoir seichesor waves propagating from upstream . Inflow computed in this way can often contain negative values and other non-physical fluctuations. In this situation we recommend the inflow data be smoothed prior to comparing with any forecasted inflow . We recommend a triangular smoother that applies moving-averages using a triangular weight function. This is a simple option which produces reasonable results but many more options }\DIFdelend \DIFaddbegin \DIFadd{releases, seiches, and waves from upstream can introduce noise and nonphysical values into the calculated inflow. Smoothing may therefore be appropriate before calculated and forecast inflow are compared. We used two successive moving averages, which produce a triangular weighting function, but other filters }\DIFaddend are available \citep{elshorbagyNoiseReductionChaotic2002}. \DIFdelbegin \DIFdel{Figure \ref{fig:smoothing} shows an example of hourly computed inflow data which has been smoothed using a triangular smoother. }\DIFdelend \DIFaddbegin \DIFadd{The smoothing window should correspond to the timescale of the decision. A window that is too short will retain noise, while one that is too long may remove variability that the forecast should reproduce. Because smoothing changes the quantity being evaluated, the filter should be reported and the sensitivity of the results to its width should be tested.
 }\DIFaddend 
@@ -265,19 +265,28 @@ The \DIFdelbegin \DIFdel{iterative nature of this evaluation process with direct
 \citep{st-aubinPrecisionReliabilityForecasts2022, hewamalageForecastEvaluationData2023}}\hskip0pt%DIFAUXCMD
 . This section is not intended to be a comprehensive }\DIFdelend \DIFaddbegin \DIFadd{may also be useful \mbox{%DIFAUXCMD
 \citep{st-aubinPrecisionReliabilityForecasts2022,hewamalageForecastEvaluationData2023}}\hskip0pt%DIFAUXCMD
-. We do not attempt a complete }\DIFaddend review of deterministic forecast \DIFdelbegin \DIFdel{evaluation metrics. Therefore, we recommend some simple metrics which can be augmented as needed for particular applications. These metrics should be computed for a variety of lead times as well as seasonally to fully assess forecast performance across a range of conditions}\DIFdelend \DIFaddbegin \DIFadd{metrics}\DIFaddend . \DIFaddbegin \DIFadd{Instead, we use a small set that describes several aspects of performance and can be expanded for a particular application. No single metric fully describes forecast quality. The metrics should also be calculated by lead time and season because values aggregated across the full record can hide changes that matter to operations.
+. We do not attempt a complete }\DIFaddend review of deterministic forecast \DIFdelbegin \DIFdel{evaluation metrics. Therefore, we recommend some simple metrics which can be augmented as needed for particular applications. These metrics should be computed for a variety of lead times as well as seasonally to fully assess forecast performance across a range of conditions. }\DIFdelend \DIFaddbegin \DIFadd{metrics. Instead, we use a small set that describes several aspects of performance and can be expanded for a particular application. No single metric fully describes forecast quality. The metrics should also be calculated by lead time and season because values aggregated across the full record can hide changes that matter to operations.
 }\DIFaddend 
 
-Average hydrologic forecast behavior is typically measured with an error metric such as root mean squared error (RMSE), Nash-Sutcliffe Efficiency (NSE) \DIFdelbegin \DIFdel{, or King-Gupta }\DIFdelend \DIFaddbegin \DIFadd{\mbox{%DIFAUXCMD
+\DIFaddbegin \DIFadd{Operator input makes the metrics relevant to operational decisions but can also favor a familiar product or a recent event. To reduce this bias, evaluators should specify the initial metrics before viewing results and consider masking product identities during metric development when practical. Any metric added later should be linked to a documented decision or constraint and then applied consistently to every product over a common sample.
+}
+
+\DIFaddend Average hydrologic forecast behavior is typically measured with an error metric such as root mean squared error (RMSE), Nash-Sutcliffe Efficiency (NSE) \DIFdelbegin \DIFdel{, or King-Gupta }\DIFdelend \DIFaddbegin \DIFadd{\mbox{%DIFAUXCMD
 \citep{nashRiverFlowForecasting1970}}\hskip0pt%DIFAUXCMD
 , or Kling-Gupta }\DIFaddend Efficiency (KGE) \DIFdelbegin \DIFdel{(refs)}\DIFdelend \DIFaddbegin \DIFadd{\mbox{%DIFAUXCMD
 \citep{guptaDecompositionMeanSquared2009}}\hskip0pt%DIFAUXCMD
-}\DIFaddend . We recommend \DIFaddbegin \DIFadd{including }\DIFaddend KGE because it \DIFdelbegin \DIFdel{is not skewed by large values where }\DIFdelend \DIFaddbegin \DIFadd{decomposes forecast performance into correlation, a variability ratio, and a bias ratio. A low score can therefore be associated with a specific deficiency rather than registered only as a large aggregate error. }\DIFaddend NSE and RMSE \DIFdelbegin \DIFdel{are due to the use of a squared error term}\DIFdelend \DIFaddbegin \DIFadd{aggregate squared error into a single number, which makes them more sensitive to the largest errors and less diagnostic about their source. The metrics answer different questions, so we report them together rather than use one as a complete measure of forecast quality}\DIFaddend . The KGE is given by
+}\DIFaddend . We recommend \DIFaddbegin \DIFadd{including }\DIFaddend KGE because it \DIFdelbegin \DIFdel{is not skewed by large values where }\DIFdelend \DIFaddbegin \DIFadd{decomposes forecast performance into correlation, a variability ratio, and a bias ratio. A low score can therefore be associated with a specific deficiency rather than registered only as a large aggregate error. }\DIFaddend NSE and RMSE \DIFdelbegin \DIFdel{are due to the use of a squared error term. The KGE is given by
+}%DIFDELCMD < 
 
-\begin{equation}
+%DIFDELCMD < %%%
+\DIFdelend \DIFaddbegin \DIFadd{aggregate squared error into a single number, which makes them more sensitive to the largest errors and less diagnostic about their source. The metrics answer different questions, so we report them together rather than use one as a complete measure of forecast quality. The NSE and KGE are defined as
+}\begin{equation}
+    \DIFadd{\text{NSE}=1 - \frac{\sum \left(o_i - f_i\right)^2}{\sum \left(o_i - \mu_o\right)^2}
+}\end{equation}
+\DIFaddend \begin{equation}
     \text{KGE}=1-\sqrt{(r-1)^2+\left(\frac{\sigma_f}{\sigma_o}-1\right)^2+\left(\frac{\mu_f}{\mu_o}-1\right)^2}
 \end{equation}
-where $r$ is the linear correlation coefficient, $\sigma_f$ \DIFdelbegin \DIFdel{is the standard deviation of the forecast, }\DIFdelend \DIFaddbegin \DIFadd{and }\DIFaddend $\sigma_o$ \DIFdelbegin \DIFdel{is the standard deviation of the observations, }\DIFdelend \DIFaddbegin \DIFadd{are the forecast and observed standard deviations, and }\DIFaddend $\mu_f$ \DIFdelbegin \DIFdel{is the mean of the forecast, }\DIFdelend and $\mu_o$ \DIFdelbegin \DIFdel{is the mean of the observations. Values of KGE that are greater than -0.41 are better than the mean of the observations, but larger values are preferred up to }\DIFdelend \DIFaddbegin \DIFadd{are the forecast and observed means. KGE values greater than $-0.41$ improve on the observed mean as a predictor \mbox{%DIFAUXCMD
+where \DIFaddbegin \DIFadd{\(o_i\) and \(f_i\) is the observed and forecast value at time step \(i\), }\DIFaddend $r$ is the linear correlation coefficient, $\sigma_f$ \DIFdelbegin \DIFdel{is the standard deviation of the forecast, }\DIFdelend \DIFaddbegin \DIFadd{and }\DIFaddend $\sigma_o$ \DIFdelbegin \DIFdel{is the standard deviation of the observations, }\DIFdelend \DIFaddbegin \DIFadd{are the forecast and observed standard deviations, and }\DIFaddend $\mu_f$ \DIFdelbegin \DIFdel{is the mean of the forecast, }\DIFdelend and $\mu_o$ \DIFdelbegin \DIFdel{is the mean of the observations. Values of KGE that are greater than -0.41 are better than the mean of the observations, but larger values are preferred up to }\DIFdelend \DIFaddbegin \DIFadd{are the forecast and observed means. KGE values greater than $-0.41$ improve on the observed mean as a predictor \mbox{%DIFAUXCMD
 \citep{knobenTechnicalNoteInherent2019a}}\hskip0pt%DIFAUXCMD
 , and }\DIFaddend the maximum value \DIFdelbegin \DIFdel{of }\DIFdelend \DIFaddbegin \DIFadd{is }\DIFaddend 1 for a perfect forecast. \DIFdelbegin \DIFdel{We note that NSE and KGE have different properties and so }\DIFdelend \DIFaddbegin \DIFadd{Because the corresponding reference value for NSE is 0, the two efficiency metrics }\DIFaddend should not be \DIFdelbegin \DIFdel{used interchangeably \mbox{%DIFAUXCMD
 \citep{knobenTechnicalNoteInherent2019a}}\hskip0pt%DIFAUXCMD
@@ -303,12 +312,31 @@ where \DIFdelbegin \DIFdel{$\text{PBIAS}$ measures the tendency of a forecast ($
 
 where $r$ can range from -1 to 1 but for forecast evaluation, negative values would indicate poor forecast performance.
 
-\DIFaddbegin \DIFadd{Metrics should be computed on a common sample when products cover different periods. Skill scores relative to a reference forecast are also useful, but the evaluated and reference forecasts must use the same observations. Otherwise differences in sample variance can be mistaken for differences in skill.
+\DIFaddbegin \DIFadd{Metrics should be computed on a common set of samples when products cover different periods. Skill scores relative to a reference forecast are also useful, but the evaluated and reference forecasts must be verified against the same observations. Otherwise differences in sample statistics can be mistaken for differences in skill.
+}
+
+%DIF > iii)	Benchmark
+\subsection{\DIFadd{Benchmark forecasts}}\label{sec:benchmarks}
+\DIFadd{Benchmark or reference forecasts put forecast product performance in context by showing how much improvement a product provides over a known alternative. A ``perfect'' forecast substitutes observed or calculated inflow for a forecast and represents the upper reference. A persistence forecast carries the most recent observation through the forecast horizon. Persistence is simple but can be competitive from hourly lead times through about two days, making it an appropriate reference for day-ahead operations. It degrades quickly beyond that horizon, where climatology is usually a more suitable lower reference. Evaluators should match the benchmark to the decision horizon rather than apply one reference at all lead times. Other useful benchmarks include public forecast products and the forecast currently used by the reservoir operator.
+}
+
+\DIFadd{Benchmarks are also useful when comparing results among locations. NSE and KGE depend on the distribution of observations at each location, so their raw values are not directly comparable when inflow variability differs \mbox{%DIFAUXCMD
+\citep{knobenTechnicalNoteInherent2019a}}\hskip0pt%DIFAUXCMD
+. NSE, for example, measures improvement over the observed mean. The same absolute forecast error can produce different NSE values at two sites because the observed variances differ. A forecast can therefore have a higher NSE at a more variable site even when its absolute errors are larger. We report RMSE and reference forecasts alongside NSE and KGE so that the results show both absolute error and performance relative to alternatives available to the operator.
 }
 
 \subsection{\DIFadd{Extension to probabilistic and ensemble forecasts}}\label{sec:probabilistic}
 
-\DIFadd{The process described in this section applies to both deterministic and probabilistic forecasts; only the metrics and visualizations change. Probabilistic products can describe uncertainty around compliance or market decisions rather than provide only a single expected value. Where ensemble or probabilistic products are available, the continuous ranked probability score (CRPS) can summarize the accuracy of the full predictive distribution. CRPS reduces to mean absolute error for a deterministic forecast, which permits comparison on a common scale. Rank histograms can indicate whether an ensemble is biased or has too little or too much spread, while reliability diagrams compare forecast probabilities with observed frequencies. The choice among these metrics should follow the same process used for deterministic forecasts and reflect the decisions being evaluated.
+\DIFadd{The process described in this section applies to both deterministic and probabilistic forecasts; only the metrics and visualizations change. In many U.S. river systems, ensemble streamflow forecasts are produced operationally by the National Weather Service Hydrologic Ensemble Forecast Service (HEFS), which represents both meteorological and hydrologic uncertainty \mbox{%DIFAUXCMD
+\citep{demargneScienceNOAAsOperational2014}}\hskip0pt%DIFAUXCMD
+. Recent work has also coupled postprocessed precipitation ensembles with the National Water Model \mbox{%DIFAUXCMD
+\citep{towlerImplementingEvaluatingNational2025}}\hskip0pt%DIFAUXCMD
+. Data driven methods can instead estimate a predictive distribution directly; examples include Gaussian and asymmetric Laplacian mixture density networks, uncountable mixtures of asymmetric Laplacians, and Monte Carlo dropout \mbox{%DIFAUXCMD
+\citep{klotzUncertaintyEstimationDeep2022}}\hskip0pt%DIFAUXCMD
+. Probabilistic products can also describe uncertainty around compliance or market decisions so that operators can better assess risks associated with operational decisions.
+}
+
+\DIFadd{Where ensemble or probabilistic products are available, the continuous ranked probability score (CRPS) can summarize the accuracy of the full predictive distribution. CRPS reduces to mean absolute error for a deterministic forecast, which permits comparison on a common scale. Rank histograms can indicate whether an ensemble is biased or has too little or too much spread, while reliability diagrams compare forecast probabilities with observed frequencies. The choice among these metrics and others should follow the same process used for deterministic forecasts and reflect the decisions being evaluated.
 }
 
 
@@ -316,7 +344,7 @@ where $r$ can range from -1 to 1 but for forecast evaluation, negative values wo
 
 Great River Hydro \DIFaddbegin \DIFadd{(GRH) }\DIFaddend is New England\DIFdelbegin \DIFdel{’}\DIFdelend \DIFaddbegin \DIFadd{'}\DIFaddend s largest conventional hydropower generator. As a private, independent power producer, GRH owns and operates 589 megawatts of \DIFdelbegin \DIFdel{nominal hydropower capacity }\DIFdelend \DIFaddbegin \DIFadd{installed nameplate capacity across 13 hydropower plants on the Connecticut and Deerfield Rivers }\DIFaddend in ISO New England. \DIFdelbegin \DIFdel{In this evaluation we focused on the inflow to three main hydropower producing damsin the system}\DIFdelend \DIFaddbegin \DIFadd{We evaluated inflow forecasts for three mainstem dams}\DIFaddend , Wilder, Bellows Falls, and Vernon (Figure \ref{fig:map})\DIFdelbegin \DIFdel{as well as three main }\DIFdelend \DIFaddbegin \DIFadd{, and for three }\DIFaddend tributaries, the Ottauquechee, Sugar\DIFaddbegin \DIFadd{, }\DIFaddend and White Rivers.
 
-\DIFaddbegin \DIFadd{The three dams lie in series on the main stem of the Connecticut River, with Wilder upstream, followed by Bellows Falls and Vernon. They are operated jointly, and releases from each dam become inflow to the next. The three tributaries listed above provide the main local inflows between Wilder and Bellows Falls. We selected these sites from the larger set shown in Figure \ref{fig:map} because they are the largest generators in the system and receive most of the operators' scheduling attention. The projects are also part of an ongoing relicensing process through the Federal Energy Regulatory Commission (FERC) that includes new limits on forebay fluctuations. The remaining facilities in Figure \ref{fig:map} are smaller and are not covered by the same license conditions.
+\DIFaddbegin \DIFadd{The three dams lie in series on the main stem of the Connecticut River, with Wilder upstream, followed by Bellows Falls and Vernon. They are operated jointly, and releases from each dam become inflow to the next. Lag times between reservoirs vary but are all less than 24 hours. A release can therefore affect downstream inflow on the same day or the next day, depending on its timing and river conditions. The three tributaries listed above provide the main local inflows between Wilder and Bellows Falls. We evaluated the projects shown in Figure \ref{fig:map} because they are the largest generators in the system and receive most of the operators' scheduling attention. The projects are also part of an ongoing relicensing process through the Federal Energy Regulatory Commission (FERC) that includes new limits on forebay fluctuations. The remaining facilities in Figure \ref{fig:map} are smaller and are not covered by the same license conditions.
 }
 
 \DIFadd{Basin hydrology is snowmelt-influenced, with a spring freshet typically spanning March through May, convective rainfall in summer, and rain and rain-on-snow-driven events in winter. Several tributaries have upstream flood control regulation by the U.S. Army Corps of Engineers, which contributes to inflow variability that is not directly weather-driven.
@@ -374,7 +402,7 @@ We \DIFdelbegin \DIFdel{ran the real time }\DIFdelend \DIFaddbegin \DIFadd{condu
 \DIFadd{Anonymization of the commercial products limits reproducibility, so we describe each to the extent our agreements allow. Forecast A is produced by a consulting firm using a conceptual rainfall-runoff model with hydraulic routing through the Connecticut River main stem, driven by a commercial numerical weather prediction forecast, and issued once daily at an hourly time step out to roughly 8 days. Forecast B is produced by a technology firm using a machine learning model trained on gauge and remotely sensed catchment observations, issued twice daily at an hourly time step out to 10 days. The GRH in-house forecast combines RFC forecasts with routing and operator judgment and extends only through the day-ahead period, roughly 32 hours, because that is the horizon it is used for. Neither vendor released model internals or calibration and validation diagnostics, and we did not have access to them. A utility evaluating commercial forecast products generally cannot inspect them and must judge them on operational performance, which is part of the motivation for this framework. A full procurement evaluation should also weigh the operational cost, data dependencies, and ease of integration of each product alongside its skill, since these differ substantially between the two commercial products evaluated here.
 }
 
-\subsection{\DIFadd{Hydrology of the evaluation period}}\label{sec:period}
+\subsection{\DIFadd{Hydrologic characteristics and traditional metrics}}\label{sec:period}
 
 \DIFadd{The evaluation period included the July 2023 Vermont flood. This event produced the largest calculated inflows of the evaluation at Vernon (83}\DIFaddend ,\DIFdelbegin \DIFdel{B) }\DIFdelend \DIFaddbegin \DIFadd{100 cfs, 2}\DIFaddend ,\DIFdelbegin \DIFdel{the GRH }\DIFdelend \DIFaddbegin \DIFadd{353 m$^3$/s) and Bellows Falls (67,000 cfs). A December 2023 rain-on-snow event produced the largest inflow at Wilder (27,600 cfs) and the second largest at Vernon and Bellows Falls. The evaluation period also included spring freshets of 2024 and 2025 and dry summer conditions in both 2023 and 2024. The period therefore sampled a reasonable range of the conditions relevant to GRH operations. It did not, however, sample the full distribution of hydrologic conditions. Notably, the July 2023 event produced one of the ten largest flows ever recorded on the main stem of the Connecticut River. The evaluation also did not include any severe multi-year drought. Any real-time evaluation is bounded in this way, and the conclusions below should be taken as conditional on the observed period. 
 }
@@ -524,29 +552,34 @@ Figure \ref{fig:prob-exeed-threshold} \DIFdelbegin \DIFdel{(top) }\DIFdelend sho
     \DIFaddendFL \caption{Probability of exceeding \DIFdelbeginFL \DIFdelFL{a }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{the $\pm$}\DIFaddendFL 0.5 foot \DIFaddbeginFL \DIFaddFL{($\approx$15 cm) forebay }\DIFaddendFL operating \DIFdelbeginFL \DIFdelFL{range given }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{band under the idealized pass-inflow stress test. Each forecast issue begins from }\DIFaddendFL a neutral forebay \DIFdelbeginFL \DIFdelFL{starting }\DIFdelendFL position\DIFdelbeginFL \DIFdelFL{on day 0 (top) and probability }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{. As in Figure \ref{fig:cum-error}, the horizontal axis counts hours from the start }\DIFaddendFL of \DIFdelbeginFL \DIFdelFL{exceeding a 0.5 foot operating range on }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{each product's delivered horizon rather than absolute lead time from issue, and }\DIFaddendFL the \DIFdelbeginFL \DIFdelFL{second day}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{window ends at 32 hours}\DIFaddendFL , \DIFdelbeginFL \DIFdelFL{given }\DIFdelendFL the \DIFdelbeginFL \DIFdelFL{forebay starting position from }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{longest horizon }\DIFaddendFL the \DIFdelbeginFL \DIFdelFL{first day (bottom)}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{in-house forecast provides}\DIFaddendFL .}
     \label{fig:prob-exeed-threshold}
 \end{figure}
-%    \begin{figure}
-%        \centering
-%        \includegraphics[width=0.5\linewidth]{map3.png}
-%        \caption{Enter Caption}
-%        \label{fig:enter-label}
-%    \end{figure}
-%i)	Setting (Figure: map)
-%v)	Development of tailored metrics
-%vi)	Data visualizer (Figure)
-%i)	Traditional metrics (graphs and table from visualizer)
-%ii)	Tailored metrics 
-%(1)	Tailored metrics
+%DIF <     \begin{figure}
+%DIF <         \centering
+%DIF <         \includegraphics[width=0.5\linewidth]{map3.png}
+%DIF <         \caption{Enter Caption}
+%DIF <         \label{fig:enter-label}
+%DIF <     \end{figure}
+%DIF < i)	Setting (Figure: map)
+%DIF < v)	Development of tailored metrics
+%DIF < vi)	Data visualizer (Figure)
+%DIF < i)	Traditional metrics (graphs and table from visualizer)
+%DIF < ii)	Tailored metrics 
+%DIF < (1)	Tailored metrics
 
-%\section{Results  (Cameron, Youngjun)}
+%DIF < \section{Results  (Cameron, Youngjun)}
+\DIFdelbegin %DIFDELCMD < 
 
-%(2)	Tailored metric results
+%DIFDELCMD < %%%
+%DIF < (2)	Tailored metric results
+%DIFDELCMD < 
 
-\section{Discussion}\DIFaddbegin \label{sec:discussion}
-\DIFaddend %i)	Recommendation
-%ii)	Value of the process
-%iii)	Limitations
+%DIFDELCMD < %%%
+\DIFdelend \section{Discussion}%DIF < i)	Recommendation
+%DIF < ii)	Value of the process
+%DIF < iii)	Limitations
+\DIFaddbegin \label{sec:discussion}
+\DIFaddend 
 
-\DIFdelbegin \DIFdel{In this paper we present a general framework that can be used in real time (or near real time) for reservoir inflow forecast evaluation. The  evaluation can include forecast verification and validation but also include other qualitative or specialized metricsof forecast quality. The framework calls for an iterative approach which involves direct operator feedback in the process. We also presented a successful application of this evaluation framework }\DIFdelend \DIFaddbegin \DIFadd{We present a framework for comparing multiple reservoir inflow forecasts over the same period and under current operating conditions. Its contribution is the design of the operating trial: define the decisions and constraints before selecting metrics, align the product records, review results with operators at regular intervals, preserve why metrics change, and continue long enough to sample the relevant operating regimes. We applied this process }\DIFaddend to three reservoirs in the Great River Hydro system\DIFdelbegin \DIFdel{on the Connecticut River in the Northeast U. S.
+\DIFdelbegin \DIFdel{In this paper we present a general framework that can be used in real time (or near real time) for reservoir inflow forecast evaluation. The  evaluation can include forecast verification and validation but also include other qualitative or specialized metricsof forecast quality. The framework calls for an iterative approach which involves direct operator feedback in the process. We also presented a successful application of this evaluation framework }\DIFdelend \DIFaddbegin \DIFadd{We present a framework for comparing multiple reservoir inflow forecasts over the same period and under real-time operating conditions. Its contribution is the design of the operating trial: define the decisions and constraints before selecting metrics, align the product records, review results with operators at regular intervals, preserve why metrics change, and continue long enough to sample the relevant operating regimes. We applied this process }\DIFaddend to three reservoirs in the Great River Hydro system\DIFdelbegin \DIFdel{on the Connecticut River in the Northeast U. S.
 While there is no single evaluation approach that can apply to all forecasts, we present a range of options of both traditional and tailored metrics that will be suitable for many situations. The goal of such a framework is to provide operators with information necessary for evaluating how much a particular forecast product will improve their operations and ultimately inform ongoing investment decisions (i.e. purchase external forecast products or improve existing internal forecast ). }\DIFdelend \DIFaddbegin \DIFadd{. Product B generally matched the in-house forecast and outperformed product A. The forebay stress test expressed this difference in operational units and showed how risk accumulated over the shared forecast horizon. These results screen forecast products and define requirements for a later value analysis, but they do not estimate revenue or observed compliance outcomes.
 }\DIFaddend 
 
@@ -583,17 +616,33 @@ review related methods.
 
 \DIFadd{We did not estimate how }\DIFaddend improvements in inflow forecasts \DIFdelbegin \DIFdel{will translate into improvements in hydropower operations and increased revenue. An important next step in this evaluation framework is to couple this evaluation with hydropower scheduling models to quantify increases in revenue from improved inflow forecasts . While this seems a straight forward next steps, many hydropower scheduling models work with ranges of operations that match the utility's bidding strategy and local market opportunities. This complexity implies that evaluating the opportunities for harnessing higher forecast accuracy may also requires updating scheduling models and exploring more monetized operations}\DIFdelend \DIFaddbegin \DIFadd{affect hydropower operations or revenue. That analysis would require coupling the archived forecasts to a hydropower scheduling model. A model configured to reproduce the current bidding strategy may understate the benefit of a more accurate forecast because that strategy was developed around the incumbent product. Estimating value may therefore require changes to the scheduling model and operating strategy as well as the forecast input}\DIFaddend .
 
-\DIFdelbegin \DIFdel{Real time forecast evaluations are inherently limited by the amount of time they are conducted. Ideally a forecast model's performance would be assessed over the full range of hydrologic conditionsspanning multiple decades. A hindcast evaluation may account for the full }\DIFdelend \DIFaddbegin \DIFadd{The length of the available record also limits the evaluation. The period included a regional flood and a rain-on-snow event (Section \ref{sec:period}), but it did not include a severe multi-year drought. We could not assess forecast performance under sustained water-limited conditions. A multi-decade hindcast would include a wider }\DIFaddend range of hydrologic \DIFdelbegin \DIFdel{variability but this requires an operations model or considerable effort on the part }\DIFdelend \DIFaddbegin \DIFadd{conditions and provide a more complete evaluation of forecast quality.
+\DIFdelbegin \DIFdel{Real time forecast evaluations are inherently limited by the amount of time they are conducted. Ideally a forecast model's performance would be assessed over the full range of hydrologic conditionsspanning multiple decades. A hindcast evaluation may account for the full }\DIFdelend \DIFaddbegin \DIFadd{Forecast value is relatively direct for an owner-operator such as GRH because revenue follows plant operations and market prices. The valuation is more complex for a load serving entity that owns hydropower alongside other generation. In that setting, forecast value depends on load obligations, unit commitment, portfolio interactions, transmission constraints, and market purchases as well as hydropower revenue. Applying the framework to such an entity would require system-level metrics and a portfolio scheduling model rather than a plant-level revenue calculation.
+}
+
+\DIFadd{The length of the available record also limits the evaluation. The period included a regional flood and a rain-on-snow event (Section \ref{sec:period}), but it did not include a severe multi-year drought. We could not assess forecast performance under sustained water-limited conditions. A multi-decade hindcast would include a wider }\DIFaddend range of hydrologic \DIFdelbegin \DIFdel{variability but this requires an operations model or considerable effort on the part }\DIFdelend \DIFaddbegin \DIFadd{conditions and provide a more complete evaluation of forecast quality.
 }
 
 \DIFadd{The choice between real-time and retrospective evaluation depends on the needs }\DIFaddend of the system \DIFdelbegin \DIFdel{operators to re-operate the system for every hindcast. The decision to pursue a real time or hindcast evaluation must be made by the system operators depending on their specific system needs and resource availability}\DIFdelend \DIFaddbegin \DIFadd{and the available resources. We recommend conducting both when feasible. For a system with strong seasonal variation, a real-time evaluation should span at least one year. A shorter period samples only part of the annual cycle, and its conclusions remain conditional on the seasons and events observed}\DIFaddend .
 
-\DIFdelbegin \DIFdel{The iterative nature of this framework is perhaps its most valuable component. Having direct operator involvement and feedback helps to provide value to }\DIFdelend \DIFaddbegin \DIFadd{Two other limitations affect the interpretation of the results. First, the reference inflows are calculated from forebay elevation changes and dam outflow. The observations therefore depend on reservoir operations and are not independent in the same way as a stream gauge record. Second, the three products cover different portions of the evaluation period (Section \ref{sec:context}), so the metrics in Table \ref{tab:metrics} use overlapping but nonidentical samples. Restricting the analysis to common dates does not change the ranking. We report the full records to retain the available data.
+\DIFdelbegin \DIFdel{The iterative nature of this framework is perhaps its most valuable component. Having direct operator involvement and feedback helps to provide value to the operators.
+The development of tailored metrics make the results relevant to }\DIFdelend \DIFaddbegin \DIFadd{Two other limitations affect the interpretation of the results. First, the reference inflows are calculated from forebay elevation changes and dam outflow. The observations therefore depend on reservoir operations and are not independent in the same way as a stream gauge record. Second, the three products cover different portions of the evaluation period (Section \ref{sec:context}), so the metrics in Table \ref{tab:metrics} use overlapping but nonidentical samples. Restricting the analysis to common dates does not change the ranking. We report the full records to retain the available data.
 }
 
-\DIFadd{The iterative component of }\DIFaddend the \DIFdelbegin \DIFdel{operators.
-The development of tailored metrics make the results relevant to a particular system and helps with operator buy-in. Furthermore, both generic and tailored metrics can ultimately be extended to assess the impacts of inflow forecasts on hydropower scheduling. Particularly under dynamic electricity market conditions, evaluations of inflow forecasts can serve as key indicators for understanding how forecasting errors propagate through the system, influencing compliance with operational requirements, variations in actual power generation, and potential revenue for system operators. The analysis of inflow forecast performance, conducted in coordination with system operators , represents an important foundational step toward achieving these broader applications. In presenting this framework we hope to provide a template for further applications and unbiased evaluation of the myriad of inflow forecasts available to hydropower systemoperators}\DIFdelend \DIFaddbegin \DIFadd{framework allows the evaluation to change as operators identify which forecast errors affect their decisions. Standard metrics provide a consistent basis for comparison, while tailored metrics connect forecast errors to the constraints of a particular system. Together, these metrics provide the forecast archive and initial assessment needed for a later scheduling and value analysis. The same process can be applied elsewhere, but the relevant decisions and tailored metrics must be defined with the operators of each system}\DIFaddend .
+\DIFadd{The iterative component of the framework allows the evaluation to change as operators identify which forecast errors affect their decisions. Standard metrics provide a consistent basis for comparison, while tailored metrics connect forecast errors to the constraints of }\DIFaddend a particular system\DIFaddbegin \DIFadd{. Together, these metrics provide the forecast archive and initial assessment needed for a later scheduling and value analysis. The same process can be applied elsewhere, but the relevant decisions }\DIFaddend and \DIFdelbegin \DIFdel{helps with operator buy-in. Furthermore, both generic and }\DIFdelend tailored metrics \DIFdelbegin \DIFdel{can ultimately be extended to assess the impacts of inflow forecasts on hydropower scheduling.
+Particularly under dynamic electricity market conditions, evaluations of inflow forecasts can serve as key indicators for understanding how forecasting errors propagate through the system, influencing compliance with operational requirements, variations in actual power generation, and potential revenue for system operators. The analysis of inflow forecast performance, conducted in coordination with system operators,
+represents an important foundational step toward achieving these broader applications. In presenting this framework we hope to provide a template for further applications and unbiased evaluation of the myriad of inflow forecasts available to hydropower system operators}\DIFdelend \DIFaddbegin \DIFadd{must be defined with the operators of each system.
+}
 
+\bmsection{Acknowledgements}
+\DIFadd{We thank the staff at Great River Hydro for their patience, cooperation, and feedback throughout this evaluation process. We also thank the two vendors who participated. 
+}
+
+\bmsection{Declaration of generative AI and AI-assisted technologies in the manuscript preparation process}
+\DIFadd{During the preparation of this work, the authors used generative AI tools,
+including OpenAI’s ChatGPT and Anthropic's Claude, to assist in refining the
+wording and improving the grammatical quality of the manuscript. After
+using these tools, the authors carefully reviewed and edited the content as
+needed and take full responsibility for the content of the published article}\DIFaddend .
 
 \bmsection*{Data and Code}
 
@@ -601,6 +650,8 @@ Code for the evaluation is freely available
 \footnote{https://github.com/HydroWIRES-PNNL/inflow-forecast-evaluation}. Sample data can be accessed from the data repository on Zenodo\footnote{https://doi.org/10.5281/zenodo.16921728}. 
 
 \DIFdelbegin \DIFdel{Note that a pre-print non-peer reviewed draft }\DIFdelend \DIFaddbegin \DIFadd{A preprint version }\DIFaddend of the manuscript \DIFdelbegin \DIFdel{has been uploaded to }\DIFdelend \DIFaddbegin \DIFadd{is available at }\DIFaddend \url{https://eartharxiv.org/repository/view/10530/}.
+
+
 
 %\backmatter
 \bmsection*{Author contributions}
@@ -659,198 +710,10 @@ Cameron Bracken - Conceptualization, Data Curation, Formal Analysis, Investigati
 
 The authors declare no potential conflict of interests.
 
-\DIFdelbegin %DIFDELCMD < \bibliography{GRH}
-%DIFDELCMD < %%%
-\DIFdelend \DIFaddbegin \begin{thebibliography}{}
-\DIFaddend 
-
-\DIFaddbegin \bibitem[\protect\citeauthoryear{Aljoda and Jain}{Aljoda and
-  Jain}{2021}]{aljodaUncertaintiesRisksReservoir2021}
-\DIFadd{Aljoda, Ali, and Shaleen Jain.
-}\newblock \DIFadd{``Uncertainties and Risks in Reservoir Operations under Changing
-  Hydroclimatic Conditions.''
-}\newblock \emph{\DIFadd{Journal of Water and Climate Change}}\DIFadd{, vol. 12, no. 5 August
-  2021), pp. 1708--1723.
-}
-
-\bibitem[\protect\citeauthoryear{Badr, Li, and {El-Dakhakhni}}{Badr
-  et~al.}{2023}]{badrDamSystemReservoir2023}
-\DIFadd{Badr, Ahmed, et~al.
-}\newblock \DIFadd{``Dam }{{\DIFadd{System}}} \DIFadd{and }{{\DIFadd{Reservoir Operational Safety}}}\DIFadd{: }{{\DIFadd{A
-  Meta-Research}}}\DIFadd{.''
-}\newblock \emph{\DIFadd{Water}}\DIFadd{, vol. 15, no. 19 January 2023), pp. 3427.
-}
-
-\bibitem[\protect\citeauthoryear{Elshorbagy, Simonovic, and Panu}{Elshorbagy
-  et~al.}{2002}]{elshorbagyNoiseReductionChaotic2002}
-\DIFadd{Elshorbagy, A., et~al.
-}\newblock \DIFadd{``Noise Reduction in Chaotic Hydrologic Time Series: Facts and
-  Doubts.''
-}\newblock \emph{\DIFadd{Journal of Hydrology}}\DIFadd{, vol. 256, no. 3 January 2002), pp.
-  147--165.
-}
-
-\bibitem[\protect\citeauthoryear{Farkas, Linsenmeier, Talevi, Avner, Jafino,
-  and Sidibe}{Farkas et~al.}{2025}]{farkasEconomicValueWeather2025}
-\DIFadd{Farkas, Hannah, et~al.
-}\newblock \emph{\DIFadd{The }{{\DIFadd{Economic Value}}} \DIFadd{of }{{\DIFadd{Weather Forecasts}}}\DIFadd{: }{{\DIFadd{A
-  Quantitative Systematic Literature Review}}}}\DIFadd{, Washington, DC: World Bank,
-  September 2025.
-}
-
-\bibitem[\protect\citeauthoryear{Guo and Liu}{Guo and
-  Liu}{2024}]{guoReservoirControlOperations2024}
-\DIFadd{Guo, Yuxue, and Li~Liu.
-}\newblock \DIFadd{``Reservoir }{{\DIFadd{Control Operations}}} \DIFadd{and }{{\DIFadd{Water Resources
-  Management}}}\DIFadd{.''
-}\newblock \emph{\DIFadd{Water}}\DIFadd{, vol. 16, no. 20 January 2024), pp. 3000.
-}
-
-\bibitem[\protect\citeauthoryear{Gupta, Kling, Yilmaz, and Martinez}{Gupta
-  et~al.}{2009}]{guptaDecompositionMeanSquared2009}
-\DIFadd{Gupta, Hoshin~V., et~al.
-}\newblock \DIFadd{``Decomposition of the Mean Squared Error and }{{\DIFadd{NSE}}} \DIFadd{Performance
-  Criteria: }{{\DIFadd{Implications}}} \DIFadd{for Improving Hydrological Modelling.''
-}\newblock \emph{\DIFadd{Journal of Hydrology}}\DIFadd{, vol. 377, no. 1--2 October 2009), pp.
-  80--91.
-}
-
-\bibitem[\protect\citeauthoryear{Hewamalage, Ackermann, and
-  Bergmeir}{Hewamalage et~al.}{2023}]{hewamalageForecastEvaluationData2023}
-\DIFadd{Hewamalage, Hansika, et~al.
-}\newblock \DIFadd{``Forecast Evaluation for Data Scientists: Common Pitfalls and Best
-  Practices.''
-}\newblock \emph{\DIFadd{Data Mining and Knowledge Discovery}}\DIFadd{, vol. 37, no. 2, 2023, pp.
-  788--832.
-}
-
-\bibitem[\protect\citeauthoryear{Knoben, Freer, and Woods}{Knoben
-  et~al.}{2019}]{knobenTechnicalNoteInherent2019a}
-\DIFadd{Knoben, Wouter J.~M., et~al.
-}\newblock \DIFadd{``Technical Note: }{{\DIFadd{Inherent}}} \DIFadd{Benchmark or Not? }{{\DIFadd{Comparing
-  Nash}}}\DIFadd{--}{{\DIFadd{Sutcliffe}}} \DIFadd{and }{{\DIFadd{Kling}}}\DIFadd{--}{{\DIFadd{Gupta}}} \DIFadd{Efficiency Scores.''
-}\newblock \emph{\DIFadd{Hydrology and Earth System Sciences}}\DIFadd{, vol. 23, no. 10 October
-  2019), pp. 4323--4331.
-}
-
-\bibitem[\protect\citeauthoryear{Krajewski, Ghimire, Demir, and
-  Mantilla}{Krajewski
-  et~al.}{2021}]{krajewskiRealtimeStreamflowForecasting2021}
-\DIFadd{Krajewski, Witold~F., et~al.
-}\newblock \DIFadd{``Real-Time Streamflow Forecasting: }{{\DIFadd{AI}}} \DIFadd{vs. }{{\DIFadd{Hydrologic}}}
-  \DIFadd{Insights.''
-}\newblock \emph{\DIFadd{Journal of Hydrology X}}\DIFadd{, vol. 13 December 2021), pp. 100110.
-}
-
-\bibitem[\protect\citeauthoryear{Kratzert, Klotz, Shalev, Klambauer,
-  Hochreiter, and Nearing}{Kratzert
-  et~al.}{2019}]{kratzertLearningUniversalRegional2019a}
-\DIFadd{Kratzert, Frederik, et~al.
-}\newblock \DIFadd{``Towards Learning Universal, Regional, and Local Hydrological
-  Behaviors via Machine Learning Applied to Large-Sample Datasets.''
-}\newblock \emph{\DIFadd{Hydrology and Earth System Sciences}}\DIFadd{, vol. 23, no. 12 December
-  2019), pp. 5089--5110.
-}
-
-\bibitem[\protect\citeauthoryear{Laugesen, Thyer, McInerney, and
-  Kavetski}{Laugesen et~al.}{2023}]{laugesenFlexibleForecastValue2023}
-\DIFadd{Laugesen, Richard, et~al.
-}\newblock \DIFadd{``Flexible Forecast Value Metric Suitable for a Wide Range of
-  Decisions: Application Using Probabilistic Subseasonal Streamflow
-  Forecasts.''
-}\newblock \emph{\DIFadd{Hydrology and Earth System Sciences}}\DIFadd{, vol. 27, no. 4, 2023, pp.
-  873--893.
-}
-
-\bibitem[\protect\citeauthoryear{Lee, Ji, Yi, Lee, Yoon, and Yi}{Lee
-  et~al.}{2025}]{leeDevelopingResilientReservoir2025}
-\DIFadd{Lee, Eunkyung, et~al.
-}\newblock \DIFadd{``Developing }{{\DIFadd{Resilient Reservoir System Operations}}}\DIFadd{: }{{\DIFadd{A
-  Simulation Approach Incorporating Rule Curve}}}\DIFadd{.''
-}\newblock \emph{\DIFadd{Water Resources Management}}\DIFadd{,  June 2025).
-}
-
-\bibitem[\protect\citeauthoryear{Liu, Weerts, Clark, Hendricks~Franssen, Kumar,
-  Moradkhani, Seo, Schwanenberg, Smith, {van Dijk}, {van Velzen}, He, Lee, Noh,
-  Rakovec, and Restrepo}{Liu et~al.}{2012}]{liuAdvancingDataAssimilation2012}
-\DIFadd{Liu, Y., et~al.
-}\newblock \DIFadd{``Advancing Data Assimilation in Operational Hydrologic Forecasting:
-  Progresses, Challenges, and Emerging Opportunities.''
-}\newblock \emph{\DIFadd{Hydrology and Earth System Sciences}}\DIFadd{, vol. 16, no. 10 October
-  2012), pp. 3863--3887.
-}
-
-\bibitem[\protect\citeauthoryear{Nash and Sutcliffe}{Nash and
-  Sutcliffe}{1970}]{nashRiverFlowForecasting1970}
-\DIFadd{Nash, J.~E., and J.~V. Sutcliffe.
-}\newblock \DIFadd{``River Flow Forecasting through Conceptual Models Part }{{\DIFadd{I}}} \DIFadd{---
-  }{{\DIFadd{A}}} \DIFadd{Discussion of Principles.''
-}\newblock \emph{\DIFadd{Journal of Hydrology}}\DIFadd{, vol. 10, no. 3 April 1970), pp.
-  282--290.
-}
-
-\bibitem[\protect\citeauthoryear{Pagano, Wood, Ramos, Cloke, Pappenberger,
-  Clark, Cranston, Kavetski, Mathevet, Sorooshian, and Verkade}{Pagano
-  et~al.}{2014}]{paganoChallengesOperationalRiver2014}
-\DIFadd{Pagano, Thomas~C., et~al.
-}\newblock \DIFadd{``Challenges of }{{\DIFadd{Operational River Forecasting}}}\DIFadd{.'',  August 2014).
-}
-
-\bibitem[\protect\citeauthoryear{Pham, Luo, and Finley}{Pham
-  et~al.}{2021}]{phamEvaluationRandomForests2021}
-\DIFadd{Pham, Leo~Triet, et~al.
-}\newblock \DIFadd{``Evaluation of Random Forests for Short-Term Daily Streamflow
-  Forecasting in Rainfall- and Snowmelt-Driven Watersheds.''
-}\newblock \emph{\DIFadd{Hydrology and Earth System Sciences}}\DIFadd{, vol. 25, no. 6 June
-  2021), pp. 2997--3015.
-}
-
-\bibitem[\protect\citeauthoryear{{St-Aubin} and Agard}{{St-Aubin} and
-  Agard}{2022}]{st-aubinPrecisionReliabilityForecasts2022}
-{\DIFadd{St-Aubin}}\DIFadd{, Philippe, and Bruno Agard.
-}\newblock \DIFadd{``Precision and }{{\DIFadd{Reliability}}} \DIFadd{of }{{\DIFadd{Forecasts Performance
-  Metrics}}}\DIFadd{.''
-}\newblock \emph{\DIFadd{Forecasting}}\DIFadd{, vol. 4, no. 4 December 2022), pp. 882--903.
-}
-
-\bibitem[\protect\citeauthoryear{Thompson and Brier}{Thompson and
-  Brier}{1955}]{thompsonEconomicUtilityWeather1955}
-\DIFadd{Thompson, John~C., and Glenn~W. Brier.
-}\newblock \DIFadd{``The Economic Utility of Weather Forecasts.''
-}\newblock \emph{\DIFadd{Monthly Weather Review}}\DIFadd{, vol. 83, no. 11, 1955, pp. 249--253.
-}
-
-\bibitem[\protect\citeauthoryear{Yang, Guo, Liu, and Block}{Yang
-  et~al.}{2021}]{yangSensitivityForecastValue2021}
-\DIFadd{Yang, Guang, et~al.
-}\newblock \DIFadd{``Sensitivity of }{{\DIFadd{Forecast Value}}} \DIFadd{in }{{\DIFadd{Multiobjective Reservoir
-  Operation}}} \DIFadd{to }{{\DIFadd{Forecast Lead Time}}} \DIFadd{and }{{\DIFadd{Reservoir Characteristics}}}\DIFadd{.''
-}\newblock \emph{\DIFadd{Journal of Water Resources Planning and Management}}\DIFadd{, vol. 147,
-  no. 6 June 2021), pp. 04021027.
-}
-
-\bibitem[\protect\citeauthoryear{Zajac, {Revilla-Romero}, Salamon, Burek,
-  Hirpa, and Beck}{Zajac et~al.}{2017}]{zajacImpactLakeReservoir2017}
-\DIFadd{Zajac, Zuzanna, et~al.
-}\newblock \DIFadd{``The Impact of Lake and Reservoir Parameterization on Global
-  Streamflow Simulation.''
-}\newblock \emph{\DIFadd{Journal of Hydrology}}\DIFadd{, vol. 548 May 2017), pp. 552--568.
-}
-
-\bibitem[\protect\citeauthoryear{Zhang, Zhang, Wen, Yue, and Zhou}{Zhang
-  et~al.}{2024}]{zhangOptimizationShorttermHydropower2024}
-\DIFadd{Zhang, Rongqi, et~al.
-}\newblock \DIFadd{``Optimization of Short-Term Hydropower Scheduling with Dynamic
-  Reservoir Capacity Based on Improved Genetic Algorithm and Parallel
-  Computing.''
-}\newblock \emph{\DIFadd{Journal of Hydrology}}\DIFadd{, vol. 636 June 2024), pp. 131238.
-}
-
-\end{thebibliography}
+\bibliography{GRH}
 
 
-
-\DIFaddend %\bmsection*{Supporting information}
+%\bmsection*{Supporting information}
 
 %Additional supporting information may be found in the online version of the article at the publisher’s website.
 

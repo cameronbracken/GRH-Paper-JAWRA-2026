@@ -157,7 +157,7 @@ Linear association between observations and forecasts is measured using the Pear
 
 where $r$ can range from -1 to 1 but for forecast evaluation, negative values would indicate poor forecast performance.
 
-Metrics should be computed on a common set of samples when products cover different periods. Skill scores relative to a reference forecast are also useful, but the evaluated and reference forecasts must be verifies against the same observations. Otherwise differences in sample statistics can be mistaken for differences in skill.
+Metrics should be computed on a common set of samples when products cover different periods. Skill scores relative to a reference forecast are also useful, but the evaluated and reference forecasts must be verified against the same observations. Otherwise differences in sample statistics can be mistaken for differences in skill.
 
 %iii)	Benchmark
 \subsection{Benchmark forecasts}\label{sec:benchmarks}
@@ -227,7 +227,7 @@ The products cover different portions of this period, which limits direct compar
 
 Anonymization of the commercial products limits reproducibility, so we describe each to the extent our agreements allow. Forecast A is produced by a consulting firm using a conceptual rainfall-runoff model with hydraulic routing through the Connecticut River main stem, driven by a commercial numerical weather prediction forecast, and issued once daily at an hourly time step out to roughly 8 days. Forecast B is produced by a technology firm using a machine learning model trained on gauge and remotely sensed catchment observations, issued twice daily at an hourly time step out to 10 days. The GRH in-house forecast combines RFC forecasts with routing and operator judgment and extends only through the day-ahead period, roughly 32 hours, because that is the horizon it is used for. Neither vendor released model internals or calibration and validation diagnostics, and we did not have access to them. A utility evaluating commercial forecast products generally cannot inspect them and must judge them on operational performance, which is part of the motivation for this framework. A full procurement evaluation should also weigh the operational cost, data dependencies, and ease of integration of each product alongside its skill, since these differ substantially between the two commercial products evaluated here.
 
-\subsection{Hydrolgic characteristics and traditional metrics}\label{sec:period}
+\subsection{Hydrologic characteristics and traditional metrics}\label{sec:period}
 
 The evaluation period included the July 2023 Vermont flood. This event produced the largest calculated inflows of the evaluation at Vernon (83,100 cfs, 2,353 m$^3$/s) and Bellows Falls (67,000 cfs). A December 2023 rain-on-snow event produced the largest inflow at Wilder (27,600 cfs) and the second largest at Vernon and Bellows Falls. The evaluation period also included spring freshets of 2024 and 2025 and dry summer conditions in both 2023 and 2024. The period therefore sampled a reasonable range of the conditions relevant to GRH operations. It did not, however, sample the full distribution of hydrologic conditions. Notably, the July 2023 event produced one of the ten largest flows ever recorded on the main stem of the Connecticut River. The evaluation also did not include any severe multi-year drought. Any real-time evaluation is bounded in this way, and the conclusions below should be taken as conditional on the observed period. 
 
