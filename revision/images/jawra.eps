@@ -1,0 +1,33 @@
+%!PS-Adobe-3.0 EPSF-3.0
+%%BoundingBox: 0 0 159 33
+%%HiResBoundingBox: 0.000 0.000 159.000 33.000
+%%Title: JAWRA Journal Banner
+%%Creator: Claude Code
+%%CreationDate: 2026-03-06
+%%EndComments
+
+gsave
+
+% Define colors
+/darkblue { 0.0 0.157 0.392 setrgbcolor } def
+
+% White background
+1 1 1 setrgbcolor
+0 0 159 33 rectfill
+
+% JAWRA in large bold text
+darkblue
+/Helvetica-Bold findfont 20 scalefont setfont
+2 7 moveto
+(JAWRA) show
+
+% Subtitle - positioned to the right of JAWRA
+/Helvetica findfont 4.8 scalefont setfont
+76 19 moveto
+(JOURNAL OF THE AMERICAN) show
+76 12 moveto
+(WATER RESOURCES ASSOCIATION) show
+
+grestore
+showpage
+%%EOF

@@ -1577,7 +1577,7 @@ Volume\ \@jvol, Article ID\ \@artid, \thepage~pages\par%
     \node[anchor=north east,inner sep=0mm]
     (LOG) at ([yshift=0mm]current page header area.north east){\includegraphics[width=26.5mm]{Wiley_logo.eps}};
     \node[anchor=north east,inner sep=0mm]
-    (LOG1) at ([yshift=-11.75mm]current page header area.north east){\includegraphics[width=56mm]{allergy.eps}};
+    (LOG1) at ([yshift=-11.75mm]current page header area.north east){\includegraphics[width=56mm]{jawra.eps}};
 %
 \end{tikzpicture}
   \hsize=\textwidth\parindent=0\@p@t%
