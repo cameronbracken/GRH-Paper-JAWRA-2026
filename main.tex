@@ -39,7 +39,7 @@
 
 \address[1]{\orgname{Pacific Northwest National Laboratory}, \orgaddress{\state{Washington}, \country{USA}}}
 
-\corres{Corresponding author Cameron Bracken, \email{cameron.bracken@pnnl.gov}}
+\corres{Cameron Bracken, \email{cameron.bracken@pnnl.gov}}
 
 %\presentaddress{This is sample for present address text this is sample for present address text.}
 
@@ -80,7 +80,7 @@ Evolving environmental regulation, changing water demands, cascading reservoir o
 
 %<I would also add here that we see more forecast products coming in with new optimization and new data driven approaches - however old approaches for forecast verification  might be outdated - those need to be evaluated on context on needing the perturb an existing system. Many papers on LSTM and stuff currently say that they develop real time models. This study provides insight to this technology innovation on how to evaluate their value.>
 
-Hydrologic forecasting and hydropower scheduling have improved through data driven models \citep{kratzertLearningUniversalRegional2019a} and scheduling optimization \citep{zhangOptimizationShorttermHydropower2024}. Hindcasts remain important because they evaluate forecast behavior over long periods and can support counterfactual studies of revenue, water supply, spill, and other outcomes. Their length and the period selected can materially affect estimates of forecast quality \citep{randrianasoloImpactStreamflowData2014}.
+Hydrologic forecasting and hydropower scheduling have improved through data driven models \citep{kratzertLearningUniversalRegional2019a} and scheduling optimization \citep{zhangOptimizationShorttermHydropower2024}. Hindcasts remain important because they evaluate forecast behavior over long periods and can support counterfactual studies of revenue, water supply, spill, and other outcomes. Their length of the selected period can materially affect estimates of forecast quality \citep{randrianasoloImpactStreamflowData2014}.
 Comparing several forecast products, however, requires more than assembling their separate hindcasts. Product-specific hindcasts may cover different periods, use different model versions or meteorological inputs, or represent infrastructure and operating rules that have changed since the hindcasts were issued. These differences can be mistaken for differences in forecast performance. A common real-time trial instead evaluates every product against the same observations and current operating context. This study addresses how a reservoir operator should design such a trial when comparable hindcasts are unavailable or do not represent the current system.
 
 No set of forecast evaluation metrics fits every system. Meteorological and hydrologic data vary among basins, as do watershed properties and infrastructure \citep{phamEvaluationRandomForests2021}. Operating rules range from run-of-river constraints to seasonal rule curves \citep{zajacImpactLakeReservoir2017}, and the relevant decisions change with forecast lead time and flow regime. An evaluation must account for these differences and connect statistical performance to decisions at a particular site.
@@ -95,11 +95,11 @@ We demonstrate the framework at three Great River Hydro plants on the Connecticu
 \section{Methods}
 
 %(1)	real time vs. historical
-Although probabilistic and ensemble forecasts are increasingly available, deterministic forecasts such as those issued by the National Weather Service River Forecast Centers (RFCs) remain widely used in operations in the U.S. All three products evaluated here are deterministic, so we focus on deterministic metrics that can be computed in real time. Section \ref{sec:probabilistic} describes how the same process can be applied to ensemble products.
+Although probabilistic and ensemble forecasts are increasingly available, deterministic forecasts such as those issued by the National Weather Service River Forecast Centers (RFCs) remain widely used in operations in the U.S. All three products evaluated here are deterministic, so we focus on deterministic metrics that can be computed in real-time. Section \ref{sec:probabilistic} describes how the same process can be applied to ensemble products.
 
-Hindcasts and real-time evaluations answer different questions. Directly comparing hindcast inflow with observed or calculated inflow does not require reconstructing operations at headwater projects or for unregulated local inflows. A common hindcast evaluation requires large samples and a broad range of hydrologic conditions. When each forecast is supplied to the same reservoir model, it can also estimate changes in revenue, water supply, spill, and other outcomes \citep{farkasEconomicValueWeather2025}. The comparison is valid only when the products use consistent inputs and represent the same infrastructure, constraints, and operating rules. Hindcasts developed at different times may not meet that requirement. For forecasts that rely on forecaster judgment, a hindcast also requires staff to recreate historical operating decisions, which may be infeasible.
+Hindcasts and real-time evaluations answer different questions. Directly comparing hindcast inflow with observed or calculated inflow does not require reconstructing operations at headwater projects or for unregulated local inflows. A common hindcast evaluation requires large samples and a broad range of hydrologic conditions. When each forecast is supplied to the same reservoir model, it can also estimate changes in revenue, water supply, spill, and other outcomes \citep{farkasEconomicValueWeather2025}. The comparison is valid only when the products use consistent inputs and represent the same infrastructure, constraints, and operating rules. Hindcasts developed at different times may not meet that requirement. For operations that rely on forecaster judgment, a hindcast also requires staff to recreate historical operating decisions, which may be infeasible.
 
-A real-time trial provides a common snapshot of current performance. It captures the forecasts as delivered, current observations and infrastructure, outages and data interruptions, operator adjustments, and the constraints that shape actual decisions. Its short record cannot represent the full range of hydrologic conditions or establish long-term economic value. The two approaches are therefore complementary: the real-time trial identifies operationally viable products and the decisions and constraints a value study must represent, while a subsequent common hindcast estimates performance and value over a longer record.
+A real-time trial provides a common snapshot of current performance. It captures the forecasts as delivered, current observations and infrastructure, outages and data interruptions, operator adjustments, and the constraints that shape actual decisions. However, its short record cannot represent the full range of hydrologic conditions or establish long-term economic value. The two approaches are therefore complementary: the real-time trial identifies operationally viable products and the decisions and constraints that a value study must represent, while a subsequent common hindcast estimates performance and value over a longer record.
 
 \subsection{Real-time inflow forecast evaluation}\label{sec:realtime}
 A multi-product real-time forecast evaluation can be described in the following steps. Collecting data, computing metrics, and visualizing results are common to any verification exercise. The contribution is the complete trial design, especially defining decisions before selecting metrics, maintaining a common comparison period, and using operator feedback to revise the evaluation.
@@ -115,7 +115,7 @@ A multi-product real-time forecast evaluation can be described in the following 
 
 The mechanics of steps 5 and 6 determine what the evaluation produces, so an example of how feedback was collected and acted on in our case helps clarify this point. Here, ``real-time'' means that forecasts were archived as issued and metrics were updated daily using observations available on the day of evaluation. Interpretation and metric revision occurred during recurring meetings with the operators, held twice monthly early in the trial and monthly for most of the evaluation. Each meeting reviewed the current calculated metrics against recent operating experience, and operators were asked to identify which recent forecast errors mattered operationally, and which did not. The answers frequently diverged from what the generic metrics indicated, especially during the high-flow season. Operators discounted large errors during high-flow spill conditions, when they had little discretion over releases and forecast quality was operationally irrelevant, while treating moderate errors with the potential to impact the forebay compliance band as serious. These ongoing discussions motivated the tailored metrics in Section \ref{sec:tailored}: the forebay exceedance metrics were designed in direct response to operators stating that compliance risk, rather than average error, determined whether they trusted a forecast.
 
-The iteration in step 7 occurs over two timescales. In this case, the set of metrics stabilized within about six months, while the evaluation continued to collect data under a wider range of conditions. For applications with strong seasonality, including this one, we recommend at least one annual cycle because product rankings can vary by season (Section \ref{sec:seasonal}). Operators should expect the metrics to stabilize before the evaluation period ends. Conclusions from a shorter evaluation remain conditional on the seasons and events observed.
+The iteration in step 7 occurs over two timescales. In this case, the set of metrics stabilized within about six months, while the evaluation continued to collect data under a wider range of conditions. For applications with strong seasonality, such as in the GRH system, we recommend at least one annual cycle because product rankings can vary by season (Section \ref{sec:seasonal}). Operators should expect the metrics to stabilize before the evaluation period ends. Conclusions from a shorter evaluation remain conditional on the seasons and events observed.
 
 
 %(2)	Measured inflow (smoothing)  (Figure)
@@ -131,12 +131,15 @@ Deterministic inflow forecasts can be evaluated using measures of average error,
 
 Operator input makes the metrics relevant to operational decisions but can also favor a familiar product or a recent event. To reduce this bias, evaluators should specify the initial metrics before viewing results and consider masking product identities during metric development when practical. Any metric added later should be linked to a documented decision or constraint and then applied consistently to every product over a common sample.
 
-Average hydrologic forecast behavior is typically measured with an error metric such as root mean squared error (RMSE), Nash-Sutcliffe Efficiency (NSE) \citep{nashRiverFlowForecasting1970}, or Kling-Gupta Efficiency (KGE) \citep{guptaDecompositionMeanSquared2009}. We recommend including KGE because it decomposes forecast performance into correlation, a variability ratio, and a bias ratio. A low score can therefore be associated with a specific deficiency rather than registered only as a large aggregate error. NSE and RMSE aggregate squared error into a single number, which makes them more sensitive to the largest errors and less diagnostic about their source. The metrics answer different questions, so we report them together rather than use one as a complete measure of forecast quality. The KGE is given by
-
+Average hydrologic forecast behavior is typically measured with an error metric such as root mean squared error (RMSE), Nash-Sutcliffe Efficiency (NSE) \citep{nashRiverFlowForecasting1970}, or Kling-Gupta Efficiency (KGE) \citep{guptaDecompositionMeanSquared2009}. We recommend including KGE because it decomposes forecast performance into correlation, a variability ratio, and a bias ratio. A low score can therefore be associated with a specific deficiency rather than registered only as a large aggregate error. NSE and RMSE aggregate squared error into a single number, which makes them more sensitive to the largest errors and less diagnostic about their source. The metrics answer different questions, so we report them together rather than use one as a complete measure of forecast quality. The NSE and KGE are defined as
+\begin{equation}
+    \text{NSE}=1 - \frac{\sum \left(o_i - f_i\right)^2}
+{\sum \left(o_i - \mu_o\right)^2}
+\end{equation}
 \begin{equation}
     \text{KGE}=1-\sqrt{(r-1)^2+\left(\frac{\sigma_f}{\sigma_o}-1\right)^2+\left(\frac{\mu_f}{\mu_o}-1\right)^2}
 \end{equation}
-where $r$ is the linear correlation coefficient, $\sigma_f$ and $\sigma_o$ are the forecast and observed standard deviations, and $\mu_f$ and $\mu_o$ are the forecast and observed means. KGE values greater than $-0.41$ improve on the observed mean as a predictor \citep{knobenTechnicalNoteInherent2019a}, and the maximum value is 1 for a perfect forecast. Because the corresponding reference value for NSE is 0, the two efficiency metrics should not be interpreted on the same scale. We report both and use RMSE, bias, correlation, and benchmark forecasts to interpret their values.
+where \(o_i\) and \(f_i\) is the observed and forecast value at time step \(i\), $r$ is the linear correlation coefficient, $\sigma_f$ and $\sigma_o$ are the forecast and observed standard deviations, and $\mu_f$ and $\mu_o$ are the forecast and observed means. KGE values greater than $-0.41$ improve on the observed mean as a predictor \citep{knobenTechnicalNoteInherent2019a}, and the maximum value is 1 for a perfect forecast. Because the corresponding reference value for NSE is 0, the two efficiency metrics should not be interpreted on the same scale. We report both and use RMSE, bias, correlation, and benchmark forecasts to interpret their values.
 
 The error, or residual, of a single forecast is the difference between the forecast and the observation. Bias is the systematic component of error, the tendency of a forecast to be too high or too low on average, and is conventionally expressed for a set of forecasts as a percentage of total observed volume
 
@@ -154,7 +157,7 @@ Linear association between observations and forecasts is measured using the Pear
 
 where $r$ can range from -1 to 1 but for forecast evaluation, negative values would indicate poor forecast performance.
 
-Metrics should be computed on a common sample when products cover different periods. Skill scores relative to a reference forecast are also useful, but the evaluated and reference forecasts must use the same observations. Otherwise differences in sample variance can be mistaken for differences in skill.
+Metrics should be computed on a common set of samples when products cover different periods. Skill scores relative to a reference forecast are also useful, but the evaluated and reference forecasts must be verifies against the same observations. Otherwise differences in sample statistics can be mistaken for differences in skill.
 
 %iii)	Benchmark
 \subsection{Benchmark forecasts}\label{sec:benchmarks}
@@ -224,7 +227,7 @@ The products cover different portions of this period, which limits direct compar
 
 Anonymization of the commercial products limits reproducibility, so we describe each to the extent our agreements allow. Forecast A is produced by a consulting firm using a conceptual rainfall-runoff model with hydraulic routing through the Connecticut River main stem, driven by a commercial numerical weather prediction forecast, and issued once daily at an hourly time step out to roughly 8 days. Forecast B is produced by a technology firm using a machine learning model trained on gauge and remotely sensed catchment observations, issued twice daily at an hourly time step out to 10 days. The GRH in-house forecast combines RFC forecasts with routing and operator judgment and extends only through the day-ahead period, roughly 32 hours, because that is the horizon it is used for. Neither vendor released model internals or calibration and validation diagnostics, and we did not have access to them. A utility evaluating commercial forecast products generally cannot inspect them and must judge them on operational performance, which is part of the motivation for this framework. A full procurement evaluation should also weigh the operational cost, data dependencies, and ease of integration of each product alongside its skill, since these differ substantially between the two commercial products evaluated here.
 
-\subsection{Hydrology of the evaluation period}\label{sec:period}
+\subsection{Hydrolgic characteristics and traditional metrics}\label{sec:period}
 
 The evaluation period included the July 2023 Vermont flood. This event produced the largest calculated inflows of the evaluation at Vernon (83,100 cfs, 2,353 m$^3$/s) and Bellows Falls (67,000 cfs). A December 2023 rain-on-snow event produced the largest inflow at Wilder (27,600 cfs) and the second largest at Vernon and Bellows Falls. The evaluation period also included spring freshets of 2024 and 2025 and dry summer conditions in both 2023 and 2024. The period therefore sampled a reasonable range of the conditions relevant to GRH operations. It did not, however, sample the full distribution of hydrologic conditions. Notably, the July 2023 event produced one of the ten largest flows ever recorded on the main stem of the Connecticut River. The evaluation also did not include any severe multi-year drought. Any real-time evaluation is bounded in this way, and the conclusions below should be taken as conditional on the observed period. 
 
@@ -392,6 +395,15 @@ Two other limitations affect the interpretation of the results. First, the refer
 
 The iterative component of the framework allows the evaluation to change as operators identify which forecast errors affect their decisions. Standard metrics provide a consistent basis for comparison, while tailored metrics connect forecast errors to the constraints of a particular system. Together, these metrics provide the forecast archive and initial assessment needed for a later scheduling and value analysis. The same process can be applied elsewhere, but the relevant decisions and tailored metrics must be defined with the operators of each system.
 
+\bmsection{Acknowledgements}
+We thank the staff at Great River Hydro for their patience, cooperation, and feedback throughout this evaluation process. We also thank the two vendors who participated. 
+
+\bmsection{Declaration of generative AI and AI-assisted technologies in the manuscript preparation process}
+During the preparation of this work, the authors used generative AI tools,
+including OpenAI’s ChatGPT and Anthropic's Claude, to assist in refining the
+wording and improving the grammatical quality of the manuscript. After
+using these tools, the authors carefully reviewed and edited the content as
+needed and take full responsibility for the content of the published article.
 
 \bmsection*{Data and Code}
 
@@ -399,6 +411,8 @@ Code for the evaluation is freely available
 \footnote{https://github.com/HydroWIRES-PNNL/inflow-forecast-evaluation}. Sample data can be accessed from the data repository on Zenodo\footnote{https://doi.org/10.5281/zenodo.16921728}. 
 
 A preprint version of the manuscript is available at \url{https://eartharxiv.org/repository/view/10530/}.
+
+
 
 %\backmatter
 \bmsection*{Author contributions}
