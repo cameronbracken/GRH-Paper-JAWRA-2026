@@ -1,4 +1,5 @@
-# LaTeX build artifacts. The parent repo's .gitignore does not apply here,
+
+ LaTeX build artifacts. The parent repo's .gitignore does not apply here,
 # since this submodule has its own git directory.
 *.aux
 *.bbl
@@ -12,6 +13,7 @@
 *.toc
 *.pag
 texput.log
+revision.zip
 
 # Local build shims (see SYNC.md: the Wiley class needs a \reserveinserts shim
 # to compile outside Overleaf).
