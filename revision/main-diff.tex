@@ -4,7 +4,7 @@
 %DIF 1c1-2
 %DIF LATEXDIFF DIFFERENCE FILE
 %DIF DEL submission/GRH Paper/main.tex   Thu Aug  6 22:57:58 2026
-%DIF ADD main.tex                        Mon Sep 14 22:57:24 2026
+%DIF ADD main.tex                        Wed Sep 16 23:19:42 2026
 %DIF < \documentclass[MLA,Times1COL, hidelinks, doublespace]{WileyNJDv5} %STIX1COL,STIX2COL,STIXSMALL
 %DIF -------
 %\documentclass[MLA,Times1COL, hidelinks, doublespace]{WileyNJDv5} %STIX1COL,STIX2COL,STIXSMALL %DIF > 
@@ -22,7 +22,19 @@
 \makeatother %DIF > 
 %DIF -------
 
-%DIF 6a11-12
+%DIF 6a11-24
+% Research Impact Statement. WileyNJDv5.cls provides \ris, USG.cls does not, so %DIF > 
+% define it here and print it in the title block just before the abstract. %DIF > 
+\makeatletter %DIF > 
+\gdef\@ris{} %DIF > 
+\def\ris#1{\gdef\@ris{{\reset@font\FIfont\textbf{Research Impact Statement:~}#1\par}}} %DIF > 
+\patchcmd{\printabstractpart}% %DIF > 
+  {\ifx\@abstract\@empty\else\@abstract\fi}% %DIF > 
+  {\ifx\@ris\@empty\else\removelastskip\vskip4.25\@p@t\@ris\fi% %DIF > 
+   \ifx\@abstract\@empty\else\@abstract\fi}% %DIF > 
+  {}{\ClassWarningNoLine{USG}{Could not place the Research Impact Statement}} %DIF > 
+\makeatother %DIF > 
+ %DIF > 
 \graphicspath{{figures/}{images/}} %DIF > 
  %DIF > 
 %DIF -------
@@ -33,7 +45,7 @@
 \received{Date Month Year}
 \revised{Date Month Year}
 \accepted{Date Month Year}
-%DIF 13c20
+%DIF 13c32
 %DIF < \journal{Journal}
 %DIF -------
 \journal{JAWRA} %DIF > 
@@ -41,7 +53,7 @@
 \volume{00}
 \copyyear{2023}
 \startpage{1}
-%DIF 17a24
+%DIF 17a36
 \articledoi{10.1002/0000} %DIF > 
 %DIF -------
 
@@ -122,17 +134,20 @@
 %DIFDELCMD < Recent advances in data driven hydrologic forecasts have led to a multitude of new and rapidly improving streamflow forecast products and technologies. These often lead hydropower producers to question whether such advances translate into increases in revenue and whether implementing these new forecasts justify the additional associated costs. To address this, we present a general framework that can be used in real time (or near real time) for reservoir inflow forecast evaluation. The framework calls for an iterative approach which involves direct operator feedback in the evaluation process. The evaluation can include forecast verification and validation, but also includes other qualitative or specialized metrics of forecast quality. We also present a successful application of this evaluation framework to three reservoirs in the Great River Hydro system on the Connecticut River in the Northeast U.S. While there is no single evaluation approach that can apply to all hydrologic forecasts, we also present a range of options of both traditional and tailored metrics that will be suitable for a diverse set of situations and systems. The goal of this framework is to provide hydropower operators with information necessary for evaluating how much a particular forecast product will improve their operations and ultimately inform ongoing investment decisions, such as whether to purchase external forecast products or improve existing internal forecasting capabilities.
 %DIFDELCMD < }
 %DIFDELCMD < %%%
+\DIFdelend %DIF >  200 character limit, including spaces and punctuation.
+\DIFaddbegin \ris{We developed an approach for reservoir operators to compare competing streamflow forecasts as they arrive, helping to inform investment decisions while keeping costs down.}
+\DIFaddend 
+
+\DIFdelbegin %DIFDELCMD < \keywords{hydropower, streamflow forecasting, real time evaluation, verification, validation}
+%DIFDELCMD < %%%
 \DIFdelend \DIFaddbegin \abstract[Abstract]{
 Recent advances in hydrologic forecasting have produced a growing number of streamflow forecast products. Hydropower operators must determine whether they improve operations enough to justify their cost. We present a framework for comparing multiple reservoir inflow forecasts over a common period under real-time operating conditions. This design suits cases where hindcasts are infeasible, or where existing hindcasts cannot be fairly compared. In the framework operators define the variables and constraints to be evaluated, help select and revise metrics, and interpret results using the same observations and operating context for every product. We apply it to three reservoirs in the Great River Hydro system on the Connecticut River in the Northeast U.S., comparing two anonymous commercial products labeled A and B. Product B generally matched the in-house forecast and outperformed product A. Under an idealized operator-defined cumulative error stress test, B also had a lower probability of exceeding the forebay compliance band in the first 24 hours at all three dams. Its advantage persisted through the 32-hour horizon shared by all products, though exceedance probabilities were high enough that no forecast could be used without operator intervention. The real-time evaluation screens products and defines the need for a subsequent hindcast-based value assessment using a scheduling model, operating constraints, and market prices.
 }
 \DIFaddend 
 
-\DIFdelbegin %DIFDELCMD < \keywords{hydropower, streamflow forecasting, real time evaluation, verification, validation}
-%DIFDELCMD < %%%
-\DIFdelend \DIFaddbegin \keywords{hydropower, streamflow forecasting, real-time evaluation, verification, validation}
-\DIFaddend 
+\DIFaddbegin \keywords{hydropower, streamflow forecasting, real-time evaluation, verification, validation}
 
-%\jnlcitation{\cname{%
+\DIFaddend %\jnlcitation{\cname{%
 %\author{Walters G}, and
 %\author{Bracken C}}.
 %\ctitle{A comprehensive calibration approach for the Northwest River Forecast Center} \cjournal{\it JAWRA} \cvol{2021;00(00):1--18}.}
@@ -633,27 +648,35 @@ The development of tailored metrics make the results relevant to }\DIFdelend \DI
 }
 
 \DIFadd{The iterative component of the framework allows the evaluation to change as operators identify which forecast errors affect their decisions. Standard metrics provide a consistent basis for comparison, while tailored metrics connect forecast errors to the constraints of }\DIFaddend a particular system\DIFaddbegin \DIFadd{. Together, these metrics provide the forecast archive and initial assessment needed for a later scheduling and value analysis. The same process can be applied elsewhere, but the relevant decisions }\DIFaddend and \DIFdelbegin \DIFdel{helps with operator buy-in. Furthermore, both generic and }\DIFdelend tailored metrics \DIFdelbegin \DIFdel{can ultimately be extended to assess the impacts of inflow forecasts on hydropower scheduling.
-Particularly under dynamic electricity market conditions, evaluations of inflow forecasts can serve as key indicators for understanding how forecasting errors propagate through the system, influencing compliance with operational requirements, variations in actual power generation, and potential revenue for system operators. The analysis of inflow forecast performance, conducted in coordination with system operators,
-represents an important foundational step toward achieving these broader applications. In presenting this framework we hope to provide a template for further applications and unbiased evaluation of the myriad of inflow forecasts available to hydropower system operators}\DIFdelend \DIFaddbegin \DIFadd{must be defined with the operators of each system.
-}
+Particularly under dynamic electricity market conditions, evaluations of inflow forecasts can serve as key indicators for understanding how forecasting errors propagate through the system, influencing compliance with operational requirements,
+variations in actual power generation, and potential revenue for system operators.
+The analysis of inflow forecast performance, conducted in coordination with system operators, represents an important foundational step toward achieving these broader applications. In presenting this framework we hope to provide a template for further applications and unbiased evaluation of the myriad of inflow forecasts available to hydropower system operators. }\DIFdelend \DIFaddbegin \DIFadd{must be defined with the operators of each system.
+}\DIFaddend 
 
-\bmsection{Acknowledgements}
-\DIFadd{We thank the staff at Great River Hydro for their patience, cooperation, and feedback throughout this evaluation process. We also thank the two vendors who participated. 
-}
+\DIFdelbegin %DIFDELCMD < \bmsection*{Data and Code}
+%DIFDELCMD < 
 
-\bmsection{Declaration of generative AI and AI-assisted technologies in the manuscript preparation process}
+%DIFDELCMD < %%%
+\DIFdel{Code for the evaluation is freely available
+}\footnote{\DIFdel{https://github.com/HydroWIRES-PNNL/inflow-forecast-evaluation}}%DIFAUXCMD
+\addtocounter{footnote}{-1}%DIFAUXCMD
+\DIFdel{. Sample data can be accessed from the data repository on Zenodo}\footnote{\DIFdel{https://doi.org/10.5281/zenodo.16921728}}%DIFAUXCMD
+\addtocounter{footnote}{-1}%DIFAUXCMD
+\DIFdelend \DIFaddbegin \bmsection{Acknowledgements}
+\DIFadd{We thank the staff at Great River Hydro for their patience, cooperation, and feedback throughout this evaluation process. We also thank the two vendors who participated. A preprint of this manuscript is available at }\url{https://eartharxiv.org/repository/view/10530/}\DIFaddend .
+
+\DIFdelbegin \DIFdel{Note that a pre-print non-peer reviewed draft of the manuscript has been uploaded to }%DIFDELCMD < \url{https://eartharxiv.org/repository/view/10530/}%%%
+\DIFdelend \DIFaddbegin \bmsection{Declaration of generative AI and AI-assisted technologies in the manuscript preparation process}
 \DIFadd{During the preparation of this work, the authors used generative AI tools,
 including OpenAI’s ChatGPT and Anthropic's Claude, to assist in refining the
 wording and improving the grammatical quality of the manuscript. After
 using these tools, the authors carefully reviewed and edited the content as
-needed and take full responsibility for the content of the published article}\DIFaddend .
+needed and take full responsibility for the content of the published article.
+}
 
-\bmsection*{Data and Code}
+\bmsection*{Data Availability Statement}
 
-Code for the evaluation is freely available
-\footnote{https://github.com/HydroWIRES-PNNL/inflow-forecast-evaluation}. Sample data can be accessed from the data repository on Zenodo\footnote{https://doi.org/10.5281/zenodo.16921728}. 
-
-\DIFdelbegin \DIFdel{Note that a pre-print non-peer reviewed draft }\DIFdelend \DIFaddbegin \DIFadd{A preprint version }\DIFaddend of the manuscript \DIFdelbegin \DIFdel{has been uploaded to }\DIFdelend \DIFaddbegin \DIFadd{is available at }\DIFaddend \url{https://eartharxiv.org/repository/view/10530/}.
+\DIFadd{The data that support the findings of this study are openly available in Zenodo at }\url{https://doi.org/10.5281/zenodo.16921728}\DIFadd{. That archive holds the forecasts as issued and the processed reference inflows for the three dams that were part of this evaluation. The two commercial forecasts are identified only as A and B, and the archive contains no vendor identifying information. The code that reproduces the evaluation metrics and figures in this paper from the archived data is openly available at }\url{https://github.com/HydroWIRES-PNNL/inflow-forecast-evaluation} \DIFadd{and archived at }\url{https://doi.org/10.5281/zenodo.22806456}\DIFaddend .
 
 
 

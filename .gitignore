@@ -11,6 +11,7 @@
 *.synctex.gz
 *.toc
 *.pag
+*-eps-converted-to.pdf
 texput.log
 revision.zip
 

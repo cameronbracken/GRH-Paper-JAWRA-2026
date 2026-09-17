@@ -8,6 +8,18 @@
 \AtBeginDocument{\gdef\@LastPg{\pageref{LastPage}}}
 \makeatother
 
+% Research Impact Statement. WileyNJDv5.cls provides \ris, USG.cls does not, so
+% define it here and print it in the title block just before the abstract.
+\makeatletter
+\gdef\@ris{}
+\def\ris#1{\gdef\@ris{{\reset@font\FIfont\textbf{Research Impact Statement:~}#1\par}}}
+\patchcmd{\printabstractpart}%
+  {\ifx\@abstract\@empty\else\@abstract\fi}%
+  {\ifx\@ris\@empty\else\removelastskip\vskip4.25\@p@t\@ris\fi%
+   \ifx\@abstract\@empty\else\@abstract\fi}%
+  {}{\ClassWarningNoLine{USG}{Could not place the Research Impact Statement}}
+\makeatother
+
 \graphicspath{{figures/}{images/}}
 
 \linenumbers
@@ -45,6 +57,9 @@
 
 %\fundingInfo{Text}
 %\JELinfo{ejlje}
+
+% 200 character limit, including spaces and punctuation.
+\ris{We developed an approach for reservoir operators to compare competing streamflow forecasts as they arrive, helping to inform investment decisions while keeping costs down.}
 
 \abstract[Abstract]{
 Recent advances in hydrologic forecasting have produced a growing number of streamflow forecast products. Hydropower operators must determine whether they improve operations enough to justify their cost. We present a framework for comparing multiple reservoir inflow forecasts over a common period under real-time operating conditions. This design suits cases where hindcasts are infeasible, or where existing hindcasts cannot be fairly compared. In the framework operators define the variables and constraints to be evaluated, help select and revise metrics, and interpret results using the same observations and operating context for every product. We apply it to three reservoirs in the Great River Hydro system on the Connecticut River in the Northeast U.S., comparing two anonymous commercial products labeled A and B. Product B generally matched the in-house forecast and outperformed product A. Under an idealized operator-defined cumulative error stress test, B also had a lower probability of exceeding the forebay compliance band in the first 24 hours at all three dams. Its advantage persisted through the 32-hour horizon shared by all products, though exceedance probabilities were high enough that no forecast could be used without operator intervention. The real-time evaluation screens products and defines the need for a subsequent hindcast-based value assessment using a scheduling model, operating constraints, and market prices.
@@ -396,7 +411,7 @@ Two other limitations affect the interpretation of the results. First, the refer
 The iterative component of the framework allows the evaluation to change as operators identify which forecast errors affect their decisions. Standard metrics provide a consistent basis for comparison, while tailored metrics connect forecast errors to the constraints of a particular system. Together, these metrics provide the forecast archive and initial assessment needed for a later scheduling and value analysis. The same process can be applied elsewhere, but the relevant decisions and tailored metrics must be defined with the operators of each system.
 
 \bmsection{Acknowledgements}
-We thank the staff at Great River Hydro for their patience, cooperation, and feedback throughout this evaluation process. We also thank the two vendors who participated. 
+We thank the staff at Great River Hydro for their patience, cooperation, and feedback throughout this evaluation process. We also thank the two vendors who participated. A preprint of this manuscript is available at \url{https://eartharxiv.org/repository/view/10530/}.
 
 \bmsection{Declaration of generative AI and AI-assisted technologies in the manuscript preparation process}
 During the preparation of this work, the authors used generative AI tools,
@@ -405,12 +420,9 @@ wording and improving the grammatical quality of the manuscript. After
 using these tools, the authors carefully reviewed and edited the content as
 needed and take full responsibility for the content of the published article.
 
-\bmsection*{Data and Code}
+\bmsection*{Data Availability Statement}
 
-Code for the evaluation is freely available
-\footnote{https://github.com/HydroWIRES-PNNL/inflow-forecast-evaluation}. Sample data can be accessed from the data repository on Zenodo\footnote{https://doi.org/10.5281/zenodo.16921728}. 
-
-A preprint version of the manuscript is available at \url{https://eartharxiv.org/repository/view/10530/}.
+The data that support the findings of this study are openly available in Zenodo at \url{https://doi.org/10.5281/zenodo.16921728}. That archive holds the forecasts as issued and the processed reference inflows for the three dams that were part of this evaluation. The two commercial forecasts are identified only as A and B, and the archive contains no vendor identifying information. The code that reproduces the evaluation metrics and figures in this paper from the archived data is openly available at \url{https://github.com/HydroWIRES-PNNL/inflow-forecast-evaluation} and archived at \url{https://doi.org/10.5281/zenodo.22806456}.
 
 
 
